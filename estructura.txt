@@ -1,0 +1,107 @@
+campus-app/
+├── public/
+│   ├── assets/
+│   │   ├── images/
+│   │   │   ├── buildings/
+│   │   │   │   ├── building1/
+│   │   │   │   ├── building2/
+│   │   │   │   ├── building3/
+│   │   │   │   └── ...
+│   │   │   ├── sports/
+│   │   │   └── common/
+│   │   ├── icons/
+│   │   └── map/
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── Button/
+│   │   │   ├── Card/
+│   │   │   ├── Slider/
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── Slider.tsx
+│   │   │   │   └── Slider.css
+│   │   │   ├── Map/
+│   │   │   └── ...
+│   ├── features/
+│   │   ├── building1/  # Grupo 2
+│   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   ├── services/
+│   │   │   ├── types/
+│   │   │   ├── utils/
+│   │   │   └── index.ts
+│   │   ├── building2/  # Grupo 3
+│   │   │   └── ...
+│   │   ├── building3/  # Grupo 1 (tu equipo)
+│   │   │   ├── components/
+│   │   │   │   ├── AcademicCenters/
+│   │   │   │   ├── LevelingCenter/
+│   │   │   │   └── Building3Info.tsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useBuilding3Data.ts
+│   │   │   ├── services/
+│   │   │   │   └── building3API.ts
+│   │   │   ├── types/
+│   │   │   │   └── index.ts
+│   │   │   ├── utils/
+│   │   │   └── index.ts
+│   │   ├── centralBuilding/  # Grupo 4
+│   │   │   └── ...
+│   │   ├── postgraduateBuilding/  # Grupo 5
+│   │   │   └── ...
+│   │   ├── laboratoryBuilding/  # Grupo 6
+│   │   │   └── ...
+│   │   ├── building4/  # Grupo 7
+│   │   │   └── ...
+│   │   ├── stadium/  # Grupo 8
+│   │   │   └── ...
+│   │   ├── coliseum/  # Grupo 9
+│   │   │   └── ...
+│   │   └── sportCenter/  # Grupo 10
+│   │       └── ...
+│   ├── core/
+│   │   ├── map/
+│   │   │   ├── hooks/
+│   │   │   │   ├── useMapInteraction.ts
+│   │   │   │   └── useMapHighlight.ts
+│   │   │   ├── components/
+│   │   │   │   └── CampusMap.tsx
+│   │   │   ├── context/
+│   │   │   │   └── MapContext.tsx
+│   │   │   └── types/
+│   │   │       └── index.ts
+│   │   ├── slider/
+│   │   │   ├── context/
+│   │   │   │   └── SliderContext.tsx
+│   │   │   └── hooks/
+│   │   │       └── useSlider.ts
+│   │   └── routing/
+│   ├── pages/
+│   │   ├── HomePage.tsx
+│   │   ├── BuildingPage.tsx
+│   │   └── MapPage.tsx
+│   ├── context/
+│   │   └── AppContext.tsx
+│   ├── hooks/
+│   │   └── useAppData.ts
+│   ├── services/
+│   │   └── api.ts
+│   ├── types/
+│   │   └── index.ts
+│   ├── styles/
+│   │   ├── variables.css
+│   │   ├── globals.css
+│   │   └── themes.css
+│   ├── utils/
+│   │   ├── mapUtils.ts
+│   │   ├── geoUtils.ts
+│   │   └── colorUtils.ts
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── vite-env.d.ts
+├── .gitignore
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md

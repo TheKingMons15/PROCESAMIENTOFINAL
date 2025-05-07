@@ -1,0 +1,426 @@
+/* mapEnhanced.css - Efectos de transparencia y animaciones para el mapa del campus */
+
+/* Variables CSS para fácil personalización */
+:root {
+    --primary-color: #006633;
+    --accent-color: #3498db;
+    --highlight-color: #f1c40f;
+    --admin-color: #34495e;
+    --sports-color: #2ecc71;
+    --labs-color: #f1c40f;
+    --parking-color: #e74c3c;
+    --light-gray: #f8f9fa;
+    --dark-gray: #333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-large: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+    --border-radius: 12px;
+    --tooltip-padding: 8px 12px;
+  }
+  
+  /* Mejorar el contenedor del mapa */
+  .map-test-container {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+  }
+  
+  .map-test-container:hover {
+    box-shadow: var(--shadow-large);
+  }
+  
+  /* Contenedor del mapa de Leaflet */
+  .map-container {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  
+  /* Estilos base para todos los elementos del mapa */
+  .map-element {
+    cursor: pointer !important;
+    transition: fill-opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                stroke-width 0.3s ease,
+                stroke-dasharray 0.3s ease,
+                stroke-opacity 0.3s ease !important;
+    stroke-opacity: 0; /* Ocultar bordes por defecto */
+  }
+  
+  /* Animación de entrada para los elementos del mapa */
+  .map-element.visible {
+    animation: fadeInElement 0.6s forwards;
+  }
+  
+  @keyframes fadeInElement {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Estilos para elementos seleccionados */
+  .map-element.selected {
+    animation: pulse 2s infinite !important;
+    stroke-opacity: 0.7 !important; /* Mostrar bordes suaves cuando está seleccionado */
+  }
+  
+  @keyframes pulse {
+    0% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.1);
+    }
+    100% {
+      filter: brightness(1);
+    }
+  }
+  
+  /* Estilos específicos para estacionamientos */
+  .map-element.parking.hovered {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)) !important;
+    stroke-opacity: 0.5 !important; /* Mostrar bordes al hacer hover */
+  }
+  .map-element.parking.selected {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)) !important;
+    stroke-opacity: 0.7 !important; /* Mostrar bordes cuando está seleccionado */
+  }
+  
+  /* Estilos específicos para edificios */
+  .map-element.building.hovered {
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3)) !important;
+    stroke-opacity: 0.5 !important; /* Mostrar bordes al hacer hover */
+  }
+  .map-element.building.selected {
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3)) !important;
+    stroke-opacity: 0.7 !important; /* Mostrar bordes cuando está seleccionado */
+  }
+  
+  /* Estilos específicos para áreas deportivas */
+  .map-element.sports-area.hovered {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)) !important;
+    stroke-opacity: 0.5 !important; /* Mostrar bordes al hacer hover */
+  }
+  .map-element.sports-area.selected {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)) !important;
+    stroke-opacity: 0.7 !important; /* Mostrar bordes cuando está seleccionado */
+  }
+  
+  /* Mejoras para los tooltips */
+  .leaflet-tooltip {
+    background-color: white !important;
+    border: none !important;
+    box-shadow: var(--shadow) !important;
+    border-radius: 8px !important;
+    padding: var(--tooltip-padding) !important;
+    font-size: 14px !important;
+    transition: all 0.3s ease !important;
+    min-width: 160px !important;
+    max-width: 250px !important;
+    opacity: 0.9 !important;
+    animation: tooltipFadeIn 0.3s forwards !important;
+  }
+  
+  @keyframes tooltipFadeIn {
+    from {
+      opacity: 0 !important;
+      transform: translateY(10px) !important;
+    }
+    to {
+      opacity: 0.9 !important;
+      transform: translateY(0) !important;
+    }
+  }
+  
+  /* Estilos para el contenido del tooltip */
+  .tooltip-content {
+    text-align: center;
+  }
+  
+  .tooltip-content strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 15px;
+    color: var(--dark-gray);
+  }
+  
+  .tooltip-details {
+    font-size: 12px;
+    color: #7f8c8d;
+  }
+  
+  .building-type {
+    display: inline-block;
+    font-size: 12px;
+    background-color: var(--light-gray);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+    color: #7f8c8d;
+  }
+  
+  /* Estilos específicos para los diferentes tooltips */
+  .building-tooltip {
+    border-left: 4px solid var(--primary-color) !important;
+  }
+  
+  .parking-tooltip {
+    border-left: 4px solid var(--parking-color) !important;
+  }
+  
+  .sports-tooltip {
+    border-left: 4px solid var(--sports-color) !important;
+  }
+  
+  /* Mejoras para el loader del mapa */
+  .map-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px 24px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    color: var(--dark-gray);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: loaderPulse 1.5s infinite;
+  }
+  
+  @keyframes loaderPulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+  }
+  
+  .loader-spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Mejoras para la leyenda del mapa */
+  .map-legend {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    z-index: 400;
+    max-width: 250px;
+    opacity: 0.85;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(0);
+  }
+  
+  .map-legend:hover {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+  
+  .legend-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+    color: var(--dark-gray);
+    font-size: 15px;
+  }
+  
+  .legend-subtitle {
+    font-weight: 500;
+    margin: 8px 0 4px 0;
+    color: #555;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 2px;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+    font-size: 13px;
+  }
+  
+  .legend-color {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    border-radius: 3px;
+  }
+  
+  /* Mejoras para la notificación de cambio de piso */
+  .floor-change-notice {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    z-index: 500;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--dark-gray);
+    animation: noticeAppear 0.3s forwards, noticeDisappear 0.3s forwards 1.7s;
+  }
+  
+  @keyframes noticeAppear {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -10px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+  
+  @keyframes noticeDisappear {
+    from {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+    to {
+      opacity: 0;
+      transform: translate(-50%, -10px);
+    }
+  }
+  
+  /* Mejoras para los controles de zoom */
+  .leaflet-control-zoom {
+    border-radius: var(--border-radius) !important;
+    overflow: hidden;
+    box-shadow: var(--shadow) !important;
+  }
+  
+  .leaflet-control-zoom a {
+    background-color: white !important;
+    color: var(--dark-gray) !important;
+    transition: var(--transition) !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+  
+  .leaflet-control-zoom a:hover {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+  }
+  
+  /* Animaciones para el contenido del slider */
+  .animated-fade-in {
+    animation: fadeIn 0.5s forwards;
+    opacity: 0;
+  }
+  
+  .animated-fade-in-delayed {
+    animation: fadeIn 0.5s forwards 0.2s;
+    opacity: 0;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animated-item {
+    animation: itemFadeIn 0.4s forwards;
+    opacity: 0;
+  }
+  
+  @keyframes itemFadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Mejoras para los botones de piso */
+  .floor-button {
+    padding: 8px 16px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .floor-button:hover {
+    color: var(--primary-color);
+  }
+  
+  .floor-button.active {
+    color: var(--dark-gray);
+    font-weight: 500;
+  }
+  
+  /* Adaptación para móviles */
+  @media (max-width: 768px) {
+    .map-legend {
+      left: 10px;
+      bottom: 40px;
+      padding: 8px;
+      max-width: 200px;
+      font-size: 12px;
+    }
+    
+    .legend-title {
+      font-size: 14px;
+    }
+    
+    .legend-subtitle {
+      font-size: 13px;
+    }
+    
+    .legend-item {
+      font-size: 12px;
+    }
+    
+    .floor-change-notice {
+      width: 80%;
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+    
+    .leaflet-tooltip {
+      max-width: 200px !important;
+      font-size: 12px !important;
+    }
+  }

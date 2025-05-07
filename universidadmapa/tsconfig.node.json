@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "composite": true,      // Importante: requerido para referencias de proyecto
+    "noEmit": false,        // Importante: no puede ser true
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist",     // Directorio de salida para los archivos compilados
+    "declaration": true     // Genera archivos .d.ts
+  },
+  "include": ["vite.config.ts"]  // O los archivos que necesites incluir
+}
