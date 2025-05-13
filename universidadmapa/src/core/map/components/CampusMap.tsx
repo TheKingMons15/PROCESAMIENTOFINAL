@@ -6,6 +6,7 @@ import { useSlider } from '../../../core/slider/context/SliderContext';
 import { Building, GeoCoordinate, MapEventType } from '../../../types';
 import 'leaflet/dist/leaflet.css';
 
+
 // Componente para ajustar la vista del mapa cuando cambian las coordenadas
 const MapViewUpdater = ({ center, zoom }: { center: GeoCoordinate; zoom: number }) => {
   const map = useMap();

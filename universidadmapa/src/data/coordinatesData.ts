@@ -1,16 +1,33 @@
 // Archivo: src/data/coordinatesData.ts
+// Información sobre instalaciones dentro de la zona verde
+export interface InstalacionZonaVerde {
+  nombre: string;
+  descripcion?: string;
+}
 
+// Información principal de la zona verde
+export interface zonaVerdes {
+  nombre: string;
+  descripcion: string;
+  tipo: string;
+  coordenadas: number[][];
+  instalaciones: InstalacionZonaVerde[];
+  acceso: string;
+  tiposPlantas: string[];
+  color: {
+    fill: string;
+    border: string;
+  };
+}
 // Función para transformar coordenadas
 const transformPoint = (point: number[]): number[] => {
   const [x, y] = point;
   return [x, y];
 };
-
 // Función para transformar todas las coordenadas de un polígono
 const transformPolygon = (coordinates: number[][]): number[][] => {
   return coordinates.map(point => transformPoint(point));
 };
-
 // Definición de tipos para los estacionamientos
 export interface EstacionamientoInfo {
   nombre: string;
@@ -25,6 +42,28 @@ export interface EstacionamientoInfo {
   espaciosDiscapacitados?: number;
   espaciosMotocicletas?: number;
 }
+//cordenadas para las zonas verdes
+export const zonaVerdePrincipal: zonaVerdes = {
+  nombre: "Zona Verde Principal",
+  descripcion: "Área ornamental de espacio abierto para actividades recreativas",
+  tipo: "Abierto",
+  coordenadas: transformPolygon([
+    [4964, 594],
+    [4904, 606],
+    [4919, 326],
+    [5002, 328],
+  ]),
+  instalaciones: [
+    { nombre: "Espacio verde", descripcion: "Área con césped y sombra natural" },
+    { nombre: "Bancas", descripcion: "Asientos para descanso de estudiantes" }
+  ],
+  acceso: "Acceso libre para estudiantes",
+  tiposPlantas: ["Ornamentales", "Frutales", "Aromáticas"],
+  color: {
+    fill: "#A0D995",
+    border: "#3C8031"
+  }
+};
 
 // Coordenadas originales de los estacionamientos con información actualizada
 const estacionamientosOriginales = [
@@ -59,6 +98,355 @@ const estacionamientosOriginales = [
     edificiosCercanos: ["Posgrados"],
     espaciosDiscapacitados: 2,
     espaciosMotocicletas: 4
+  },
+  {
+    nombre: "Area Verde 3",
+    coordenadas: [
+      [4040, 1490],
+      [4030, 1724],
+      [4141, 1828],
+      [4356, 2058],
+      [4558, 1896],
+      [4696, 1764],
+      [4725, 1580],
+      [4455, 1562]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 2",
+    coordenadas: [
+      [4004, 558],
+      [3909, 1006],
+      [3970, 974],
+      [4038, 620],
+      [4528, 600],
+      [4550, 438]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"]
+  },
+  {
+    nombre: "Area Verde 4",
+    coordenadas: [
+      [5208, 1542],
+      [4798, 1550],
+      [4776, 1750],
+      [5116, 1772],
+      [5172, 1810],
+      [5218, 1770]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 5",
+    coordenadas: [
+      [5278, 1372],
+      [5374, 1386],
+      [5337, 1710],
+      [5400, 1742],
+      [5329, 1804],
+      [5256, 1868]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 6",
+    coordenadas: [
+      [3930, 1282],
+      [3901, 1294],
+      [3887, 1634],
+      [3969, 1648],
+      [3966, 1508],
+      [3904, 1502]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 8",
+    coordenadas: [
+      [6208, 1330],
+      [6170, 1588],
+      [6167, 1752],
+      [6172, 1984],
+      [6369, 1986]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 7",
+    coordenadas: [
+      [4204, 2612],
+      [4524, 2892],
+      [4516, 3008],
+      [4172, 3300]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 9",
+    coordenadas: [
+      [5449, 1798],
+      [5537, 1850],
+      [5531, 1952],
+      [5487, 2050],
+      [5321, 1916]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 10",
+    coordenadas: [
+      [5925, 2620],
+      [5925, 2492],
+      [5460, 2868],
+      [5877, 2876],
+      [5932, 2710]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 11",
+    coordenadas: [
+      [5472, 2972],
+      [5915, 2970],
+      [5921, 3260],
+      [5736, 3276]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 12",
+    coordenadas: [
+      [4631, 3934],
+      [4685, 3988],
+      [4203, 3956],
+      [4364, 3778],
+      [4553, 3974]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 13",
+    coordenadas: [
+      [5715, 3628],
+      [5795, 3716],
+      [5739, 3852],
+      [5583, 3900],
+      [5485, 4072],
+      [5481, 4112],
+      [5483, 4160],
+      [5527, 4200],
+      [5579, 4236],
+      [5643, 4270],
+      [5627, 4360],
+      [5465, 4368],
+      [5379, 4372],
+      [5191, 4368],
+      [5191, 4058],
+      [5193, 3968],
+      [5259, 4014]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 14",
+    coordenadas: [
+      [5121, 4046],
+      [4861, 4062],
+      [4809, 4006],
+      [4779, 4004],
+      [4747, 4336],
+      [4853, 4362],
+      [5127, 4358]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 15",
+    coordenadas: [
+      [5965, 4200],
+      [6053, 4258],
+      [6039, 4318],
+      [5965, 4318],
+      [5951, 4378],
+      [5907, 4420],
+      [5801, 4416],
+      [5781, 4286],
+      [5879, 4266]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 16",
+    coordenadas: [
+      [3929, 4096],
+      [4041, 4108],
+      [4017, 4254],
+      [3967, 4382],
+      [3953, 4428],
+      [3955, 4476],
+      [3959, 4560],
+      [3975, 4612],
+      [3911, 4610]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 17",
+    coordenadas: [
+      [4845, 4422],
+      [5335, 4422],
+      [5331, 4628],
+      [5245, 4610],
+      [5239, 4488],
+      [4766, 4486]
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
+  },
+  {
+    nombre: "Area Verde 18",
+    coordenadas: [
+      [6234, 4394],
+      [6158, 4390],
+      [6139, 4864],
+      [6238, 4846]
+  
+    ],
+    color: {
+      fill: '#ffcc99',
+      border: '#ff9933'
+    },
+    capacidad: 25,
+    ubicacion: "A ambos lados del acceso principal del bloque norte",
+    edificiosCercanos: ["Edificio 3", "Edificio 1"],
+    EstacionamientoInfoComponent: 1,
+    espaciosMotocicletas: 3
   },
   {
     nombre: "Estacionamiento Edificio 2 y 4",
@@ -225,7 +613,14 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     tipo: 'DEPORTIVO',
     color: '#2ecc71',
     coordenadas: [
-      [5000, 2900], [4500, 2900], [4500, 3400], [5000, 3400]
+      [5127, 2660],
+      [5359, 2874],
+      [5351, 2992],
+      [5117, 3214],
+      [4861, 3210],
+      [4651, 2976],
+      [4637, 2880],
+      [4861, 2640]
     ],
     instalaciones: [
       { nombre: 'Espacio verde', icono: '🌳' },
