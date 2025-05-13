@@ -51,16 +51,7 @@ const Slider: React.FC<SliderProps> = ({ isOpen, onClose, title, children }) => 
         {children}
       </div>
       
-      {/* Botón de cerrar en la parte inferior */}
-      <div className="slider-footer">
-        <button 
-          className="slider-close-button" 
-          onClick={onClose}
-          type="button"
-        >
-          Cerrar
-        </button>
-      </div>
+
     </div>
   );
 };
