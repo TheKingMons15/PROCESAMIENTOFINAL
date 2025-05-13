@@ -2,53 +2,13 @@
 import React, { useEffect } from 'react';
 import { useMap, ImageOverlay } from 'react-leaflet';
 import { LatLngBounds } from 'leaflet';
-import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, zonaVerdePrincipal} from '../data/coordinatesData';
-
-
-
-// Componente para renderizar la información de un área verde
-export const AreaVerdeInfo: React.FC<{ 
-  area: { nombre: string; descripcion: string; tipo: string } 
-}> = ({ area }) => {
-  return (
-    <div className="slider-content-wrapper">
-      <div className="slider-header-section">
-        <h2 className="item-title">{area.nombre}</h2>
-        <span className="item-badge">Área Verde</span>
-      </div>
-      
-      <p className="item-description animated-fade-in">{area.descripcion}</p>
-      
-      <div className="area-verde-info animated-fade-in">
-        <div className="info-item">
-          <div className="info-icon">🌳</div>
-          <div className="info-text">
-            <div className="info-label">Tipo</div>
-            <div className="info-value">{area.tipo}</div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="area-verde-recomendaciones animated-fade-in-delayed">
-        <h3>Recomendaciones</h3>
-        <ul>
-          <li>No pisar el césped.</li>
-          <li>Evite dejar basura.</li>
-          <li>Disfrute de un entorno limpio y natural.</li>
-          <li>Respete la flora del lugar.</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
+import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, AreaVerdeInfo} from '../data/coordinatesData';
 // Componente para actualizar la imagen del mapa cuando cambia el piso
 export const FloorImageUpdater: React.FC<{ 
   floorImage: string, 
   bounds: LatLngBounds 
 }> = ({ floorImage, bounds }) => {
   const map = useMap();
-  
   // Este efecto se ejecuta cuando cambia la imagen del piso
   useEffect(() => {
     // Forzamos una actualización del tamaño del mapa después de cambiar la imagen
@@ -56,7 +16,6 @@ export const FloorImageUpdater: React.FC<{
       map.invalidateSize();
     }, 100);
   }, [map, floorImage]);
-  
   return (
     <ImageOverlay
       url={floorImage}
@@ -66,7 +25,6 @@ export const FloorImageUpdater: React.FC<{
     />
   );
 };
-
 // Componente para renderizar la información de estacionamiento en el slider
 export const EstacionamientoInfoComponent: React.FC<{ 
   estacionamiento: EstacionamientoInfo 
@@ -77,7 +35,6 @@ export const EstacionamientoInfoComponent: React.FC<{
         <h2 className="item-title">{estacionamiento.nombre}</h2>
         <span className="item-badge">Estacionamiento</span>
       </div>
-      
       <div className="estacionamiento-info animated-fade-in">
         <div className="info-item">
           <div className="info-icon">📍</div>
@@ -86,7 +43,6 @@ export const EstacionamientoInfoComponent: React.FC<{
             <div className="info-value">{estacionamiento.ubicacion}</div>
           </div>
         </div>
-        
         <div className="info-item">
           <div className="info-icon">🚗</div>
           <div className="info-text">
@@ -94,7 +50,6 @@ export const EstacionamientoInfoComponent: React.FC<{
             <div className="info-value">{estacionamiento.capacidad} vehículos</div>
           </div>
         </div>
-        
         {estacionamiento.espaciosDiscapacitados && (
           <div className="info-item">
             <div className="info-icon">♿</div>
@@ -104,7 +59,6 @@ export const EstacionamientoInfoComponent: React.FC<{
             </div>
           </div>
         )}
-        
         {estacionamiento.espaciosMotocicletas && (
           <div className="info-item">
             <div className="info-icon">🏍️</div>
@@ -114,7 +68,6 @@ export const EstacionamientoInfoComponent: React.FC<{
             </div>
           </div>
         )}
-        
         {estacionamiento.edificiosCercanos && (
           <div className="info-item">
             <div className="info-icon">🏢</div>
@@ -125,7 +78,6 @@ export const EstacionamientoInfoComponent: React.FC<{
           </div>
         )}
       </div>
-      
       <div className="estacionamiento-recomendaciones animated-fade-in-delayed">
         <h3>Recomendaciones</h3>
         <ul>
@@ -138,7 +90,6 @@ export const EstacionamientoInfoComponent: React.FC<{
     </div>
   );
 };
-
 // Componente para renderizar información de ubicación
 const UbicacionItem: React.FC<{
   ubicacion: Ubicacion,
@@ -347,6 +298,86 @@ export const AreaDeportivaInfo: React.FC<{
           <li>Traiga su propia hidratación.</li>
           <li>Respete las normas específicas de cada área deportiva.</li>
           <li>Coordine la reserva del espacio con anticipación si es necesario.</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+// Componente para renderizar la información de área verdes en el slider
+export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
+  
+  return (
+    <div className="slider-content-wrapper">
+      <div className="slider-header-section">
+        <h2 className="item-title">{area.nombre}</h2>
+        <span className="item-badge">Área Verde</span>
+      </div>
+
+      {/* Imagen de la zona verde */}
+      {area.fotografia && (
+        <div className="area-verde-imagen">
+          <img
+            src={area.fotografia}
+            alt={`Fotografía de ${area.nombre}`}
+            className="area-verde-foto"
+            style={{ width: '100%', borderRadius: '12px', marginBottom: '1rem' }}
+          />
+        </div>
+      )}
+
+      <p className="item-description animated-fade-in">{area.descripcion}</p>
+
+      <div className="area-verde-info animated-fade-in">
+        <div className="info-item">
+          <div className="info-icon">🌳</div>
+          <div className="info-text">
+            <div className="info-label">Tipo</div>
+            <div className="info-value">{area.tipo}</div>
+          </div>
+        </div>
+
+        <div className="info-item">
+          <div className="info-icon">📍</div>
+          <div className="info-text">
+            <div className="info-label">Ubicación</div>
+            <div className="info-value">{area.ubicacion}</div>
+          </div>
+        </div>
+
+        {area.nombre && (
+          <div className="info-item">
+            <div className="info-icon">🍀</div>
+            <div className="info-text">
+              <div className="info-label">Vegetación</div>
+              <div className="info-value">{area.nombre}</div>
+            </div>
+          </div>
+        )}
+      </div>
+      {/* Renderizar imágenes si existen */}
+      {area.imagenes && area.imagenes.length > 0 && (
+        <div className="area-verde-imagenes">
+          {area.imagenes.map((img, index) => (
+            <img
+              key={index}
+              src={img}
+              alt={`Imagen ${index + 1} de ${area.nombre}`}
+              className="area-verde-foto"
+              style={{ width: '100%', borderRadius: '12px', marginBottom: '1rem' }}
+            />
+          ))}
+        </div>
+      )}
+
+
+      <div className="area-verde-recomendaciones animated-fade-in-delayed">
+        <h3>Recomendaciones</h3>
+        <ul>
+          <li>No arroje basura; utilice los tachos designados.</li>
+          <li>Evite pisar áreas reforestadas o sensibles.</li>
+          <li>No arranque plantas ni flores.</li>
+          <li>Disfrute del espacio respetando la tranquilidad del entorno.</li>
         </ul>
       </div>
     </div>

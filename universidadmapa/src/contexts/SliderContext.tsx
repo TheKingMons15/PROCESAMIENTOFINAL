@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 // Tipos de elementos que pueden mostrarse en el slider
-export type ElementType = 'estacionamiento' | 'edificio' | 'deportivo';
+export type ElementType = 'estacionamiento' | 'edificio' | 'deportivo' | 'areasverdes';
 
 // Tipo para la información que se muestra en el slider
 export interface SliderInfo {
   type: ElementType;
   floorIndex?: number; // Solo para edificios
-}
+} 
 
 export interface SliderContextType {
   isOpen: boolean;
