@@ -4,6 +4,7 @@ import { MapContainer, ImageOverlay, useMapEvents, Polygon, Marker, Tooltip } fr
 import L, { LatLngBounds, LatLngTuple, Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
+
 // Estilos para el modo editor
 const styles = `
 .coordinate-mapper {

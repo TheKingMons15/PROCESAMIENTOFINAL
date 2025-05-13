@@ -1802,4 +1802,8 @@ border: '#1b5e20'
 export const areasVerdesupec: AreaVerdeInfo[] = areasVerdes.map(area => ({
   ...area,
   coordenadas: transformPolygon(area.coordenadas)
+<<<<<<< HEAD
 }));
+=======
+}));
+>>>>>>> 511f91944e2de8ab426137514e2417e547929c6f

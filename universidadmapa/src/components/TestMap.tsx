@@ -5,7 +5,11 @@ import L, { LatLngBounds, LatLngTuple } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // Importaciones de archivos externos
+<<<<<<< HEAD
 import { estacionamientos, edificiosData, areasDeportivas, areasVerdesupec } from '../data/coordinatesData';
+=======
+import { estacionamientos, edificiosData, areasDeportivas,zonaVerdePrincipal } from '../data/coordinatesData';
+>>>>>>> 511f91944e2de8ab426137514e2417e547929c6f
 import { 
   FloorImageUpdater, 
   EstacionamientoInfoComponent, 
@@ -334,8 +338,38 @@ const TestMap: React.FC = () => {
               </Polygon>
             );
           })}
+<<<<<<< HEAD
 
           
+=======
+          {currentMapImage === '/assets/images/campus-map.jpg' && (
+  <Polygon
+    key="zona-verde-principal"
+    positions={zonaVerdePrincipal.coordenadas as LatLngTuple[]}
+    pathOptions={{
+      color: zonaVerdePrincipal.color.border,
+      fillColor: zonaVerdePrincipal.color.fill,
+      fillOpacity: hoveredItem === zonaVerdePrincipal ? 0.7 : elementsVisible ? 0.3 : 0,
+      weight: hoveredItem === zonaVerdePrincipal ? 2 : 1,
+      dashArray: hoveredItem === zonaVerdePrincipal ? '' : '4,4',
+    }}
+    eventHandlers={{
+      mouseover: () => handleHover(zonaVerdePrincipal),
+      mouseout: () => handleHoverOut(),
+    }}
+  >
+    <Tooltip 
+      sticky 
+      direction="top"
+      offset={[0, -10]}
+      opacity={0.9}
+    >
+      <strong>{zonaVerdePrincipal.nombre}</strong><br />
+      {zonaVerdePrincipal.descripcion}
+    </Tooltip>
+  </Polygon>
+)}
+>>>>>>> 511f91944e2de8ab426137514e2417e547929c6f
           {/* Polígonos para las áreas deportivas - Solo visibles en el mapa general */}
           {currentMapImage === '/assets/images/campus-map.jpg' && areasDeportivas && areasDeportivas.map((area) => (
             <Polygon
