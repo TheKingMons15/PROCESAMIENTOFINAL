@@ -2,7 +2,54 @@
 import React, { useEffect } from 'react';
 import { useMap, ImageOverlay } from 'react-leaflet';
 import { LatLngBounds } from 'leaflet';
+<<<<<<< HEAD
 import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, AreaVerdeInfo} from '../data/coordinatesData';
+=======
+<<<<<<< HEAD
+import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, AreaVerdeInfo} from '../data/coordinatesData';
+=======
+import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, zonaVerdePrincipal} from '../data/coordinatesData';
+
+
+
+// Componente para renderizar la información de un área verde
+export const AreaVerdeInfo: React.FC<{ 
+  area: { nombre: string; descripcion: string; tipo: string } 
+}> = ({ area }) => {
+  return (
+    <div className="slider-content-wrapper">
+      <div className="slider-header-section">
+        <h2 className="item-title">{area.nombre}</h2>
+        <span className="item-badge">Área Verde</span>
+      </div>
+      
+      <p className="item-description animated-fade-in">{area.descripcion}</p>
+      
+      <div className="area-verde-info animated-fade-in">
+        <div className="info-item">
+          <div className="info-icon">🌳</div>
+          <div className="info-text">
+            <div className="info-label">Tipo</div>
+            <div className="info-value">{area.tipo}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div className="area-verde-recomendaciones animated-fade-in-delayed">
+        <h3>Recomendaciones</h3>
+        <ul>
+          <li>No pisar el césped.</li>
+          <li>Evite dejar basura.</li>
+          <li>Disfrute de un entorno limpio y natural.</li>
+          <li>Respete la flora del lugar.</li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+>>>>>>> 511f91944e2de8ab426137514e2417e547929c6f
+>>>>>>> 837ef91a735019923dece7aaca5dd1e7055d14c8
 // Componente para actualizar la imagen del mapa cuando cambia el piso
 export const FloorImageUpdater: React.FC<{ 
   floorImage: string, 

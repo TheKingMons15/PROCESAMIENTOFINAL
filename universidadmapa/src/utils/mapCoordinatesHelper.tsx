@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { MapContainer, ImageOverlay, useMapEvents } from 'react-leaflet';
 import { LatLngBounds } from 'leaflet';
 
+
 // Componente auxiliar para capturar clics y obtener coordenadas
 const CoordinateLogger = () => {
   useMapEvents({
