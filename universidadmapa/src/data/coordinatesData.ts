@@ -39,7 +39,7 @@ const estacionamientosOriginales = [
       fill: '#fb9a99',
       border: '#e31a1c'
     },
-    capacidad: 42,
+    capacidad: 43,
     ubicacion: "Parte frontal de la universidad, lateral derecho de los Edificios 1 y 3, ingreso por calle Antisana.",
     edificiosCercanos: ["Edificio 1", "Edificio 3"],
     espaciosDiscapacitados: 2,
@@ -71,7 +71,7 @@ const estacionamientosOriginales = [
       fill: '#b2df8a',
       border: '#33a02c'
     },
-    capacidad: 40,
+    capacidad: 46,
     ubicacion: "Parte frontal de la universidad, acceso por calle Antisana. Ubicado al lado derecho del edificio principal, junto a los Edificios 2 y 4.",
     edificiosCercanos: ["Edificio 2", "Edificio 4"],
     espaciosDiscapacitados: 2,
