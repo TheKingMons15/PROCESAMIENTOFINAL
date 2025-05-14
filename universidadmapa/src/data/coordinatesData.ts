@@ -812,8 +812,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area1.jpeg",
     imagenes: [
-      "/assets/images/zonas/Area1.jpeg",
-      "/assets/images/zonas/Area2.jpeg"
+      "/assets/images/zonas/plantas/plantasarea1.jpg"
     ]
   },
   {
@@ -839,8 +838,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area2.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea2.jpg",
     ]
   },
   {
@@ -868,8 +866,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area3.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea3.jpg",
+      "/assets/images/zonas/plantas/plantasarea3_1.jpg"
     ]
   },
     {
@@ -895,8 +893,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area4.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea4.jpg"
     ]
   },
       {
@@ -926,8 +923,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area5.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea5.jpg"
     ]
   },
         {
@@ -953,11 +949,10 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area6.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea6.jpg"
     ]
   },
-          {
+    {
     nombre: "Area Verde 7",
     descripcion: "Zona triangular con árboles en los extremos, ubicada entre bloques académicos, ideal para recreación ligera.",
     coordenadas: [
@@ -978,11 +973,11 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area7.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea7.jpg",
+      "/assets/images/zonas/plantas/plantasarea7_1.jpg"
     ]
   },
-            {
+ {
     nombre: "Area Verde 8",
     descripcion: "Espacio verde amplio, rodeado de árboles altos, diseñado para sombra y relajación al aire libre.",
     coordenadas: [
@@ -1004,8 +999,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area8.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea8.jpg"
     ]
   },
               {
@@ -1033,8 +1027,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area29.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea29.jpg",
+      "/assets/images/zonas/plantas/plantasarea29_1.jpg"
     ]
   },
                 {
@@ -1059,11 +1053,10 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area10.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea11_1.jpg"
     ]
   },
-                  {
+  {
     nombre: "Area Verde 11",
     descripcion: "Espacio lineal con senderos que conecta distintos sectores del campus, en medio de jardines amplios.",
     coordenadas: [
@@ -1084,11 +1077,10 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area11.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea11.jpg"
     ]
   },
-                    {
+  {
     nombre: "Area Verde 12",
     descripcion: "Zona con árboles nativos y vegetación baja, ubicada cerca de estacionamientos para aulas.",
     coordenadas: [
@@ -1110,8 +1102,9 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area12.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/area12.jpg",
+      "/assets/images/zonas/plantas/area12plantas.jpg",
+      "/assets/images/zonas/plantas/plantasarea12.jpg"
     ]
   },
      {
@@ -1148,8 +1141,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area13.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea13.jpg",
+      "/assets/images/zonas/plantas/plantasarea13_1.jpg"
     ]
   },
        {
@@ -1176,8 +1169,10 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/1.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea14.jpg",
+      "/assets/images/zonas/plantas/plantasarea14_1.jpg",
+      "/assets/images/zonas/plantas/plantasarea14_2.jpg",
+      "/assets/images/zonas/plantas/plantasarea14_3.jpg"
     ]
   },
        {
@@ -1206,8 +1201,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area15.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea15.jpg"
     ]
   },
          {
@@ -1236,8 +1230,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area16.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea24.jpg",
+      "/assets/images/zonas/plantas/plantasarea24_1.jpg"
     ]
   },
            {
@@ -1263,8 +1257,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area17.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea17.jpg"
     ]
   },
              {
@@ -1288,8 +1281,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area18y19.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea18y19.jpg"
     ]
   },
  {
@@ -1310,8 +1302,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area18y19.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea18y19.jpg"
     ]
   },
   {
@@ -1332,8 +1323,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area20.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea20.jpg",
+      "/assets/images/zonas/plantas/plantasarea20_1.jpg"
     ]
   },
   {
@@ -1354,8 +1345,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area21.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea21.jpg"
     ]
   },
   {
@@ -1376,8 +1366,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area22.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/area12.jpg",
+      "/assets/images/zonas/plantas/area12plantas.jpg"
     ]
   },
   {
@@ -1398,8 +1388,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area23.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea23.jpg",
+      "/assets/images/zonas/plantas/plantasarea23_1.jpg"
     ]
   },
    {
@@ -1420,8 +1410,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area24y25.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea24.jpg",
+      "/assets/images/zonas/plantas/plantasarea24_1.jpg"
     ]
   },
    {
@@ -1442,8 +1432,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area24y25.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea25.jpg"
     ]
   },
   {
@@ -1464,8 +1453,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area26.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea26.jpg",
+      "/assets/images/zonas/plantas/plantasarea26_1.jpg"
     ]
   },
   {
@@ -1486,8 +1475,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area27.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea26.jpg",
+      "/assets/images/zonas/plantas/area12plantas.jpg"
     ]
   },
   {
@@ -1508,8 +1497,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area28.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea34.jpg"
     ]
   },
    {
@@ -1530,8 +1518,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area29.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea29.jpg",
+      "/assets/images/zonas/plantas/plantasarea29_1.jpg"
     ]
   },
     {
@@ -1552,8 +1540,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area7.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea30.jpg",
+      "/assets/images/zonas/plantas/plantasarea30_1.jpg"
     ]
   },
    {
@@ -1574,8 +1562,8 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area31.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea31.jpg",
+      "/assets/images/zonas/plantas/plantasarea31_1.jpg"
     ]
   },
   {
@@ -1596,8 +1584,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area32.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea32.jpg"
     ]
   },
   {
@@ -1618,8 +1605,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area33.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea33.jpg"
     ]
   },
   {
@@ -1640,8 +1626,7 @@ const areasVerdes: AreaVerdeInfo[] = [
     ],
     fotografia: "/assets/images/zonas/Area34.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea34.jpg"
     ]
   },
   {
@@ -1726,8 +1711,7 @@ border: '#1b5e20'
     ],
     fotografia: "/assets/images/zonas/Area35.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea35.jpg"
     ]
   },
   {
@@ -1755,8 +1739,6 @@ border: '#1b5e20'
     ],
     fotografia: "/assets/images/zonas/Area36.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
     ]
   },
   {
@@ -1795,7 +1777,7 @@ border: '#1b5e20'
     fill: '#2e7d32', 
     border: '#1b5e20' 
     },
-    ubicacion: "Junto a la concha acustica límites entre calle México y Avenida Universitaria",
+    ubicacion: "Junto a las aulas de aprendizaje cultural, contiguo al Parqueadero",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
       { nombre: 'Espacio verde N39', icono: '🌳' },
@@ -1803,8 +1785,7 @@ border: '#1b5e20'
     ],
     fotografia: "/assets/images/zonas/Area37.jpeg",
     imagenes: [
-      "/assets/images/zonas/area12.jpg",
-      "/assets/images/zonas/area12plantas.jpg"
+      "/assets/images/zonas/plantas/plantasarea37.jpg"
       
     ]
   },
