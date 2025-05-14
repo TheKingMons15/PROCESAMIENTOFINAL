@@ -73,6 +73,43 @@ export const EstacionamientoInfoComponent: React.FC<{
         <h2 className="item-title">{estacionamiento.nombre}</h2>
         <span className="item-badge">Estacionamiento</span>
       </div>
+      <div className="estacionamiento-image-wrapper">
+  {/* Imagen del Estacionamiento con estilo de fondo tipo 'floor-image' */}
+  <div
+    className="floor-image"
+    style={{
+      backgroundImage: estacionamiento.imagen
+        ? `url(${estacionamiento.imagen})`
+        : undefined,
+      width: '10cm',
+      height: '7cm',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      border: '1px solid #ccc',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative'
+    }}
+  >
+    {/* Mostrar ícono si no hay imagen */}
+    {!estacionamiento.imagen && <span style={{ fontSize: '2rem' }}>🅿️</span>}
+
+    <div className="floor-image-text" style={{
+      position: 'absolute',
+      bottom: 0,
+      width: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      color: 'white',
+      textAlign: 'center',
+      fontSize: '0.9rem',
+      padding: '0.2cm'
+    }}>
+      Estacionamiento {estacionamiento.nombre}
+    </div>
+  </div>
+</div>
+
       <div className="estacionamiento-info animated-fade-in">
         <div className="info-item">
           <div className="info-icon">📍</div>
