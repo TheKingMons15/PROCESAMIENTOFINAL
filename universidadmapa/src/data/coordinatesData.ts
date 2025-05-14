@@ -458,43 +458,39 @@ const edificiosOriginales = [
         numero: 0,
         nombre: 'Planta Baja',
         imagen: '/assets/images/edificio3-plantabaja.jpg',
-        ladoIzquierdo: [
-          { nombre: 'Laboratorio clases de tics', tipo: 'LABORATORIO' },
-          { nombre: 'Observatorio Binacional de Frontera', tipo: 'INVESTIGACIÓN' },
-          { nombre: 'Laboratorio de Neuromarketing', tipo: 'LABORATORIO' },
-          { nombre: 'Oficina de centros o materias complementarias', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Laboratorios', tipo: 'LABORATORIO' },
-          { nombre: 'Servicios higiénicos', tipo: 'SERVICIO' },
-          { nombre: 'Sala de docentes', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Ascensor lado izquierdo', tipo: 'SERVICIO' }
-        ],
-        ladoDerecho: [
-          { nombre: 'Aulas de Logística y Transporte', tipo: 'AULA' }
+        instalaciones: [
+          { nombre: 'Lab. TICs', icono: '🖥️' },
+          { nombre: 'Obs. Binacional', icono: '🌐' },
+          { nombre: 'Lab. Neuro marketing', icono: '📊' },
+          { nombre: 'Ofic. Complementarias', icono: '📋' },
+          { nombre: 'Aulas Logística', icono: '📦' },
+          { nombre: 'Labs. Izquierda', icono: '🔬' },
+          { nombre: 'Restrooms', icono: '🚽' },
+          { nombre: 'Sala Docentes', icono: '👥' },
+          { nombre: 'Ascensor Izq.', icono: '⬆️' }
         ]
       },
       {
         numero: 1,
         nombre: 'Primer Piso',
         imagen: '/assets/images/edificio3-piso1.jpg',
-        ladoIzquierdo: [
-          { nombre: 'Aulas de Idiomas', tipo: 'AULA' },
-          { nombre: 'Oficinas administrativas', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Servicios higiénicos', tipo: 'SERVICIO' },
-          { nombre: 'Ascensor lado izquierdo', tipo: 'SERVICIO' }
-        ],
-        ladoDerecho: [
-          { nombre: 'Aulas de Logística y Transporte', tipo: 'AULA' }
+        instalaciones: [
+          { nombre: 'Aulas Idiomas', icono: '🔤' },
+          { nombre: 'Aulas Logística', icono: '📦' },
+          { nombre: 'Ofic. Admin.', icono: '📑' },
+          { nombre: 'Restrooms', icono: '🚽' },
+          { nombre: 'Ascensor Izq.', icono: '⬆️' }
         ]
       },
       {
         numero: 2,
         nombre: 'Segundo Piso',
         imagen: '/assets/images/edificio3-piso2.jpg',
-        ladoIzquierdo: [
-          { nombre: 'Aulas de Nivelación', tipo: 'AULA' },
-          { nombre: 'Dirección de Enfermería', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Servicios higiénicos', tipo: 'SERVICIO' },
-          { nombre: 'Ascensor lado izquierdo', tipo: 'SERVICIO' }
+        instalaciones: [
+          { nombre: 'Aulas Nivelación', icono: '📐' },
+          { nombre: 'Dir. Enfermería', icono: '🏥' },
+          { nombre: 'Restrooms', icono: '🚽' },
+          { nombre: 'Ascensor Izq.', icono: '⬆️' }
         ]
       }
     ]

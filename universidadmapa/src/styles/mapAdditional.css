@@ -1,53 +1,4 @@
-/* src/components/common/Slider/Slider.css */
-/* Estilos para el slider */
-.slider-container {
-  position: fixed;
-  right: -380px;
-  top: 0;
-  width: 380px;
-  height: 100vh;
-  background-color: white;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-  transition: right 0.3s ease;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.slider-container.open {
-  right: 0;
-}
-
-.slider-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background-color: #006633;
-  color: white;
-}
-
-.slider-title {
-  margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.slider-close {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 0 5px;
-}
-
-.slider-content {
-  flex: 1;
-  overflow-y: auto;
-  padding: 15px;
-}
+/* src/styles/mapAdditional.css - Agregar estos estilos adicionales */
 
 /* Estilos para el carrusel de fotos */
 .photo-carousel-container {
@@ -59,6 +10,7 @@
   margin-bottom: 10px;
   color: #006633;
   font-size: 16px;
+  font-weight: bold;
 }
 
 .photo-grid {
@@ -75,11 +27,13 @@
   overflow: hidden;
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.photo-thumbnail:hover {
+.photo-thumbnail:hover, 
+.photo-thumbnail:focus {
   transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .thumbnail-image {
@@ -115,6 +69,7 @@
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  animation: fadeIn 0.3s ease;
 }
 
 .photo-modal-container {
@@ -123,6 +78,7 @@
   max-height: 90vh;
   display: flex;
   flex-direction: column;
+  animation: scaleIn 0.3s ease;
 }
 
 .photo-modal-header {
@@ -132,6 +88,8 @@
   padding: 10px;
   color: white;
   background: rgba(0, 0, 0, 0.5);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .photo-counter {
@@ -144,6 +102,13 @@
   color: white;
   font-size: 24px;
   cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .photo-display-container {
@@ -157,6 +122,7 @@
   max-width: 100%;
   max-height: calc(90vh - 60px);
   object-fit: contain;
+  border-radius: 4px;
 }
 
 .nav-button {
@@ -172,6 +138,11 @@
   align-items: center;
   font-size: 24px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .prev-button {
@@ -182,7 +153,18 @@
   right: 10px;
 }
 
-/* Estilos adicionales para elementos de información */
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Estilos para insignias */
 .badge {
   display: inline-block;
   padding: 0.25em 0.6em;
@@ -197,4 +179,69 @@
   border-radius: 0.25rem;
   background-color: #e8f5e9;
   color: #2e7d32;
+  transition: all 0.2s ease;
+}
+
+.badge:hover {
+  background-color: #c8e6c9;
+  transform: translateY(-1px);
+}
+
+.info-values {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+/* Asegurar que los polígonos del mapa sean visibles con la superposición */
+.leaflet-pane {
+  z-index: 400;
+}
+
+.leaflet-overlay-pane {
+  z-index: 390;
+}
+
+/* Opacidad para los pisos de edificios */
+.leaflet-image-layer.building-floor {
+  opacity: 0.85 !important;
+}
+
+/* Estilos mejorados para hover en los elementos del mapa */
+.map-element {
+  transition: fill-opacity 0.3s ease, opacity 0.3s ease;
+}
+
+.map-element.hovered {
+  cursor: pointer;
+}
+
+/* Asegurar que los tooltips sean visibles siempre */
+.leaflet-tooltip {
+  z-index: 1000 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .photo-modal-container {
+    max-width: 95vw;
+  }
+  
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .leaflet-container {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+  
+  .slider-container {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .slider-container.open {
+    right: 0;
+  }
 }
