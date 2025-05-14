@@ -438,7 +438,7 @@ export const AreaDeportivaInfo: React.FC<{
         <div className="image-grid">
           <div className="demo-image-container">
             <img 
-              src="/assets/images/CanchaFutbol2.jpg" 
+              src="/public/assets/images/CanchaFutbol2.jpg" 
               alt="Vista aérea de la cancha de fútbol" 
               className="demo-image"
             />
