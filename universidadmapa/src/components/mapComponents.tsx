@@ -409,6 +409,7 @@ export const EdificioInfo: React.FC<{
 };
 
 // Componente para renderizar la información de área deportiva en el slider
+// Componente para renderizar la información de área deportiva en el slider
 export const AreaDeportivaInfo: React.FC<{ 
   area: AreaDeportiva 
 }> = ({ area }) => {
@@ -427,6 +428,69 @@ export const AreaDeportivaInfo: React.FC<{
           <div className="info-text">
             <div className="info-label">Tipo</div>
             <div className="info-value">{area.tipo}</div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Sección de imágenes demostrativas */}
+      <div className="demo-images-section animated-fade-in-delayed">
+        <h3>Demostración del Área</h3>
+        <div className="image-grid">
+          <div className="demo-image-container">
+            <img 
+              src="/assets/images/CanchaFutbol2.jpg" 
+              alt="Vista aérea de la cancha de fútbol" 
+              className="demo-image"
+            />
+            <p className="image-caption">Vista completa de la cancha</p>
+          </div>
+          <div className="demo-image-container">
+            <img 
+              src="/images/cancha-futbol-en-uso.jpg" 
+              alt="Partido en la cancha de fútbol" 
+              className="demo-image"
+            />
+            <p className="image-caption">Partido en progreso</p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Sección de equipamiento requerido */}
+      <div className="equipment-section animated-fade-in-delayed">
+        <h3>Equipamiento Requerido</h3>
+        <div className="equipment-grid">
+          <div className="equipment-item">
+            <img 
+              src="/images/uniforme-futbol.jpg" 
+              alt="Uniforme de fútbol" 
+              className="equipment-image"
+            />
+            <div className="equipment-details">
+              <h4>Uniforme</h4>
+              <p>Camiseta, pantalón corto y medias deportivas. Preferiblemente en materiales transpirables.</p>
+            </div>
+          </div>
+          <div className="equipment-item">
+            <img 
+              src="/images/balon-futbol.jpg" 
+              alt="Balón de fútbol" 
+              className="equipment-image"
+            />
+            <div className="equipment-details">
+              <h4>Balón</h4>
+              <p>Balón oficial tamaño 5 para adultos, tamaño 4 para juveniles.</p>
+            </div>
+          </div>
+          <div className="equipment-item">
+            <img 
+              src="/images/zapatos-futbol.jpg" 
+              alt="Zapatos para fútbol" 
+              className="equipment-image"
+            />
+            <div className="equipment-details">
+              <h4>Calzado</h4>
+              <p>Tacos adecuados para superficie de césped sintético. No se permiten tacos metálicos.</p>
+            </div>
           </div>
         </div>
       </div>
