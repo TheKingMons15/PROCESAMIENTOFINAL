@@ -15,6 +15,7 @@ const transformPolygon = (coordinates: number[][]): number[][] => {
 export interface EstacionamientoInfo {
   nombre: string;
   coordenadas: number[][];
+    imagen?: string, 
   color: {
     fill: string;
     border: string;
@@ -31,6 +32,7 @@ export interface EstacionamientoInfo {
 // Coordenadas originales de los estacionamientos con información actualizada
 const estacionamientosOriginales = [
   {
+        imagen: '/assets/images/estacionamintos/estacionamiento1y3.jpg',
     nombre: "Estacionamiento Edificio 1 y 3",
     coordenadas: [
       [3874, 1688], [4067, 1848], [4332, 2120], [4171, 2284],
@@ -48,6 +50,7 @@ const estacionamientosOriginales = [
     espaciosMotocicletas: 4
   },
   {
+    imagen: '/assets/images/estacionamintos/estacionamientoPosgrados.jpg',
     nombre: "Estacionamiento de Posgrados",
     coordenadas: [
       [5696, 140], [4973, 322], [4966, 612], [5634, 622], [5700, 436]
@@ -64,6 +67,7 @@ const estacionamientosOriginales = [
   },
   {
     nombre: "Estacionamiento Edificio 2 y 4",
+    imagen: '/assets/images/estacionamintos/estacionamiento2y4.jpg',
     coordenadas: [
       [3995, 5644], [4219, 5664], [4508, 6008], [4219, 6240],
       [4144, 6404], [4255, 6516], [4248, 7072], [4104, 7332],
@@ -81,6 +85,7 @@ const estacionamientosOriginales = [
   },
   {
     nombre: "Estacionamiento Coliseo",
+     imagen: '/assets/images/estacionamintos/estacionamientoColiseo.jpg',
     coordenadas: [
       [5635, 7756], [7292, 7784], [7312, 8092], [5627, 8064]
     ],
@@ -96,6 +101,7 @@ const estacionamientosOriginales = [
   },
   {
     nombre: "Estacionamiento Centro Deportivo",
+    imagen: '/assets/images/estacionamintos/EstacionamientoCentroDeportivo.jpg',
     coordenadas: [
       [3359, 264], [3063, 408], [3036, 1964], [3363, 1968]
     ],
@@ -572,7 +578,17 @@ const edificiosOriginales = [
     tipo: 'ACADÉMICO',
     color: '#2ecc71',
     coordenadas: [
-      [3991, 792], [3915, 1484], [5132, 1544], [5187, 824]
+      [3961, 1020], [3970, 898], [3950, 899], [3964, 781],   
+      [4085, 785], [4084, 800], [4183, 798], [4184, 789],
+      [4479, 795], [4486, 696], [4792, 701], [4785, 803],
+      [4883, 805], [5072, 817], [5079, 799], [5213, 806],
+      [5208, 926], [5199, 931], [5197, 1053], [5236, 1055],
+      [5223, 1308], [5177, 1307], [5174, 1424], [5169, 1556],
+      [5027, 1552], [5026, 1533], [4856, 1529], [4834, 1547],
+      [4833, 1567], [4595, 1556], [4586, 1566], [4459, 1560],
+      [4449, 1550], [4127, 1531], [4128, 1491], [4034, 1485],
+      [4028, 1503], [3904, 1496], [3910, 1373], [3928, 1370],
+      [3935, 1253], [3953, 1246], [3971, 1031]
     ],
     pisos: [
       {

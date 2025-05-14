@@ -252,59 +252,183 @@ export const EstacionamientoInfoComponent: React.FC<{
         <h2 className="item-title">{estacionamiento.nombre}</h2>
         <span className="item-badge">Estacionamiento</span>
       </div>
-      <div className="estacionamiento-info animated-fade-in">
-        <div className="info-item">
-          <div className="info-icon">📍</div>
-          <div className="info-text">
-            <div className="info-label">Ubicación</div>
-            <div className="info-value">{estacionamiento.ubicacion}</div>
-          </div>
-        </div>
-        <div className="info-item">
-          <div className="info-icon">🚗</div>
-          <div className="info-text">
-            <div className="info-label">Capacidad</div>
-            <div className="info-value">{estacionamiento.capacidad} vehículos</div>
-          </div>
-        </div>
-        {estacionamiento.espaciosDiscapacitados && (
-          <div className="info-item">
-            <div className="info-icon">♿</div>
-            <div className="info-text">
-              <div className="info-label">Espacios para discapacitados</div>
-              <div className="info-value">{estacionamiento.espaciosDiscapacitados} espacios</div>
-            </div>
-          </div>
-        )}
-        {estacionamiento.espaciosMotocicletas && (
-          <div className="info-item">
-            <div className="info-icon">🏍️</div>
-            <div className="info-text">
-              <div className="info-label">Espacios para motocicletas</div>
-              <div className="info-value">{estacionamiento.espaciosMotocicletas} espacios</div>
-            </div>
-          </div>
-        )}
-        {estacionamiento.edificiosCercanos && (
-          <div className="info-item">
-            <div className="info-icon">🏢</div>
-            <div className="info-text">
-              <div className="info-label">Edificios cercanos</div>
-              <div className="info-value">{estacionamiento.edificiosCercanos.join(', ')}</div>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="estacionamiento-recomendaciones animated-fade-in-delayed">
-        <h3>Recomendaciones</h3>
-        <ul>
-          <li>Respete las señales de tránsito y los límites de velocidad.</li>
-          <li>No deje objetos de valor visibles en su vehículo.</li>
-          <li>Estacione correctamente dentro de las líneas demarcadas.</li>
-          <li>Utilice los espacios designados según corresponda.</li>
-        </ul>
+      <div className="estacionamiento-image-wrapper">
+  {/* Imagen del Estacionamiento con estilo de fondo tipo 'floor-image' */}
+  <div
+    className="floor-image"
+    style={{
+      backgroundImage: estacionamiento.imagen
+        ? `url(${estacionamiento.imagen})`
+        : undefined,
+      width: '10cm',
+      height: '7cm',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      border: '1px solid #ccc',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative'
+    }}
+  >
+    {/* Mostrar ícono si no hay imagen */}
+    {!estacionamiento.imagen && <span style={{ fontSize: '3rem' }}>🅿️</span>}
+
+    <div className="floor-image-text" style={{
+      position: 'absolute',
+      bottom: 0,
+      width: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      color: 'white',
+      textAlign: 'center',
+      fontSize: '0.9rem',
+      padding: '0.2cm'
+    }}>
+      Estacionamiento {estacionamiento.nombre}
+    </div>
+  </div>
+</div>
+      <style>
+{`
+  .tarjeta-info, .tarjeta-recomendaciones {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin: 20px 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .info-icon {
+    font-size: 1.8rem;
+    margin-right: 12px;
+  }
+
+  .reloj-animado {
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .info-text .info-label {
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+  }
+
+  .info-text .info-value {
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  .destacado {
+    font-weight: 600;
+    color: #007bff;
+  }
+
+  .horario-estilo {
+    background: linear-gradient(90deg, #e3f2fd 0%, #f1f8e9 100%);
+    border-left: 4px solid #2196f3;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .hora-texto {
+    font-size: 1.05rem;
+    color: #0d47a1;
+  }
+
+  .tarjeta-recomendaciones h3 {
+    margin-bottom: 10px;
+    color: #37474f;
+  }
+
+  .tarjeta-recomendaciones ul {
+    padding-left: 20px;
+    list-style-type: none;
+  }
+
+  .tarjeta-recomendaciones li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 1em;
+  }
+`}
+</style>
+
+<div className="estacionamiento-info animated-fade-in tarjeta-info">
+  <div className="info-item">
+    <div className="info-icon">📍</div>
+    <div className="info-text">
+      <div className="info-label">Ubicación</div>
+      <div className="info-value destacado">{estacionamiento.ubicacion}</div>
+    </div>
+  </div>
+  <div className="info-item">
+    <div className="info-icon">🚗</div>
+    <div className="info-text">
+      <div className="info-label">Capacidad</div>
+      <div className="info-value">{estacionamiento.capacidad} vehículos</div>
+    </div>
+  </div>
+  <div className="info-item horario-estilo">
+    <div className="info-icon reloj-animado">⏰</div>
+    <div className="info-text">
+      <div className="info-label">Horario de atención</div>
+      <div className="info-value">
+        <strong>Lunes a sábado</strong><br />
+        <span className="hora-texto">6:30 AM - 8:30 AM</span>
       </div>
     </div>
+  </div>
+  {estacionamiento.espaciosDiscapacitados && (
+    <div className="info-item">
+      <div className="info-icon">♿</div>
+      <div className="info-text">
+        <div className="info-label">Espacios para discapacitados</div>
+        <div className="info-value">{estacionamiento.espaciosDiscapacitados} espacios</div>
+      </div>
+    </div>
+  )}
+  {estacionamiento.espaciosMotocicletas && (
+    <div className="info-item">
+      <div className="info-icon">🏍️</div>
+      <div className="info-text">
+        <div className="info-label">Espacios para motocicletas</div>
+        <div className="info-value">{estacionamiento.espaciosMotocicletas} espacios</div>
+      </div>
+    </div>
+  )}
+  {estacionamiento.edificiosCercanos && (
+    <div className="info-item">
+      <div className="info-icon">🏢</div>
+      <div className="info-text">
+        <div className="info-label">Edificios cercanos</div>
+        <div className="info-value">{estacionamiento.edificiosCercanos.join(', ')}</div>
+      </div>
+    </div>
+  )}
+</div>
+
+<div className="estacionamiento-recomendaciones animated-fade-in-delayed tarjeta-recomendaciones">
+  <h3>🚦 Recomendaciones</h3>
+  <ul>
+    <li>⚠️ Respete las señales de tránsito y los límites de velocidad.</li>
+    <li>🔒 No deje objetos de valor visibles en su vehículo.</li>
+    <li>📏 Estacione correctamente dentro de las líneas demarcadas.</li>
+    <li>🅿️ Utilice los espacios designados según corresponda.</li>
+  </ul>
+</div>
+</div>
   );
 };
 
@@ -465,6 +589,7 @@ export const EdificioInfo: React.FC<{
 };
 
 // Componente para renderizar la información de área deportiva en el slider
+// Componente para renderizar la información de área deportiva en el slider
 export const AreaDeportivaInfo: React.FC<{ 
   area: AreaDeportiva 
 }> = ({ area }) => {
@@ -483,6 +608,69 @@ export const AreaDeportivaInfo: React.FC<{
           <div className="info-text">
             <div className="info-label">Tipo</div>
             <div className="info-value">{area.tipo}</div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Sección de imágenes demostrativas */}
+      <div className="demo-images-section animated-fade-in-delayed">
+        <h3>Demostración del Área</h3>
+        <div className="image-grid">
+          <div className="demo-image-container">
+            <img 
+              src="/assets/images/CanchaFutbol2.jpg" 
+              alt="Vista aérea de la cancha de fútbol" 
+              className="demo-image"
+            />
+            <p className="image-caption">Vista completa de la cancha</p>
+          </div>
+          <div className="demo-image-container">
+            <img 
+              src="/images/cancha-futbol-en-uso.jpg" 
+              alt="Partido en la cancha de fútbol" 
+              className="demo-image"
+            />
+            <p className="image-caption">Partido en progreso</p>
+          </div>
+        </div>
+      </div>
+      
+      {/* Sección de equipamiento requerido */}
+      <div className="equipment-section animated-fade-in-delayed">
+        <h3>Equipamiento Requerido</h3>
+        <div className="equipment-grid">
+          <div className="equipment-item">
+            <img 
+              src="/images/uniforme-futbol.jpg" 
+              alt="Uniforme de fútbol" 
+              className="equipment-image"
+            />
+            <div className="equipment-details">
+              <h4>Uniforme</h4>
+              <p>Camiseta, pantalón corto y medias deportivas. Preferiblemente en materiales transpirables.</p>
+            </div>
+          </div>
+          <div className="equipment-item">
+            <img 
+              src="/images/balon-futbol.jpg" 
+              alt="Balón de fútbol" 
+              className="equipment-image"
+            />
+            <div className="equipment-details">
+              <h4>Balón</h4>
+              <p>Balón oficial tamaño 5 para adultos, tamaño 4 para juveniles.</p>
+            </div>
+          </div>
+          <div className="equipment-item">
+            <img 
+              src="/images/zapatos-futbol.jpg" 
+              alt="Zapatos para fútbol" 
+              className="equipment-image"
+            />
+            <div className="equipment-details">
+              <h4>Calzado</h4>
+              <p>Tacos adecuados para superficie de césped sintético. No se permiten tacos metálicos.</p>
+            </div>
           </div>
         </div>
       </div>
