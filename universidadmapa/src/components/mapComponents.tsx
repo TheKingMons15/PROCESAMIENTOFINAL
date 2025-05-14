@@ -2,18 +2,10 @@
 import React, { useEffect } from 'react';
 import { useMap, ImageOverlay } from 'react-leaflet';
 import { LatLngBounds } from 'leaflet';
-<<<<<<< HEAD
 import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, AreaVerdeInfo} from '../data/coordinatesData';
-=======
-<<<<<<< HEAD
-import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, AreaVerdeInfo} from '../data/coordinatesData';
-=======
-import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, zonaVerdePrincipal} from '../data/coordinatesData';
-
-
 
 // Componente para renderizar la información de un área verde
-export const AreaVerdeInfo: React.FC<{ 
+export const AreaVerdeInfoComponent: React.FC<{ 
   area: { nombre: string; descripcion: string; tipo: string } 
 }> = ({ area }) => {
   return (
@@ -48,8 +40,7 @@ export const AreaVerdeInfo: React.FC<{
   );
 };
 
->>>>>>> 511f91944e2de8ab426137514e2417e547929c6f
->>>>>>> 837ef91a735019923dece7aaca5dd1e7055d14c8
+
 // Componente para actualizar la imagen del mapa cuando cambia el piso
 export const FloorImageUpdater: React.FC<{ 
   floorImage: string, 
