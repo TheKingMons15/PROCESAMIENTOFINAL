@@ -101,8 +101,7 @@ const estacionamientosOriginales = [
   },
   {
     nombre: "Estacionamiento Centro Deportivo",
-        imagen: '\assets\images\estacionamintos\EstacionamientoCentroDeportivo.jpg',
-
+    imagen: '/assets/images/estacionamintos/EstacionamientoCentroDeportivo.jpg',
     coordenadas: [
       [3359, 264], [3063, 408], [3036, 1964], [3363, 1968]
     ],

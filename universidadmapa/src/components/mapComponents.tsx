@@ -93,7 +93,7 @@ export const EstacionamientoInfoComponent: React.FC<{
     }}
   >
     {/* Mostrar ícono si no hay imagen */}
-    {!estacionamiento.imagen && <span style={{ fontSize: '2rem' }}>🅿️</span>}
+    {!estacionamiento.imagen && <span style={{ fontSize: '3rem' }}>🅿️</span>}
 
     <div className="floor-image-text" style={{
       position: 'absolute',
