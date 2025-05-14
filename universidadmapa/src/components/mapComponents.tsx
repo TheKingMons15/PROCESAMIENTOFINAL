@@ -109,60 +109,147 @@ export const EstacionamientoInfoComponent: React.FC<{
     </div>
   </div>
 </div>
+      <style>
+{`
+  .tarjeta-info, .tarjeta-recomendaciones {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    margin: 20px 0;
+    transition: all 0.3s ease-in-out;
+  }
 
-      <div className="estacionamiento-info animated-fade-in">
-        <div className="info-item">
-          <div className="info-icon">📍</div>
-          <div className="info-text">
-            <div className="info-label">Ubicación</div>
-            <div className="info-value">{estacionamiento.ubicacion}</div>
-          </div>
-        </div>
-        <div className="info-item">
-          <div className="info-icon">🚗</div>
-          <div className="info-text">
-            <div className="info-label">Capacidad</div>
-            <div className="info-value">{estacionamiento.capacidad} vehículos</div>
-          </div>
-        </div>
-        {estacionamiento.espaciosDiscapacitados && (
-          <div className="info-item">
-            <div className="info-icon">♿</div>
-            <div className="info-text">
-              <div className="info-label">Espacios para discapacitados</div>
-              <div className="info-value">{estacionamiento.espaciosDiscapacitados} espacios</div>
-            </div>
-          </div>
-        )}
-        {estacionamiento.espaciosMotocicletas && (
-          <div className="info-item">
-            <div className="info-icon">🏍️</div>
-            <div className="info-text">
-              <div className="info-label">Espacios para motocicletas</div>
-              <div className="info-value">{estacionamiento.espaciosMotocicletas} espacios</div>
-            </div>
-          </div>
-        )}
-        {estacionamiento.edificiosCercanos && (
-          <div className="info-item">
-            <div className="info-icon">🏢</div>
-            <div className="info-text">
-              <div className="info-label">Edificios cercanos</div>
-              <div className="info-value">{estacionamiento.edificiosCercanos.join(', ')}</div>
-            </div>
-          </div>
-        )}
-      </div>
-      <div className="estacionamiento-recomendaciones animated-fade-in-delayed">
-        <h3>Recomendaciones</h3>
-        <ul>
-          <li>Respete las señales de tránsito y los límites de velocidad.</li>
-          <li>No deje objetos de valor visibles en su vehículo.</li>
-          <li>Estacione correctamente dentro de las líneas demarcadas.</li>
-          <li>Utilice los espacios designados según corresponda.</li>
-        </ul>
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .info-icon {
+    font-size: 1.8rem;
+    margin-right: 12px;
+  }
+
+  .reloj-animado {
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .info-text .info-label {
+    font-weight: bold;
+    color: #333;
+    font-size: 1rem;
+  }
+
+  .info-text .info-value {
+    color: #555;
+    font-size: 0.95rem;
+  }
+
+  .destacado {
+    font-weight: 600;
+    color: #007bff;
+  }
+
+  .horario-estilo {
+    background: linear-gradient(90deg, #e3f2fd 0%, #f1f8e9 100%);
+    border-left: 4px solid #2196f3;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+  .hora-texto {
+    font-size: 1.05rem;
+    color: #0d47a1;
+  }
+
+  .tarjeta-recomendaciones h3 {
+    margin-bottom: 10px;
+    color: #37474f;
+  }
+
+  .tarjeta-recomendaciones ul {
+    padding-left: 20px;
+    list-style-type: none;
+  }
+
+  .tarjeta-recomendaciones li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 1em;
+  }
+`}
+</style>
+
+<div className="estacionamiento-info animated-fade-in tarjeta-info">
+  <div className="info-item">
+    <div className="info-icon">📍</div>
+    <div className="info-text">
+      <div className="info-label">Ubicación</div>
+      <div className="info-value destacado">{estacionamiento.ubicacion}</div>
+    </div>
+  </div>
+  <div className="info-item">
+    <div className="info-icon">🚗</div>
+    <div className="info-text">
+      <div className="info-label">Capacidad</div>
+      <div className="info-value">{estacionamiento.capacidad} vehículos</div>
+    </div>
+  </div>
+  <div className="info-item horario-estilo">
+    <div className="info-icon reloj-animado">⏰</div>
+    <div className="info-text">
+      <div className="info-label">Horario de atención</div>
+      <div className="info-value">
+        <strong>Lunes a sábado</strong><br />
+        <span className="hora-texto">6:30 AM - 8:30 AM</span>
       </div>
     </div>
+  </div>
+  {estacionamiento.espaciosDiscapacitados && (
+    <div className="info-item">
+      <div className="info-icon">♿</div>
+      <div className="info-text">
+        <div className="info-label">Espacios para discapacitados</div>
+        <div className="info-value">{estacionamiento.espaciosDiscapacitados} espacios</div>
+      </div>
+    </div>
+  )}
+  {estacionamiento.espaciosMotocicletas && (
+    <div className="info-item">
+      <div className="info-icon">🏍️</div>
+      <div className="info-text">
+        <div className="info-label">Espacios para motocicletas</div>
+        <div className="info-value">{estacionamiento.espaciosMotocicletas} espacios</div>
+      </div>
+    </div>
+  )}
+  {estacionamiento.edificiosCercanos && (
+    <div className="info-item">
+      <div className="info-icon">🏢</div>
+      <div className="info-text">
+        <div className="info-label">Edificios cercanos</div>
+        <div className="info-value">{estacionamiento.edificiosCercanos.join(', ')}</div>
+      </div>
+    </div>
+  )}
+</div>
+
+<div className="estacionamiento-recomendaciones animated-fade-in-delayed tarjeta-recomendaciones">
+  <h3>🚦 Recomendaciones</h3>
+  <ul>
+    <li>⚠️ Respete las señales de tránsito y los límites de velocidad.</li>
+    <li>🔒 No deje objetos de valor visibles en su vehículo.</li>
+    <li>📏 Estacione correctamente dentro de las líneas demarcadas.</li>
+    <li>🅿️ Utilice los espacios designados según corresponda.</li>
+  </ul>
+</div>
+</div>
   );
 };
 // Componente para renderizar información de ubicación
