@@ -369,8 +369,6 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
           ))}
         </div>
       )}
-
-
       <div className="area-verde-recomendaciones animated-fade-in-delayed">
         <h3>Recomendaciones</h3>
         <ul>
