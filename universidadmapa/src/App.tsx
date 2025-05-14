@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { MapProvider } from './core/map/context/MapContext';
-import { SliderProvider } from './contexts/SliderContext';
+import { SliderProvider } from './components/SliderContext';
 import MapPage from './pages/MapPage';
 import TestMap from './components/TestMap';
 import CoordinateMapper from './components/CoordinateMapper';
 import './App.css';
+import './styles/mapAdditional.css';
+
 
 // Componente para el enlace activo
 const NavLink = ({ to, children }: { to: string, children: React.ReactNode }) => {

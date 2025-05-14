@@ -1,8 +1,210 @@
 // Archivo: src/components/mapComponents.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useMap, ImageOverlay } from 'react-leaflet';
 import { LatLngBounds } from 'leaflet';
 import { Edificio, EstacionamientoInfo, AreaDeportiva, Ubicacion, AreaVerdeInfo} from '../data/coordinatesData';
+
+// Componente mejorado para mostrar imágenes de pisos con transparencia
+export const BuildingFloorOverlay: React.FC<{ 
+  floorImage: string, 
+  bounds: LatLngBounds,
+  isBuilding: boolean 
+}> = ({ floorImage, bounds, isBuilding }) => {
+  const map = useMap();
+  
+  // Este efecto se ejecuta cuando cambia la imagen del piso
+  useEffect(() => {
+    // Forzamos una actualización del tamaño del mapa después de cambiar la imagen
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+  }, [map, floorImage]);
+  
+  return (
+    <ImageOverlay
+      url={floorImage}
+      bounds={bounds}
+      opacity={isBuilding ? 0.85 : 1} // Si es un piso de edificio, aplicamos transparencia
+      zIndex={isBuilding ? 9 : 10} // Si es un piso, lo ponemos por debajo de los polígonos
+      className={isBuilding ? 'building-floor' : ''}
+    />
+  );
+};
+
+// Componente para actualizar la imagen del mapa cuando cambia el piso (Mantener por compatibilidad)
+export const FloorImageUpdater: React.FC<{ 
+  floorImage: string, 
+  bounds: LatLngBounds 
+}> = ({ floorImage, bounds }) => {
+  const map = useMap();
+  // Este efecto se ejecuta cuando cambia la imagen del piso
+  useEffect(() => {
+    // Forzamos una actualización del tamaño del mapa después de cambiar la imagen
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 100);
+  }, [map, floorImage]);
+  return (
+    <ImageOverlay
+      url={floorImage}
+      bounds={bounds}
+      opacity={1}
+      zIndex={10}
+    />
+  );
+};
+
+// Componente para el modal de fotos
+export const PhotoModal: React.FC<{
+  isOpen: boolean;
+  photos: string[];
+  currentIndex: number;
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
+}> = ({ isOpen, photos, currentIndex, onClose, onNext, onPrev }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return;
+      
+      if (e.key === 'Escape') {
+        onClose();
+      } else if (e.key === 'ArrowRight') {
+        onNext();
+      } else if (e.key === 'ArrowLeft') {
+        onPrev();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    
+    // Bloquear el scroll cuando el modal está abierto
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen, onClose, onNext, onPrev]);
+
+  // Click fuera del modal para cerrar
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+        onClose();
+      }
+    };
+    
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen, onClose]);
+  
+  if (!isOpen || photos.length === 0) return null;
+  
+  const currentPhoto = photos[currentIndex];
+  
+  return (
+    <div className="photo-modal-overlay">
+      <div 
+        ref={modalRef}
+        className="photo-modal-container"
+      >
+        <div className="photo-modal-header">
+          <span className="photo-counter">{`${currentIndex + 1} / ${photos.length}`}</span>
+          <button 
+            onClick={onClose}
+            className="modal-close-button"
+            aria-label="Cerrar imagen"
+          >
+            ✕
+          </button>
+        </div>
+        
+        <div className="photo-display-container">
+          <img 
+            src={currentPhoto} 
+            alt={`Imagen ${currentIndex + 1}`}
+            className="full-size-photo"
+          />
+          
+          {photos.length > 1 && (
+            <>
+              <button 
+                onClick={onPrev}
+                className="nav-button prev-button"
+                aria-label="Imagen anterior"
+              >
+                ‹
+              </button>
+              
+              <button 
+                onClick={onNext}
+                className="nav-button next-button"
+                aria-label="Imagen siguiente"
+              >
+                ›
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Componente para el carrusel de fotos
+export const PhotoCarousel: React.FC<{
+  photos: string[];
+  onPhotoClick: (index: number) => void;
+}> = ({ photos, onPhotoClick }) => {
+  if (!photos || photos.length === 0) return null;
+  
+  return (
+    <div className="photo-carousel-container">
+      <h3 className="carousel-title">Fotografías</h3>
+      
+      <div className="photo-grid">
+        {photos.slice(0, 9).map((photo, index) => (
+          <div 
+            key={index}
+            onClick={() => onPhotoClick(index)}
+            className="photo-thumbnail"
+            role="button"
+            aria-label={`Ver imagen ${index + 1}`}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                onPhotoClick(index);
+              }
+            }}
+          >
+            <img 
+              src={photo} 
+              alt={`Imagen ${index + 1}`}
+              className="thumbnail-image"
+            />
+            {index === 8 && photos.length > 9 && (
+              <div className="more-photos-overlay">
+                +{photos.length - 9}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 // Componente para renderizar la información de un área verde
 export const AreaVerdeInfoComponent: React.FC<{ 
@@ -40,29 +242,6 @@ export const AreaVerdeInfoComponent: React.FC<{
   );
 };
 
-
-// Componente para actualizar la imagen del mapa cuando cambia el piso
-export const FloorImageUpdater: React.FC<{ 
-  floorImage: string, 
-  bounds: LatLngBounds 
-}> = ({ floorImage, bounds }) => {
-  const map = useMap();
-  // Este efecto se ejecuta cuando cambia la imagen del piso
-  useEffect(() => {
-    // Forzamos una actualización del tamaño del mapa después de cambiar la imagen
-    setTimeout(() => {
-      map.invalidateSize();
-    }, 100);
-  }, [map, floorImage]);
-  return (
-    <ImageOverlay
-      url={floorImage}
-      bounds={bounds}
-      opacity={1}
-      zIndex={10}
-    />
-  );
-};
 // Componente para renderizar la información de estacionamiento en el slider
 export const EstacionamientoInfoComponent: React.FC<{ 
   estacionamiento: EstacionamientoInfo 
@@ -252,6 +431,7 @@ export const EstacionamientoInfoComponent: React.FC<{
 </div>
   );
 };
+
 // Componente para renderizar información de ubicación
 const UbicacionItem: React.FC<{
   ubicacion: Ubicacion,
@@ -530,8 +710,46 @@ export const AreaDeportivaInfo: React.FC<{
   );
 };
 
-// Componente para renderizar la información de área verdes en el slider
+// Componente para renderizar la información de área verdes en el slider (MEJORADO)
 export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
+  // Estados para el carrusel y modal de fotos
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [allPhotos, setAllPhotos] = useState<string[]>([]);
+  
+  // Preparar el array de fotos cuando cambia el área
+  useEffect(() => {
+    let photos: string[] = [];
+    if (area.fotografia) {
+      photos.push(area.fotografia);
+    }
+    if (area.imagenes && area.imagenes.length > 0) {
+      photos = [...photos, ...area.imagenes.filter(img => img !== area.fotografia)];
+    }
+    setAllPhotos(photos);
+  }, [area]);
+  
+  // Funciones para navegación de fotos
+  const handlePhotoClick = (index: number) => {
+    setCurrentPhotoIndex(index);
+    setIsPhotoModalOpen(true);
+  };
+  
+  const closePhotoModal = () => {
+    setIsPhotoModalOpen(false);
+  };
+  
+  const nextPhoto = () => {
+    if (allPhotos.length > 0) {
+      setCurrentPhotoIndex((prev) => (prev + 1) % allPhotos.length);
+    }
+  };
+  
+  const prevPhoto = () => {
+    if (allPhotos.length > 0) {
+      setCurrentPhotoIndex((prev) => (prev - 1 + allPhotos.length) % allPhotos.length);
+    }
+  };
   
   return (
     <div className="slider-content-wrapper">
@@ -539,18 +757,6 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
         <h2 className="item-title">{area.nombre}</h2>
         <span className="item-badge">Área Verde</span>
       </div>
-
-      {/* Imagen de la zona verde */}
-      {area.fotografia && (
-        <div className="area-verde-imagen">
-          <img
-            src={area.fotografia}
-            alt={`Fotografía de ${area.nombre}`}
-            className="area-verde-foto"
-            style={{ width: '100%', borderRadius: '12px', marginBottom: '1rem' }}
-          />
-        </div>
-      )}
 
       <p className="item-description animated-fade-in">{area.descripcion}</p>
 
@@ -571,31 +777,30 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
           </div>
         </div>
 
-        {area.nombre && (
+        {area.instalaciones && area.instalaciones.length > 0 && (
           <div className="info-item">
-            <div className="info-icon">🍀</div>
+            <div className="info-icon">🏗️</div>
             <div className="info-text">
-              <div className="info-label">Vegetación</div>
-              <div className="info-value">{area.nombre}</div>
+              <div className="info-label">Instalaciones</div>
+              <div className="info-values">
+                {area.instalaciones.map((inst, idx) => (
+                  <span key={idx} className="badge">
+                    {inst.icono} {inst.nombre}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         )}
       </div>
-      {/* Renderizar imágenes si existen */}
-      {area.imagenes && area.imagenes.length > 0 && (
-        <div className="area-verde-imagenes">
-          {area.imagenes.map((img, index) => (
-            <img
-              key={index}
-              src={img}
-              alt={`Imagen ${index + 1} de ${area.nombre}`}
-              className="area-verde-foto"
-              style={{ width: '100%', borderRadius: '12px', marginBottom: '1rem' }}
-            />
-          ))}
-        </div>
-      )}
 
+      {/* Carrusel de fotos */}
+      {allPhotos.length > 0 && (
+        <PhotoCarousel 
+          photos={allPhotos} 
+          onPhotoClick={handlePhotoClick} 
+        />
+      )}
 
       <div className="area-verde-recomendaciones animated-fade-in-delayed">
         <h3>Recomendaciones</h3>
@@ -604,8 +809,19 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
           <li>Evite pisar áreas reforestadas o sensibles.</li>
           <li>No arranque plantas ni flores.</li>
           <li>Disfrute del espacio respetando la tranquilidad del entorno.</li>
+          <li>Mantenga mascotas con correa y recoja sus desechos.</li>
         </ul>
       </div>
+      
+      {/* Modal para ver fotos ampliadas */}
+      <PhotoModal 
+        isOpen={isPhotoModalOpen}
+        photos={allPhotos}
+        currentIndex={currentPhotoIndex}
+        onClose={closePhotoModal}
+        onNext={nextPhoto}
+        onPrev={prevPhoto}
+      />
     </div>
   );
 };

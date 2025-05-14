@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+// src/components/common/Slider/Slider.tsx
+import React, { useEffect, useRef } from 'react';
+import './Slider.css';
 
 interface SliderProps {
   isOpen: boolean;
@@ -8,6 +10,16 @@ interface SliderProps {
 }
 
 const Slider: React.FC<SliderProps> = ({ isOpen, onClose, title, children }) => {
+  const previousChildrenRef = useRef<React.ReactNode>(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  
+  // Guardar los children previos para comparar si han cambiado
+  useEffect(() => {
+    if (children) {
+      previousChildrenRef.current = children;
+    }
+  }, [children]);
+  
   // Manejar teclas (esc para cerrar)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -30,11 +42,19 @@ const Slider: React.FC<SliderProps> = ({ isOpen, onClose, title, children }) => 
       document.body.style.overflow = 'auto';
     };
   }, [isOpen, onClose]);
+  
+  // Efecto para scroll al inicio cuando cambia el contenido
+  useEffect(() => {
+    if (isOpen && sliderRef.current && children !== previousChildrenRef.current) {
+      sliderRef.current.scrollTop = 0;
+    }
+  }, [isOpen, children]);
 
   return (
     <div 
       className={`slider-container ${isOpen ? 'open' : ''}`}
       aria-hidden={!isOpen}
+      ref={sliderRef}
     >
       <div className="slider-header">
         <h2 className="slider-title">{title}</h2>
@@ -50,8 +70,6 @@ const Slider: React.FC<SliderProps> = ({ isOpen, onClose, title, children }) => 
       <div className="slider-content">
         {children}
       </div>
-      
-
     </div>
   );
 };

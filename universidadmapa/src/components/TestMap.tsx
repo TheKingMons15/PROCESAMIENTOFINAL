@@ -5,16 +5,16 @@ import L, { LatLngBounds, LatLngTuple } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 // Importaciones de archivos externos
-import { estacionamientos, edificiosData, areasDeportivas, areasVerdesupec,  } from '../data/coordinatesData';
+import { estacionamientos, edificiosData, areasDeportivas, areasVerdesupec } from '../data/coordinatesData';
 import { 
-  FloorImageUpdater, 
+  BuildingFloorOverlay, 
   EstacionamientoInfoComponent, 
   EdificioInfo, 
   AreaDeportivaInfo,
   AreaVerdeIn 
 } from './mapComponents';
 import Slider from './common/Slider/Slider';
-import { useSlider } from '../contexts/SliderContext';
+import { useSlider } from './SliderContext';
 
 // Importar estilos
 import '../styles/mapStyles.css';
@@ -26,6 +26,7 @@ const TestMap: React.FC = () => {
   // Referencias para la animación
   const overlayRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
   
   // Estados
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -97,17 +98,54 @@ const TestMap: React.FC = () => {
     }
   }, [activeFloor, selectedItem, selectedItemType]);
 
+  // Efecto para ajustar el mapa cuando cambia el estado del slider
+  useEffect(() => {
+    const adjustMap = () => {
+      if (!mapContainerRef.current) return;
+      
+      const leafletContainer = mapContainerRef.current.querySelector('.leaflet-container') as HTMLElement;
+      if (!leafletContainer) return;
+      
+      if (isSliderOpen) {
+        // Añadir margen derecho al mapa
+        leafletContainer.style.width = 'calc(100% - 380px)';
+        leafletContainer.style.marginRight = '380px';
+        
+        // Actualizar el tamaño del mapa para que se redibuje correctamente
+        setTimeout(() => {
+          window.dispatchEvent(new Event('resize'));
+        }, 300);
+      } else {
+        // Quitar margen cuando se cierra
+        leafletContainer.style.width = '100%';
+        leafletContainer.style.marginRight = '0';
+        
+        // Actualizar el tamaño después de la transición
+        setTimeout(() => {
+          window.dispatchEvent(new Event('resize'));
+        }, 300);
+      }
+    };
+    
+    adjustMap();
+  }, [isSliderOpen]);
+
   // Función para seleccionar un estacionamiento
   const handleEstacionamientoClick = (estacionamiento: typeof estacionamientos[0]) => {
     if (isTransitioning) return;
     
+    // Actualizamos el elemento seleccionado sin cerrar el panel
     setSelectedItem(estacionamiento);
     setSelectedItemType('estacionamiento');
-    setIsSliderOpen(true);
-    // También actualizar el contexto
+    
+    // Si el slider no está abierto, lo abrimos
+    if (!isSliderOpen) {
+      setIsSliderOpen(true);
+    }
+    
+    // Actualizar el contexto
     openSlider(estacionamiento, { type: 'estacionamiento' });
   };
-
 
   // Función para seleccionar un edificio
   const handleEdificioClick = (edificio: typeof edificiosData[0]) => {
@@ -120,12 +158,17 @@ const TestMap: React.FC = () => {
     );
     const floorIndex = firstFloorIndex >= 0 ? firstFloorIndex : 0;
     
+    // Actualizamos el elemento seleccionado sin cerrar el panel
     setSelectedItem(edificio);
     setSelectedItemType('edificio');
     setActiveFloor(floorIndex);
-    setIsSliderOpen(true);
     
-    // También actualizar el contexto
+    // Si el slider no está abierto, lo abrimos
+    if (!isSliderOpen) {
+      setIsSliderOpen(true);
+    }
+    
+    // Actualizar el contexto
     openSlider(edificio, { 
       type: 'edificio',
       floorIndex: floorIndex
@@ -136,25 +179,34 @@ const TestMap: React.FC = () => {
   const handleDeportivoClick = (area: typeof areasDeportivas[0]) => {
     if (isTransitioning) return;
     
+    // Actualizamos el elemento seleccionado sin cerrar el panel
     setSelectedItem(area);
     setSelectedItemType('deportivo');
-    setIsSliderOpen(true);
     
-    // También actualizar el contexto
+    // Si el slider no está abierto, lo abrimos
+    if (!isSliderOpen) {
+      setIsSliderOpen(true);
+    }
+    
+    // Actualizar el contexto
     openSlider(area, { type: 'deportivo' });
   };
 
-  // Función para seleccionar un earea verde
+  // Función para seleccionar un área verde
   const handleAreaverdeClick = (area: typeof areasVerdesupec[0]) => {
-
     if (isTransitioning) return;
-
+    
+    // Actualizamos el elemento seleccionado sin cerrar el panel
     setSelectedItem(area);
     setSelectedItemType('areasverdes');
-    setIsSliderOpen(true);
-
-    // Actualizar el contexto o mostrar el slider
-    openSlider([area], { type: 'areasverdes' });
+    
+    // Si el slider no está abierto, lo abrimos
+    if (!isSliderOpen) {
+      setIsSliderOpen(true);
+    }
+    
+    // Actualizar el contexto
+    openSlider(area, { type: 'areasverdes' });
   };
 
   // Función para cerrar el slider con animación de transición
@@ -253,7 +305,7 @@ const TestMap: React.FC = () => {
   };
 
   return (
-    <div className="map-test-container">
+    <div className="map-test-container" ref={mapContainerRef}>
       {/* Mensaje informativo que se muestra al inicio */}
       {showInfoMessage && (
         <div className="info-message">
@@ -283,10 +335,14 @@ const TestMap: React.FC = () => {
           <ZoomControl position="bottomright" />
           
           {/* Imagen del mapa - Cambia dinámicamente según el piso seleccionado */}
-          <FloorImageUpdater floorImage={currentMapImage} bounds={bounds} />
+          <BuildingFloorOverlay 
+            floorImage={currentMapImage} 
+            bounds={bounds} 
+            isBuilding={selectedItemType === 'edificio' && currentMapImage !== '/assets/images/campus-map.jpg'}
+          />
           
-          {/* Polígonos para los estacionamientos - Solo visibles en el mapa general */}
-          {currentMapImage === '/assets/images/campus-map.jpg' && estacionamientos.map((estacionamiento) => {
+          {/* Polígonos para los estacionamientos - Siempre visibles */}
+          {estacionamientos.map((estacionamiento) => {
             const customColors = getEstacionamientoColors(estacionamiento);
             return (
               <Polygon
@@ -337,8 +393,8 @@ const TestMap: React.FC = () => {
           })}
 
           
-          {/* Polígonos para las áreas deportivas - Solo visibles en el mapa general */}
-          {currentMapImage === '/assets/images/campus-map.jpg' && areasDeportivas && areasDeportivas.map((area) => (
+          {/* Polígonos para las áreas deportivas - Siempre visibles */}
+          {areasDeportivas && areasDeportivas.map((area) => (
             <Polygon
               key={area.id}
               positions={area.coordenadas as LatLngTuple[]}
@@ -383,8 +439,8 @@ const TestMap: React.FC = () => {
             </Polygon>
           ))}
           
-          {/* Polígonos para los edificios - Solo visibles en el mapa general */}
-          {currentMapImage === '/assets/images/campus-map.jpg' && edificiosData.map((edificio) => {
+          {/* Polígonos para los edificios - Siempre visibles */}
+          {edificiosData.map((edificio) => {
             const customColor = getColorByElementType(edificio.tipo);
             return (
               <Polygon
@@ -432,53 +488,52 @@ const TestMap: React.FC = () => {
             );
           })}
 
-          {/* Polígonos para las áreas verdes - Solo visibles en el mapa general */}
-        {currentMapImage === '/assets/images/campus-map.jpg' && 
-          areasVerdesupec &&
-          areasVerdesupec?.map((area) => (
-            <Polygon
-              key={area.nombre} // o usa un ID si lo tienes
-              positions={area.coordenadas as LatLngTuple[]}
-              pathOptions={{
-                color: area.color.border,
-                fillColor: area.color.fill,
-                fillOpacity:
-                  selectedItem === area ? 0.8 :
-                  hoveredItem === area ? 0.7 :
-                  elementsVisible ? 0.2 : 0,
-                weight:
-                  selectedItem === area ? 2 :
-                  hoveredItem === area ? 1 : 0,
-                className: `
-                  map-element green-area
-                  ${elementsVisible ? 'visible' : ''}
-                  ${hoveredItem === area ? 'hovered' : ''}
-                  ${selectedItem === area ? 'selected' : ''}
-                `
-              }}
-              eventHandlers={{
-                mouseover: () => handleHover(area),
-                mouseout: handleHoverOut,
-                click: () => handleAreaverdeClick(area)
-              }}
-            >
-              <Tooltip
-                sticky
-                className={`green-tooltip ${hoveredItem === area ? 'visible' : ''}`}
-                direction="top"
-                offset={[0, -10]}
-                opacity={0.9}
+          {/* Polígonos para las áreas verdes - Siempre visibles */}
+          {areasVerdesupec &&
+            areasVerdesupec.map((area) => (
+              <Polygon
+                key={area.nombre} // o usa un ID si lo tienes
+                positions={area.coordenadas as LatLngTuple[]}
+                pathOptions={{
+                  color: area.color.border,
+                  fillColor: area.color.fill,
+                  fillOpacity:
+                    selectedItem === area ? 0.8 :
+                    hoveredItem === area ? 0.7 :
+                    elementsVisible ? 0.2 : 0,
+                  weight:
+                    selectedItem === area ? 2 :
+                    hoveredItem === area ? 1 : 0,
+                  className: `
+                    map-element green-area
+                    ${elementsVisible ? 'visible' : ''}
+                    ${hoveredItem === area ? 'hovered' : ''}
+                    ${selectedItem === area ? 'selected' : ''}
+                  `
+                }}
+                eventHandlers={{
+                  mouseover: () => handleHover(area),
+                  mouseout: handleHoverOut,
+                  click: () => handleAreaverdeClick(area)
+                }}
               >
-                <div className="tooltip-content">
-                  <strong>{area.nombre}</strong>
-                  <div className="tooltip-details">
-                    <span>{area.tipo}</span><br />
-                    <span>{area.ubicacion}</span>
+                <Tooltip
+                  sticky
+                  className={`green-tooltip ${hoveredItem === area ? 'visible' : ''}`}
+                  direction="top"
+                  offset={[0, -10]}
+                  opacity={0.9}
+                >
+                  <div className="tooltip-content">
+                    <strong>{area.nombre}</strong>
+                    <div className="tooltip-details">
+                      <span>{area.tipo}</span><br />
+                      <span>{area.ubicacion}</span>
+                    </div>
                   </div>
-                </div>
-              </Tooltip>
-            </Polygon>
-        ))}
+                </Tooltip>
+              </Polygon>
+          ))}
 
         </MapContainer>
         
