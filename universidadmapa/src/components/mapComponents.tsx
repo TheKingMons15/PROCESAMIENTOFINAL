@@ -243,192 +243,231 @@ export const AreaVerdeInfoComponent: React.FC<{
 };
 
 // Componente para renderizar la información de estacionamiento en el slider
+
 export const EstacionamientoInfoComponent: React.FC<{ 
   estacionamiento: EstacionamientoInfo 
 }> = ({ estacionamiento }) => {
+  const imagenes = estacionamiento.imagenes || [];
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  const imagenActual = imagenes[index];
+
+  useEffect(() => {
+    if (imagenes.length > 1) {
+      const interval = setInterval(() => {
+        setFade(false);
+
+        setTimeout(() => {
+          setIndex((prev) => (prev + 1) % imagenes.length);
+          setFade(true);
+        }, 500);
+      }, 10000);
+
+      return () => clearInterval(interval);
+    }
+  }, [imagenes.length]);
+
   return (
     <div className="slider-content-wrapper">
       <div className="slider-header-section">
         <h2 className="item-title">{estacionamiento.nombre}</h2>
         <span className="item-badge">Estacionamiento</span>
       </div>
+
+      {/* Imagen con animación */}
       <div className="estacionamiento-image-wrapper">
-  {/* Imagen del Estacionamiento con estilo de fondo tipo 'floor-image' */}
-  <div
-    className="floor-image"
-    style={{
-      backgroundImage: estacionamiento.imagen
-        ? `url(${estacionamiento.imagen})`
-        : undefined,
-      width: '10cm',
-      height: '7cm',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      border: '1px solid #ccc',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative'
-    }}
-  >
-    {/* Mostrar ícono si no hay imagen */}
-    {!estacionamiento.imagen && <span style={{ fontSize: '3rem' }}>🅿️</span>}
+        <div
+          className={`floor-image ${fade ? "visible" : "hidden"}`}
+          style={{
+            backgroundImage: imagenActual ? `url(${imagenActual})` : undefined,
+            width: '9.5cm',
+            height: '6.5cm',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            border: '1px solid #ccc',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+            animation: fade ? "fadein 0.5s ease-in" : "fadeout 0.5s ease-out",
+            opacity: fade ? 1 : 0
+          }}
+        >
+          {!imagenActual && <span style={{ fontSize: '3rem' }}>🅿️</span>}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            color: 'white',
+            textAlign: 'center',
+            fontSize: '0.9rem',
+            padding: '0.3cm',
+            fontWeight: 'bold'
+          }}>
+            {estacionamiento.nombre}
+          </div>
+        </div>
+      </div>
 
-    <div className="floor-image-text" style={{
-      position: 'absolute',
-      bottom: 0,
-      width: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      color: 'white',
-      textAlign: 'center',
-      fontSize: '0.9rem',
-      padding: '0.2cm'
-    }}>
-      Estacionamiento {estacionamiento.nombre}
-    </div>
-  </div>
-</div>
-      <style>
-{`
-  .tarjeta-info, .tarjeta-recomendaciones {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-    padding: 20px;
-    margin: 20px 0;
-    transition: all 0.3s ease-in-out;
-  }
+      {/* Estilos internos */}
+      <style>{`
+        @keyframes fadein {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
 
-  .info-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 16px;
-  }
+        @keyframes fadeout {
+          from { opacity: 1; }
+          to { opacity: 0; }
+        }
 
-  .info-icon {
-    font-size: 1.8rem;
-    margin-right: 12px;
-  }
+        .tarjeta-info, .tarjeta-recomendaciones {
+          background-color: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+          padding: 20px;
+          margin: 20px 0;
+          transition: all 0.3s ease-in-out;
+        }
 
-  .reloj-animado {
-    animation: pulse 1.5s infinite ease-in-out;
-  }
+        .info-item {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 16px;
+        }
 
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-  }
+        .info-icon {
+          font-size: 1.8rem;
+          margin-right: 12px;
+        }
 
-  .info-text .info-label {
-    font-weight: bold;
-    color: #333;
-    font-size: 1rem;
-  }
+        .reloj-animado {
+          animation: pulse 1.5s infinite ease-in-out;
+        }
 
-  .info-text .info-value {
-    color: #555;
-    font-size: 0.95rem;
-  }
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+        }
 
-  .destacado {
-    font-weight: 600;
-    color: #007bff;
-  }
+        .info-text .info-label {
+          font-weight: bold;
+          color: #333;
+          font-size: 1rem;
+        }
 
-  .horario-estilo {
-    background: linear-gradient(90deg, #e3f2fd 0%, #f1f8e9 100%);
-    border-left: 4px solid #2196f3;
-    border-radius: 8px;
-    padding: 10px;
-  }
+        .info-text .info-value {
+          color: #555;
+          font-size: 0.95rem;
+        }
 
-  .hora-texto {
-    font-size: 1.05rem;
-    color: #0d47a1;
-  }
+        .destacado {
+          font-weight: 600;
+          color: #007bff;
+        }
 
-  .tarjeta-recomendaciones h3 {
-    margin-bottom: 10px;
-    color: #37474f;
-  }
+        .horario-estilo {
+          background: linear-gradient(90deg, #e3f2fd 0%, #f1f8e9 100%);
+          border-left: 4px solid #2196f3;
+          border-radius: 8px;
+          padding: 10px;
+        }
 
-  .tarjeta-recomendaciones ul {
-    padding-left: 20px;
-    list-style-type: none;
-  }
+        .hora-texto {
+          font-size: 1.05rem;
+          color: #0d47a1;
+        }
 
-  .tarjeta-recomendaciones li {
-    margin-bottom: 8px;
-    position: relative;
-    padding-left: 1em;
-  }
-`}
-</style>
+        .tarjeta-recomendaciones h3 {
+          margin-bottom: 10px;
+          color: #37474f;
+        }
 
-<div className="estacionamiento-info animated-fade-in tarjeta-info">
-  <div className="info-item">
-    <div className="info-icon">📍</div>
-    <div className="info-text">
-      <div className="info-label">Ubicación</div>
-      <div className="info-value destacado">{estacionamiento.ubicacion}</div>
-    </div>
-  </div>
-  <div className="info-item">
-    <div className="info-icon">🚗</div>
-    <div className="info-text">
-      <div className="info-label">Capacidad</div>
-      <div className="info-value">{estacionamiento.capacidad} vehículos</div>
-    </div>
-  </div>
-  <div className="info-item horario-estilo">
-    <div className="info-icon reloj-animado">⏰</div>
-    <div className="info-text">
-      <div className="info-label">Horario de atención</div>
-      <div className="info-value">
-        <strong>Lunes a sábado</strong><br />
-        <span className="hora-texto">6:30 AM - 8:30 AM</span>
+        .tarjeta-recomendaciones ul {
+          padding-left: 20px;
+          list-style-type: none;
+        }
+
+        .tarjeta-recomendaciones li {
+          margin-bottom: 8px;
+          position: relative;
+          padding-left: 1em;
+        }
+      `}</style>
+
+      {/* Info del estacionamiento */}
+      <div className="estacionamiento-info animated-fade-in tarjeta-info">
+        <div className="info-item">
+          <div className="info-icon">📍</div>
+          <div className="info-text">
+            <div className="info-label">Ubicación</div>
+            <div className="info-value destacado">{estacionamiento.ubicacion}</div>
+          </div>
+        </div>
+
+        <div className="info-item">
+          <div className="info-icon">🚗</div>
+          <div className="info-text">
+            <div className="info-label">Capacidad</div>
+            <div className="info-value">{estacionamiento.capacidad} vehículos</div>
+          </div>
+        </div>
+
+        <div className="info-item horario-estilo">
+          <div className="info-icon reloj-animado">⏰</div>
+          <div className="info-text">
+            <div className="info-label">Horario de atención</div>
+            <div className="info-value">
+              <strong>Lunes a sábado</strong><br />
+              <span className="hora-texto">6:30 AM - 8:30 AM</span>
+            </div>
+          </div>
+        </div>
+
+        {estacionamiento.espaciosDiscapacitados && (
+          <div className="info-item">
+            <div className="info-icon">♿</div>
+            <div className="info-text">
+              <div className="info-label">Espacios para discapacitados</div>
+              <div className="info-value">{estacionamiento.espaciosDiscapacitados} espacios</div>
+            </div>
+          </div>
+        )}
+
+        {estacionamiento.espaciosMotocicletas && (
+          <div className="info-item">
+            <div className="info-icon">🏍️</div>
+            <div className="info-text">
+              <div className="info-label">Espacios para motocicletas</div>
+              <div className="info-value">{estacionamiento.espaciosMotocicletas} espacios</div>
+            </div>
+          </div>
+        )}
+
+        {estacionamiento.edificiosCercanos && (
+          <div className="info-item">
+            <div className="info-icon">🏢</div>
+            <div className="info-text">
+              <div className="info-label">Edificios cercanos</div>
+              <div className="info-value">{estacionamiento.edificiosCercanos.join(', ')}</div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Recomendaciones */}
+      <div className="estacionamiento-recomendaciones animated-fade-in-delayed tarjeta-recomendaciones">
+        <h3>🚦 Recomendaciones</h3>
+        <ul>
+          <li>⚠️ Respete las señales de tránsito y los límites de velocidad.</li>
+          <li>🔒 No deje objetos de valor visibles en su vehículo.</li>
+          <li>📏 Estacione correctamente dentro de las líneas demarcadas.</li>
+          <li>🅿️ Utilice los espacios designados según corresponda.</li>
+        </ul>
       </div>
     </div>
-  </div>
-  {estacionamiento.espaciosDiscapacitados && (
-    <div className="info-item">
-      <div className="info-icon">♿</div>
-      <div className="info-text">
-        <div className="info-label">Espacios para discapacitados</div>
-        <div className="info-value">{estacionamiento.espaciosDiscapacitados} espacios</div>
-      </div>
-    </div>
-  )}
-  {estacionamiento.espaciosMotocicletas && (
-    <div className="info-item">
-      <div className="info-icon">🏍️</div>
-      <div className="info-text">
-        <div className="info-label">Espacios para motocicletas</div>
-        <div className="info-value">{estacionamiento.espaciosMotocicletas} espacios</div>
-      </div>
-    </div>
-  )}
-  {estacionamiento.edificiosCercanos && (
-    <div className="info-item">
-      <div className="info-icon">🏢</div>
-      <div className="info-text">
-        <div className="info-label">Edificios cercanos</div>
-        <div className="info-value">{estacionamiento.edificiosCercanos.join(', ')}</div>
-      </div>
-    </div>
-  )}
-</div>
-
-<div className="estacionamiento-recomendaciones animated-fade-in-delayed tarjeta-recomendaciones">
-  <h3>🚦 Recomendaciones</h3>
-  <ul>
-    <li>⚠️ Respete las señales de tránsito y los límites de velocidad.</li>
-    <li>🔒 No deje objetos de valor visibles en su vehículo.</li>
-    <li>📏 Estacione correctamente dentro de las líneas demarcadas.</li>
-    <li>🅿️ Utilice los espacios designados según corresponda.</li>
-  </ul>
-</div>
-</div>
   );
 };
 

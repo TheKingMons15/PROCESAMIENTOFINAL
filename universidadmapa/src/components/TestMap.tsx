@@ -346,10 +346,10 @@ const TestMap: React.FC = () => {
         key={est.nombre}
         positions={est.coordenadas as LatLngTuple[]}
         pathOptions={{
-          color: isSelected || isHovered ? '#555555' : 'transparent', // Borde gris visible solo en hover/selección
-          fillColor: '#999999', // Color de relleno siempre el mismo
-          fillOpacity: isSelected ? 0.15 : isHovered ? 0.3: 0.02, // Muy transparente siempre
-          weight: isSelected ? 5 : isHovered ? 1.5 : 1 // Grosor del borde
+          color: isSelected || isHovered ? 'rgb(249, 249, 249)': 'transparent', // Borde gris visible solo en hover/selección
+          fillColor: 'rgb(131, 235, 162, 0.3 )', // Color de relleno siempre el mismo
+          fillOpacity: isSelected ? 0.7 : isHovered ? 0.15: 0.08, // Muy transparente siempre
+          weight: isSelected ? 2 : isHovered ? 1.5 : 1 // Grosor del borde
         }}
         eventHandlers={{
           mouseover: () => handleHover(est),
