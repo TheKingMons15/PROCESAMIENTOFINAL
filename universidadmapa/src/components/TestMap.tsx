@@ -282,12 +282,7 @@ const TestMap: React.FC = () => {
   };
 
   // Establecer colores según el tipo de elemento
-  const getEstacionamientoColors = (estacionamiento: typeof estacionamientos[0]) => {
-    return {
-      fill: '#FFCE00',
-      border: '#006633'
-    };
-  };
+
 
   const getColorByElementType = (type: string) => {
     switch (type.toUpperCase()) {
@@ -341,56 +336,45 @@ const TestMap: React.FC = () => {
             isBuilding={selectedItemType === 'edificio' && currentMapImage !== '/assets/images/campus-map.jpg'}
           />
           
-          {/* Polígonos para los estacionamientos - Siempre visibles */}
-          {estacionamientos.map((estacionamiento) => {
-            const customColors = getEstacionamientoColors(estacionamiento);
-            return (
-              <Polygon
-                key={estacionamiento.nombre}
-                positions={estacionamiento.coordenadas as LatLngTuple[]}
-                pathOptions={{
-                  color: customColors.border,
-                  fillColor: customColors.fill,
-                  // Aplicar transparencia por defecto, color completo al hover/seleccionado
-                  fillOpacity: selectedItem === estacionamiento ? 0.8 : 
-                              hoveredItem === estacionamiento ? 0.7 : 
-                              elementsVisible ? 0.2 : 0,
-                  // Ocultar bordes por defecto, mostrarlos solo en hover/seleccionado
-                  weight: selectedItem === estacionamiento ? 2 : 
-                          hoveredItem === estacionamiento ? 1 : 0,
-                  dashArray: hoveredItem === estacionamiento || selectedItem === estacionamiento ? '' : '5,3',
-                  className: `map-element parking
-                            ${elementsVisible ? 'visible' : ''}
-                            ${hoveredItem === estacionamiento ? 'hovered' : ''}
-                            ${selectedItem === estacionamiento ? 'selected' : ''}`
-                }}
-                eventHandlers={{
-                  mouseover: () => {
-                    handleHover(estacionamiento);
-                  },
-                  mouseout: () => {
-                    handleHoverOut();
-                  },
-                  click: () => handleEstacionamientoClick(estacionamiento)
-                }}
-              >
-                <Tooltip 
-                  sticky 
-                  className={`parking-tooltip ${hoveredItem === estacionamiento ? 'visible' : ''}`}
-                  direction="top"
-                  offset={[0, -10]}
-                  opacity={0.9}
-                >
-                  <div className="tooltip-content">
-                    <strong>{estacionamiento.nombre}</strong>
-                    <div className="tooltip-details">
-                      <span>Capacidad: {estacionamiento.capacidad} vehículos</span>
-                    </div>
-                  </div>
-                </Tooltip>
-              </Polygon>
-            );
-          })}
+         {estacionamientos &&
+  estacionamientos.map((est) => {
+    const isSelected = selectedItem?.nombre === est.nombre;
+    const isHovered = hoveredItem?.nombre === est.nombre;
+
+    return (
+      <Polygon
+        key={est.nombre}
+        positions={est.coordenadas as LatLngTuple[]}
+        pathOptions={{
+          color: isSelected || isHovered ? 'rgb(249, 249, 249)': 'transparent', // Borde gris visible solo en hover/selección
+          fillColor: 'rgb(131, 235, 162, 0.3 )', // Color de relleno siempre el mismo
+          fillOpacity: isSelected ? 0.7 : isHovered ? 0.15: 0.08, // Muy transparente siempre
+          weight: isSelected ? 2 : isHovered ? 1.5 : 1 // Grosor del borde
+        }}
+        eventHandlers={{
+          mouseover: () => handleHover(est),
+          mouseout: () => handleHoverOut(),
+          click: () => handleEstacionamientoClick(est)
+        }}
+      >
+        <Tooltip
+          sticky
+          className={`parking-tooltip ${isHovered ? 'visible' : ''}`}
+          direction="top"
+          offset={[0, -10]}
+          opacity={0.9}
+        >
+          <div className="tooltip-content">
+            <strong>{est.nombre}</strong>
+            <div className="tooltip-details">
+              <span>Capacidad: {est.capacidad} vehículos</span>
+            </div>
+          </div>
+        </Tooltip>
+      </Polygon>
+    );
+  })}
+
 
           
           {/* Polígonos para las áreas deportivas - Siempre visibles */}
@@ -489,56 +473,47 @@ const TestMap: React.FC = () => {
           })}
 
           {/* Polígonos para las áreas verdes - Siempre visibles */}
+{/* Polígonos para las áreas verdes - Siempre visibles */}
           {areasVerdesupec &&
-            areasVerdesupec.map((area) => (
-              <Polygon
-                key={area.nombre} // o usa un ID si lo tienes
-                positions={area.coordenadas as LatLngTuple[]}
-                pathOptions={{
-                  color: area.color.border,
-                  fillColor: area.color.fill,
-                  fillOpacity:
-                    selectedItem === area ? 0.8 :
-                    hoveredItem === area ? 0.7 :
-                    elementsVisible ? 0.2 : 0,
-                  weight:
-                    selectedItem === area ? 2 :
-                    hoveredItem === area ? 1 : 0,
-                  className: `
-                    map-element green-area
-                    ${elementsVisible ? 'visible' : ''}
-                    ${hoveredItem === area ? 'hovered' : ''}
-                    ${selectedItem === area ? 'selected' : ''}
-                  `
-                }}
-                eventHandlers={{
-                  mouseover: () => handleHover(area),
-                  mouseout: handleHoverOut,
-                  click: () => handleAreaverdeClick(area)
-                }}
-              >
-                <Tooltip
-                  sticky
-                  className={`green-tooltip ${hoveredItem === area ? 'visible' : ''}`}
-                  direction="top"
-                  offset={[0, -10]}
-                  opacity={0.9}
-                >
-                  <div className="tooltip-content">
-                    <strong>{area.nombre}</strong>
-                    <div className="tooltip-details">
-                      <span>{area.tipo}</span><br />
-                      <span>{area.ubicacion}</span>
-                    </div>
-                  </div>
-                </Tooltip>
-              </Polygon>
-          ))}
+  areasVerdesupec.map((area) => {
+    const isSelected = selectedItem?.nombre === area.nombre;
+    const isHovered = hoveredItem?.nombre === area.nombre;
+
+    return (
+<Polygon
+  key={area.nombre}
+  positions={area.coordenadas as LatLngTuple[]}
+  pathOptions={{
+    color: isSelected ? '#00aa00' : area.color.border,
+    fillColor: isSelected ? '#66ff66' : area.color.fill,
+    fillOpacity: isSelected ? 0.8 : isHovered ? 0.7 : elementsVisible ? 0.2 : 0,
+    weight: isSelected ? 2 : isHovered ? 1 : 0
+  }}
+  eventHandlers={{
+    mouseover: () => handleHover(area),
+    mouseout: () => handleHoverOut(),
+    click: () => handleAreaverdeClick(area)
+  }}
+>
+        <Tooltip
+          sticky
+          className={`greenarea-tooltip ${isHovered ? 'visible' : ''}`}
+          direction="top"
+          offset={[0, -10]}
+          opacity={0.9}
+        >
+          <div className="tooltip-content">
+            <strong>{area.nombre}</strong>
+            <div className="tooltip-details">
+              <span>{area.descripcion}</span>
+            </div>
+          </div>
+        </Tooltip>
+      </Polygon>
+    );
+  })}
 
         </MapContainer>
-        
-        
-
         {/* Mensaje de estado de carga con animación */}
         {!imageLoaded && (
           <div className="map-loader">
