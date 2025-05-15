@@ -489,56 +489,47 @@ const TestMap: React.FC = () => {
           })}
 
           {/* Polígonos para las áreas verdes - Siempre visibles */}
+{/* Polígonos para las áreas verdes - Siempre visibles */}
           {areasVerdesupec &&
-            areasVerdesupec.map((area) => (
-              <Polygon
-                key={area.nombre} // o usa un ID si lo tienes
-                positions={area.coordenadas as LatLngTuple[]}
-                pathOptions={{
-                  color: area.color.border,
-                  fillColor: area.color.fill,
-                  fillOpacity:
-                    selectedItem === area ? 0.8 :
-                    hoveredItem === area ? 0.7 :
-                    elementsVisible ? 0.2 : 0,
-                  weight:
-                    selectedItem === area ? 2 :
-                    hoveredItem === area ? 1 : 0,
-                  className: `
-                    map-element green-area
-                    ${elementsVisible ? 'visible' : ''}
-                    ${hoveredItem === area ? 'hovered' : ''}
-                    ${selectedItem === area ? 'selected' : ''}
-                  `
-                }}
-                eventHandlers={{
-                  mouseover: () => handleHover(area),
-                  mouseout: handleHoverOut,
-                  click: () => handleAreaverdeClick(area)
-                }}
-              >
-                <Tooltip
-                  sticky
-                  className={`green-tooltip ${hoveredItem === area ? 'visible' : ''}`}
-                  direction="top"
-                  offset={[0, -10]}
-                  opacity={0.9}
-                >
-                  <div className="tooltip-content">
-                    <strong>{area.nombre}</strong>
-                    <div className="tooltip-details">
-                      <span>{area.tipo}</span><br />
-                      <span>{area.ubicacion}</span>
-                    </div>
-                  </div>
-                </Tooltip>
-              </Polygon>
-          ))}
+  areasVerdesupec.map((area) => {
+    const isSelected = selectedItem?.nombre === area.nombre;
+    const isHovered = hoveredItem?.nombre === area.nombre;
+
+    return (
+<Polygon
+  key={area.nombre}
+  positions={area.coordenadas as LatLngTuple[]}
+  pathOptions={{
+    color: isSelected ? '#00aa00' : area.color.border,
+    fillColor: isSelected ? '#66ff66' : area.color.fill,
+    fillOpacity: isSelected ? 0.8 : isHovered ? 0.7 : elementsVisible ? 0.2 : 0,
+    weight: isSelected ? 2 : isHovered ? 1 : 0
+  }}
+  eventHandlers={{
+    mouseover: () => handleHover(area),
+    mouseout: () => handleHoverOut(),
+    click: () => handleAreaverdeClick(area)
+  }}
+>
+        <Tooltip
+          sticky
+          className={`greenarea-tooltip ${isHovered ? 'visible' : ''}`}
+          direction="top"
+          offset={[0, -10]}
+          opacity={0.9}
+        >
+          <div className="tooltip-content">
+            <strong>{area.nombre}</strong>
+            <div className="tooltip-details">
+              <span>{area.descripcion}</span>
+            </div>
+          </div>
+        </Tooltip>
+      </Polygon>
+    );
+  })}
 
         </MapContainer>
-        
-        
-
         {/* Mensaje de estado de carga con animación */}
         {!imageLoaded && (
           <div className="map-loader">
