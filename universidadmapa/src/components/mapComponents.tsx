@@ -613,67 +613,53 @@ export const AreaDeportivaInfo: React.FC<{
       </div>
       
       {/* Sección de imágenes demostrativas */}
-      <div className="demo-images-section animated-fade-in-delayed">
-        <h3>Demostración del Área</h3>
-        <div className="image-grid">
-          <div className="demo-image-container">
+      {area.imagenes && area.imagenes.length > 0 && (
+  <div className="demo-images-section animated-fade-in-delayed">
+    <h3>Demostración del Área</h3>
+    <div className="image-grid">
+      {area.imagenes.map((imagen, index) => (
+        <div className="demo-image-container" key={`${area.id}-img-${index}`}>
+          <div className="image-aspect-ratio">
             <img 
-              src="/public/assets/images/CanchaFutbol2.jpg" 
-              alt="Vista aérea de la cancha de fútbol" 
+              src={imagen.url} 
+              alt={imagen.alt} 
               className="demo-image"
+              loading="lazy"
+              // Añade tamaño máximo opcional
+              style={{ maxWidth: '100%', maxHeight: '200px' }}
             />
-            <p className="image-caption">Vista completa de la cancha</p>
           </div>
-          <div className="demo-image-container">
-            <img 
-              src="/images/cancha-futbol-en-uso.jpg" 
-              alt="Partido en la cancha de fútbol" 
-              className="demo-image"
-            />
-            <p className="image-caption">Partido en progreso</p>
-          </div>
+          <p className="image-caption">{imagen.descripcion}</p>
         </div>
-      </div>
+      ))}
+    </div>
+  </div>
+)}
       
       {/* Sección de equipamiento requerido */}
-      <div className="equipment-section animated-fade-in-delayed">
-        <h3>Equipamiento Requerido</h3>
-        <div className="equipment-grid">
-          <div className="equipment-item">
-            <img 
-              src="/images/uniforme-futbol.jpg" 
-              alt="Uniforme de fútbol" 
-              className="equipment-image"
-            />
-            <div className="equipment-details">
-              <h4>Uniforme</h4>
-              <p>Camiseta, pantalón corto y medias deportivas. Preferiblemente en materiales transpirables.</p>
-            </div>
-          </div>
-          <div className="equipment-item">
-            <img 
-              src="/images/balon-futbol.jpg" 
-              alt="Balón de fútbol" 
-              className="equipment-image"
-            />
-            <div className="equipment-details">
-              <h4>Balón</h4>
-              <p>Balón oficial tamaño 5 para adultos, tamaño 4 para juveniles.</p>
-            </div>
-          </div>
-          <div className="equipment-item">
-            <img 
-              src="/images/zapatos-futbol.jpg" 
-              alt="Zapatos para fútbol" 
-              className="equipment-image"
-            />
-            <div className="equipment-details">
-              <h4>Calzado</h4>
-              <p>Tacos adecuados para superficie de césped sintético. No se permiten tacos metálicos.</p>
-            </div>
+      {area.equipamiento && area.equipamiento.length > 0 && (
+        <div className="equipment-section animated-fade-in-delayed">
+          <h3>Equipamiento Requerido</h3>
+          <div className="equipment-grid">
+            {area.equipamiento.map((item, index) => (
+              <div className="equipment-item" key={`${area.id}-eq-${index}`}>
+                <div className="equipment-image-container">
+                  <img 
+                    src={item.imagen} 
+                    alt={item.nombre}
+                    className="equipment-image"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="equipment-details">
+                  <h4>{item.nombre}</h4>
+                  <p>{item.descripcion}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      )}
       
       {/* Instalaciones disponibles */}
       {area.instalaciones && area.instalaciones.length > 0 && (
@@ -681,7 +667,11 @@ export const AreaDeportivaInfo: React.FC<{
           <h3>Instalaciones</h3>
           <ul className="facilities-list">
             {area.instalaciones.map((instalacion, index) => (
-              <li key={index} className="facility-item animated-item" style={{animationDelay: `${index * 100}ms`}}>
+              <li 
+                key={`${area.id}-fac-${index}`} 
+                className="facility-item animated-item" 
+                style={{animationDelay: `${index * 100}ms`}}
+              >
                 <span className="facility-icon">{instalacion.icono}</span>
                 <span className="facility-name">{instalacion.nombre}</span>
               </li>
@@ -709,6 +699,7 @@ export const AreaDeportivaInfo: React.FC<{
     </div>
   );
 };
+
 
 // Componente para renderizar la información de área verdes en el slider (MEJORADO)
 export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {

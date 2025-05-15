@@ -123,17 +123,28 @@ export const estacionamientos: EstacionamientoInfo[] = estacionamientosOriginale
   coordenadas: transformPolygon(est.coordenadas)
 }));
 
-// Tipos para las áreas deportivas
+/* Tipos para las áreas deportivas*/
 export interface AreaDeportiva {
   id: string;
   nombre: string;
   descripcion: string;
   tipo: string;
   color: string;
+  selectedColor?: string;
   coordenadas: number[][];
   instalaciones: {
     nombre: string;
     icono: string;
+  }[];
+  imagenes?: {
+    url: string;
+    alt: string;
+    descripcion: string;
+  }[];
+  equipamiento?: {
+    nombre: string;
+    imagen: string;
+    descripcion: string;
   }[];
 }
 
@@ -145,6 +156,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha principal de fútbol',
     tipo: 'DEPORTIVO',
     color: '#2ecc71',
+    selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
     coordenadas: [
       [1955, 900], [1622, 1432], [2404, 2192], [2763, 1684]
     ],
@@ -152,6 +164,30 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       { nombre: 'Campo de juego', icono: '⚽' },
       { nombre: 'Graderías', icono: '👥' },
       { nombre: 'Vestidores', icono: '🚿' }
+    ],
+    imagenes: [
+      {
+        url: '/assets/images/CanchaFutbol.jpg',
+        alt: 'Cancha principal de fútbol',
+        descripcion: 'Vista panorámica de la cancha principal'
+      },
+      {
+        url: '/assets/images/cancha-futbol-1-detalle.jpg',
+        alt: 'Detalle del césped sintético',
+        descripcion: 'Detalle de la superficie de juego'
+      }
+    ],
+    equipamiento: [
+      {
+        nombre: 'Arcos',
+        imagen: '/assets/images/equipo-arcos.jpg',
+        descripcion: 'Arcos reglamentarios con redes'
+      },
+      {
+        nombre: 'Balones',
+        imagen: '/assets/images/equipo-balones.jpg',
+        descripcion: 'Balones oficiales para entrenamiento'
+      }
     ]
   },
   {
@@ -160,14 +196,26 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha secundaria de fútbol',
     tipo: 'DEPORTIVO',
     color: '#27ae60',
+    selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
     coordenadas: [
       [1590, 1500], [2367, 2248], [2036, 2768], [1210, 2016]
     ],
     instalaciones: [
       { nombre: 'Campo de juego', icono: '⚽' },
       { nombre: 'Zona de calentamiento', icono: '🏃' }
+    ],
+    imagenes: [
+      {
+        url: '/assets/images/CanchaFutbol2.jpg',
+        alt: 'Cancha secundaria de fútbol',
+        descripcion: 'Vista aérea de la cancha secundaria'
+      }
     ]
   },
+
+
+  
+  
   {
     id: 'cancha1-basket',
     nombre: 'Cancha de Baloncesto 1',
@@ -1796,3 +1844,5 @@ export const areasVerdesupec: AreaVerdeInfo[] = areasVerdes.map(area => ({
   ...area,
   coordenadas: transformPolygon(area.coordenadas)
 }));
+
+
