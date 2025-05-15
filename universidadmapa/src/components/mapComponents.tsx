@@ -262,7 +262,7 @@ export const EstacionamientoInfoComponent: React.FC<{
           setIndex((prev) => (prev + 1) % imagenes.length);
           setFade(true);
         }, 500);
-      }, 10000);
+      }, 9000);
 
       return () => clearInterval(interval);
     }
