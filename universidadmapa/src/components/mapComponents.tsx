@@ -435,6 +435,8 @@ const UbicacionItem: React.FC<{
         return '🔧';
       case 'SEGURIDAD':
         return '🔒';
+      case 'BAÑOS':
+        return '🧻';
       case 'ALMACÉN':
         return '📦';
       case 'ARCHIVO':

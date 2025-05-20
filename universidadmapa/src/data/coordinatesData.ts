@@ -354,23 +354,23 @@ const edificiosOriginales = [
         nombre: 'Planta Baja',
         imagen: '/assets/images/edificio1-plantabaja.jpg',
         ladoIzquierdo: [
-          { nombre: 'Laboratorio Asuntos públicos y de gobierno', tipo: 'LABORATORIO' },
-          { nombre: 'Cafetería', tipo: 'SERVICIO' },
-          { nombre: 'Laboratorio de informática 04', tipo: 'LABORATORIO' },
-          { nombre: 'Aula Virtual 003', tipo: 'AULA' },
-          { nombre: 'Sala de Profesores de comercio', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Secretaria FCIIAEE', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Decanato FCIIAEE', tipo: 'ADMINISTRATIVO' }
+          { nombre: 'Laboratorio Asuntos públicos y de gobierno (LAB-GO)', tipo: 'LABORATORIO' },
+          { nombre: 'Sala de Reuniones', tipo: 'SERVICIO' },
+          { nombre: 'Laboratorio de informática 04 (LAB-04)', tipo: 'LABORATORIO' },
+          { nombre: 'Aula Virtual 003 (AV-03)', tipo: 'AULA' },
+          { nombre: 'Sala de Profesores de comercio (SD-EC)', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Secretaria FCIIAEE (Sria. FCIIAEE)', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Decanato F.C.I.I.A.E.E (Dec. FCIIAEE)', tipo: 'ADMINISTRATIVO' }
         ],
         ladoDerecho: [
-          { nombre: 'Dirección de Comercio Exterior y Negosiacion Internacional', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Sala de Profesores Comercio Exterior', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Dependencia', tipo: 'OTRO' },
-          { nombre: 'Sala de Profesores Administración de empresas y Marketing', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Secretaria de Administración y Marketing', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Dirección', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Sala de Profesores Escuela de Administración de Empresas y Marketing', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Archivo F.C.I.I.A.E.E', tipo: 'ARCHIVO' }
+          { nombre: 'Dirección de Comercio Exterior y Negosiacion Internacional (Dir.CE&NI)', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Sala de Profesores Comercio Exterior (SD.CE&NI)', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Dependencia (Dep.)', tipo: 'OTRO' },
+          { nombre: 'Sala de Profesores Administración de empresas y Marketing (SD.AE1 Y SD.AE2)', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Secretaria de Administración y Marketing (Sria.AE&M)', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Dirección (Dir.)', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Sala de Profesores Escuela de Administración de Empresas y Marketing (Dir.AE&M)', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Archivo F.C.I.I.A.E.E (Arch.FCIIAEE)', tipo: 'ARCHIVO' }
         ]
       },
       {
