@@ -15,8 +15,9 @@ const transformPolygon = (coordinates: number[][]): number[][] => {
 export interface EstacionamientoInfo {
   nombre: string;
   coordenadas: number[][];
-    imagen?: string, 
-      imagenes?: string[], 
+    
+  imagen?: string;  // Cambiado de imagenes?: string[]
+  
   color: {
     fill: string;
     border: string;
@@ -29,15 +30,12 @@ export interface EstacionamientoInfo {
 }
 
 
-
+// Coordenadas originales de los estacionamientos con información actualizada
 // Coordenadas originales de los estacionamientos con información actualizada
 const estacionamientosOriginales = [
   {
-    imagenes: [
-      '/assets/images/estacionamintos/estacionamiento1y3.jpg',
-      '/assets/images/estacionamintos/estacionamiento1y3_1.jpg',
-      '/assets/images/estacionamintos/estacionamiento1y3_2.jpg'
-    ],    nombre: "Estacionamiento Edificio 1 y 3",
+    imagen: '/assets/images/estacionamintos/estacionamiento1y3.jpg',
+    nombre: "Estacionamiento Edificio 1 y 3",
     coordenadas: [
       [3992, 3926], [4134, 3948], [4328, 3740], [4208, 3582], [4173, 3614], [4056, 3462], [4141, 3374], [4173, 2512], [4107, 2432],
       [4228, 2294], [4388, 2152], [3959, 1684], [3881, 1674], [3889, 2032], [4019, 2042], [3979, 2566], [3989, 2678], [3947, 2918],
@@ -54,11 +52,7 @@ const estacionamientosOriginales = [
     espaciosMotocicletas: 4
   },
   {
-                  imagenes: [
-      '/assets/images/estacionamintos/estacionamientoPosgrados.jpg',
-      '/assets/images/estacionamintos/estacionamientoPosgrados_1.jpg',
-      '/assets/images/estacionamintos/estacionamientoPosgrados_2.jpg'
-    ], imagen: '/assets/images/estacionamintos/estacionamientoPosgrados.jpg',
+    imagen: '/assets/images/estacionamintos/estacionamientoPosgrados.jpg',
     nombre: "Estacionamiento de Posgrados",
     coordenadas: [
       [5696, 140], [4973, 322], [4966, 612], [5634, 622], [5700, 436]
@@ -74,12 +68,9 @@ const estacionamientosOriginales = [
     espaciosMotocicletas: 4
   },
   {
+    imagen: '/assets/images/estacionamintos/estacionamiento2y4.jpg',
     nombre: "Estacionamiento Edificio 2 y 4",
-      imagenes: [
-      '/assets/images/estacionamintos/estacionamiento2y4.jpg',
-      '/assets/images/estacionamintos/estacionamiento2y4_1.jpg',
-      '/assets/images/estacionamintos/estacionamiento2y4_2.jpg'
-    ],    coordenadas: [
+    coordenadas: [
       [3995, 5644], [4219, 5664], [4508, 6008], [4219, 6240],
       [4144, 6404], [4255, 6516], [4248, 7072], [4104, 7332],
       [4196, 7464], [4356, 7668], [4176, 7904], [4068, 7820]
@@ -95,12 +86,9 @@ const estacionamientosOriginales = [
     espaciosMotocicletas: 5
   },
   {
+    imagen: '/assets/images/estacionamintos/estacionamientoColiseo.jpg',
     nombre: "Estacionamiento Coliseo",
-           imagenes: [
-      '/assets/images/estacionamintos/estacionamientoColiseo.jpg',
-      '/assets/images/estacionamintos/estacionamientoColiseo_1.jpg',
-      '/assets/images/estacionamintos/estacionamientoColiseo_2.jpg'
-    ],    coordenadas: [
+    coordenadas: [
       [5635, 7756], [7292, 7784], [7312, 8092], [5627, 8064]
     ],
     color: {
@@ -114,12 +102,9 @@ const estacionamientosOriginales = [
     espaciosMotocicletas: 4
   },
   {
+    imagen: '/assets/images/estacionamintos/EstacionamientoCentroDeportivo.jpg',
     nombre: "Estacionamiento Centro Deportivo",
-imagenes: [
-      '/assets/images/estacionamintos/EstacionamientoCentroDeportivo.jpg',
-      '/assets/images/estacionamintos/EstacionamientoCentroDeportivo_1.jpg',
-      '/assets/images/estacionamintos/EstacionamientoCentroDeportivo_2.jpg'
-    ],    coordenadas: [
+    coordenadas: [
       [3359, 264], [3063, 408], [3036, 1964], [3363, 1968]
     ],
     color: {
@@ -133,6 +118,7 @@ imagenes: [
     espaciosMotocicletas: 4
   }
 ];
+
 
 // Crear estacionamientos con coordenadas transformadas
 export const estacionamientos: EstacionamientoInfo[] = estacionamientosOriginales.map(est => ({
