@@ -528,11 +528,82 @@ export const EdificioInfo: React.FC<{
   const currentPiso = edificio.pisos[activeFloor];
   const hasLados = currentPiso.ladoIzquierdo || currentPiso.ladoDerecho;
   
+  // Determinar qué imagen mostrar en el encabezado
+  const getHeaderImage = () => {
+    if (edificio.id === 'edificio4') {
+      return '/assets/images/Aulas4.jpg';
+    } else if (edificio.id === 'edificio3') {
+      return '/assets/images/Aulas3.jpg';
+    } else if (edificio.id === 'edificio2') {
+      return '/assets/images/Aulas2.jpg';
+    }
+    return undefined;
+  };
+  
+  // Determinar qué imagen mostrar para el piso seleccionado
+  const getFloorImage = () => {
+    // Imágenes específicas para el Edificio 4
+    if (edificio.id === 'edificio4') {
+      const pisoNum = currentPiso.numero;
+      if (pisoNum === 0) {
+        return '/assets/images/AULAS4-PLANTABAJA.jpg';
+      } else if (pisoNum === 1) {
+        return '/assets/images/AULAS4-planta1.jpg';
+      } else if (pisoNum === 2) {
+        return '/assets/images/AULAS4-planta2.jpg';
+      }
+    }
+    // Imágenes específicas para el Edificio 3
+    else if (edificio.id === 'edificio3') {
+      const pisoNum = currentPiso.numero;
+      if (pisoNum === 0) {
+        return '/assets/images/AULAS3-PLANTABAJA.jpg';
+      } else if (pisoNum === 1) {
+        return '/assets/images/AULAS3-planta1.jpg';
+      } else if (pisoNum === 2) {
+        return '/assets/images/AULAS3-planta2.jpg';
+      }
+    }
+    // Imágenes específicas para el Edificio 2
+    else if (edificio.id === 'edificio2') {
+      const pisoNum = currentPiso.numero;
+      if (pisoNum === 0) {
+        return '/assets/images/AULAS2-PLANTABAJA.jpg';
+      } else if (pisoNum === 1) {
+        return '/assets/images/AULAS2-planta1.jpg';
+      } else if (pisoNum === 2) {
+        return '/assets/images/AULAS2-planta2.jpg';
+      }
+    }
+    
+    // Para otros edificios o si no hay imagen específica, usar la imagen por defecto del piso
+    return currentPiso.imagen ? currentPiso.imagen : undefined;
+  };
+  
   return (
     <div className="slider-content-wrapper">
       <div className="slider-header-section">
         <h2 className="item-title">{edificio.nombre}</h2>
         <span className="item-badge">Edificio {edificio.tipo}</span>
+        
+        {/* Imagen debajo del título */}
+        {getHeaderImage() && (
+          <div className="edificio-header-image">
+            <img 
+              src={getHeaderImage()} 
+              alt={`Vista general de ${edificio.nombre}`}
+              style={{
+                width: '100%',
+                height: 'auto',
+                maxHeight: '180px',
+                objectFit: 'cover',
+                borderRadius: '8px',
+                marginTop: '10px',
+                marginBottom: '15px'
+              }}
+            />
+          </div>
+        )}
       </div>
       
       <p className="item-description animated-fade-in">{edificio.descripcion}</p>
@@ -553,18 +624,40 @@ export const EdificioInfo: React.FC<{
         ))}
       </div>
       
-      {/* Información del piso activo */}
+      {/* Información del piso activo - IMAGEN MÁS ANCHA */}
       {edificio.pisos[activeFloor] && (
         <div className="floor-info animated-fade-in">
           <div 
             className="floor-image"
             style={{
-              backgroundImage: edificio.pisos[activeFloor].imagen ? 
-                `url(${edificio.pisos[activeFloor].imagen})` : undefined
+              backgroundImage: getFloorImage() ? 
+                `url(${getFloorImage()})` : undefined,
+              width: '110%', // Imagen más ancha
+              marginLeft: '-5%', // Margen negativo para centrar
+              height: '280px', // Altura fija para consistencia
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.15)' // Sombra para mejor apariencia
             }}
           >
-            {!edificio.pisos[activeFloor].imagen && <span>🏢</span>}
-            <div className="floor-image-text">
+            {!getFloorImage() && <span>🏢</span>}
+            <div className="floor-image-text" style={{
+              position: 'absolute',
+              bottom: 0,
+              width: '100%',
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              color: 'white',
+              textAlign: 'center',
+              fontSize: '0.95rem',
+              padding: '8px',
+              borderRadius: '0 0 8px 8px',
+              fontWeight: 'bold'
+            }}>
               Piso {edificio.pisos[activeFloor].numero}
             </div>
           </div>
@@ -627,7 +720,6 @@ export const EdificioInfo: React.FC<{
   );
 };
 
-// Componente para renderizar la información de área deportiva en el slider
 // Componente para renderizar la información de área deportiva en el slider
 export const AreaDeportivaInfo: React.FC<{ 
   area: AreaDeportiva 
