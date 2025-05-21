@@ -228,6 +228,8 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha principal de baloncesto',
     tipo: 'DEPORTIVO',
     color: '#3498db',
+    plano: '/assets/images/CanchaVasquet1.jpg', // <-- Ruta del plano
+    selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
     coordenadas: [
       [1071, 2264], [874, 2592], [1352, 3048], [1551, 2772]
     ],
@@ -242,6 +244,8 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha secundaria de baloncesto',
     tipo: 'DEPORTIVO',
     color: '#2980b9',
+    plano: '/assets/images/CanchaVasquet2.jpg', // <-- Ruta del plano
+    selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
     coordenadas: [
       [566, 1716], [1002, 2168], [828, 2468], [373, 2022]
     ],
