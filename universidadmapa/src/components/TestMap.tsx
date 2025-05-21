@@ -175,20 +175,24 @@ const TestMap: React.FC = () => {
   
   // Función para seleccionar un área deportiva
   const handleDeportivoClick = (area: typeof areasDeportivas[0]) => {
-    if (isTransitioning) return;
-    
-    // Actualizamos el elemento seleccionado sin cerrar el panel
-    setSelectedItem(area);
-    setSelectedItemType('deportivo');
-    
-    // Si el slider no está abierto, lo abrimos
-    if (!isSliderOpen) {
-      setIsSliderOpen(true);
-    }
-    
-    // Actualizar el contexto
-    openSlider(area, 'deportivo');
-  };
+  if (isTransitioning) return;
+  
+  setSelectedItem(area);
+  setSelectedItemType('deportivo');
+  
+  // Cambiar al plano si existe
+  if (area.plano) {
+    setCurrentMapImage(area.plano);
+  } else {
+    setCurrentMapImage('/assets/images/campus-map.jpg');
+  }
+  
+  if (!isSliderOpen) {
+    setIsSliderOpen(true);
+  }
+  
+  openSlider(area, { type: 'deportivo' });
+};
 
   // Función para seleccionar un área verde
   const handleAreaverdeClick = (area: typeof areasVerdesupec[0]) => {
