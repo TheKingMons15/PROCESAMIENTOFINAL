@@ -480,10 +480,10 @@ export const EdificioInfo: React.FC<{
       return '/assets/images/Aulas3.jpg';
     } else if (edificio.id === 'edificio2') {
       return '/assets/images/Aulas2.jpg';
-    }
-    else if (edificio.id === 'edificio1') {
-      return '/assets/images/Aulas1.jpg';
-    }
+    }else if (edificio.id === 'edificio1') {
+      return '/assets/images/Aulas1.jpg'; 
+    }else if (edificio.id === 'posgrados') 
+      return '/assets/images/posgrados.jpg';
     return undefined;
   };
   
@@ -531,6 +531,23 @@ export const EdificioInfo: React.FC<{
         return '/assets/images/AULAS1-planta1.jpg';
       } else if (pisoNum === 2) {
         return '/assets/images/AULAS1-planta2.jpg';
+      }
+    }
+    // Imágenes específicas para el Edificio de Posgrados
+    else if (edificio.id === 'posgrados') {
+      const pisoNum = currentPiso.numero;
+      if (pisoNum === -1) {
+        return '/assets/images/POSGRADOS-planta-1.jpg';
+      } else if (pisoNum === 0) {
+        return '/assets/images/POSGRADOS-PLANTABAJA.jpg';
+      } else if (pisoNum === 1) {
+        return '/assets/images/POSGRADOS-planta1.jpg';
+      } else if (pisoNum === 2) {
+        return '/assets/images/POSGRADOS-planta2.jpg';
+      } else if (pisoNum === 3) {
+        return '/assets/images/POSGRADOS-planta3.jpg';
+      } else if (pisoNum === 4) {
+        return '/assets/images/POSGRADOS-planta4.jpg';
       }
     }
 
