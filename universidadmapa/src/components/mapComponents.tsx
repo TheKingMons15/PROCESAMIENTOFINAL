@@ -480,7 +480,9 @@ export const EdificioInfo: React.FC<{
       return '/assets/images/Aulas3.jpg';
     } else if (edificio.id === 'edificio2') {
       return '/assets/images/Aulas2.jpg';
-    
+    }
+    else if (edificio.id === 'edificio1') {
+      return '/assets/images/Aulas1.jpg';
     }
     return undefined;
   };
@@ -521,6 +523,16 @@ export const EdificioInfo: React.FC<{
       }
     }
     // Imágenes específicas para el Edificio 1
+    else if (edificio.id === 'edificio1') {
+      const pisoNum = currentPiso.numero;
+      if (pisoNum === 0) {
+        return '/assets/images/AULAS1-PLANTABAJA.jpg';
+      } else if (pisoNum === 1) {
+        return '/assets/images/AULAS1-planta1.jpg';
+      } else if (pisoNum === 2) {
+        return '/assets/images/AULAS1-planta2.jpg';
+      }
+    }
 
 
     // Para otros edificios o si no hay imagen específica, usar la imagen por defecto del piso
