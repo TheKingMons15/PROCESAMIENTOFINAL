@@ -741,51 +741,58 @@ const edificiosOriginales = [
       }
     ]
   },
-  {
-id: 'laboratorios',
-    nombre: 'Laboratorios',
-    descripcion: 'Complejo de laboratorios científicos.',
-    tipo: 'CIENTÍFICO',
-    color: '#f1c40f',
-    coordenadas: [
-      [6175, 1232], [5623, 1220], [5596, 2060], [5851, 2076], [6116, 2036]
-    ],
-    pisos: [
-      {
-        numero: 0,
-        nombre: 'Planta Baja',
-        imagen: '/assets/images/laboratorios_piso_0.png',
-        instalaciones: [
-          { nombre: 'Agropecuaria', icono: '🏢' },
-          { nombre: 'Alimentos', icono: '🧰' },
-          { nombre: 'Turismo', icono: '⚗' },
-          { nombre: 'Logistica', icono: '' },
-          { nombre: 'Enfermeria', icono: '⚗' },
-          { nombre: 'Laboratorio Clinico', icono: '⚗' },
-          { nombre: 'Educacion Basica', icono: '⚗' },
-        ]
-      },
-      {
-        numero: 1,
-        nombre: 'Primer Piso',
-        imagen: '/assets/images/laboratorios_piso_1.png',
-        instalaciones: [
-          { nombre: 'Laboratorio de Enfermeria', icono: '🔬' },
-          { nombre: 'Laboratorio de Alimentos', icono: '🧪' },
-          { nombre: 'Parque Softs', icono: '⚗' }
-        ]
-      },
-      {
-        numero: 2,
-        nombre: 'Segundo Piso',
-        imagen: '/assets/images/laboratorios_piso_2.png',
-        instalaciones: [
-          { nombre: 'Laboratorio Clinico', icono: '🧬' },
-          { nombre: 'Enfemeria', icono: '📋' }
-        ]
-      }
-    ]
-  },
+ {
+  id: 'laboratorios',
+  nombre: 'Laboratorios',
+  descripcion: 'Complejo de laboratorios científicos para las Facultades de Ciencias de la Salud, Ciencias de la Educación, Industrias Agropecuarias y Ciencias Ambientales de la UPEC.',
+  tipo: 'CIENTÍFICO',
+  color: '#f1c40f',
+  coordenadas: [
+    [6175, 1232], [5623, 1220], [5596, 2060], [5851, 2076], [6116, 2036]
+  ],
+  pisos: [
+    {
+      numero: 0,
+      nombre: 'Planta Baja',
+      imagen: '/assets/images/laboratorios_piso_0.png',
+      descripcion: 'En la Planta Baja se encuentran los laboratorios principales para las carreras técnicas y de salud. Este nivel alberga espacios especializados para prácticas en agropecuaria, alimentos, turismo y enfermería, así como áreas administrativas de servicio a estudiantes.',
+      instalaciones: [
+        { nombre: 'Laboratorios de Agropecuaria', icono: '🌱', facultad: 'Facultad de Industrias Agropecuarias y Ciencias Ambientales' },
+        { nombre: 'Laboratorios de Alimentos', icono: '🍽', facultad: 'Facultad de Industrias Agropecuarias y Ciencias Ambientales' },
+        { nombre: 'Laboratorios de Turismo', icono: '🏞', facultad: 'Facultad de Industrias Agropecuarias y Ciencias Ambientales' },
+        { nombre: 'Laboratorios de Logística', icono: '🚚', facultad: 'Facultad de Industrias Agropecuarias y Ciencias Ambientales' },
+        { nombre: 'Laboratorios de Enfermería', icono: '👩‍⚕', facultad: 'Facultad de Ciencias de la Salud y Ciencias de la Educación' },
+        { nombre: 'Laboratorio Clínico', icono: '🧫', facultad: 'Facultad de Ciencias de la Salud y Ciencias de la Educación' },
+        { nombre: 'Espacios para Educación Básica', icono: '📚', facultad: 'Facultad de Ciencias de la Salud y Ciencias de la Educación' },
+        { nombre: 'Áreas Administrativas y Servicios', icono: '🏢', facultad: '' }
+      ]
+    },
+    {
+      numero: 1,
+      nombre: 'Primer Piso',
+      imagen: '/assets/images/laboratorios_piso_1.png',
+      descripcion: 'El Primer Piso contiene laboratorios especializados con equipamiento avanzado. Aquí se encuentran instalaciones de alta tecnología para enfermería, análisis de alimentos y el Parque Softs donde se desarrollan competencias en informática y programación.',
+      instalaciones: [
+        { nombre: 'Laboratorios de Enfermería Especializados', icono: '🔬', facultad: 'Facultad de Ciencias de la Salud y Ciencias de la Educación' },
+        { nombre: 'Laboratorios de Alimentos Avanzados', icono: '🧪', facultad: 'Facultad de Industrias Agropecuarias y Ciencias Ambientales' },
+        { nombre: 'Parque Softs (Laboratorios de Informática)', icono: '💻', facultad: 'Facultad de Industrias Agropecuarias y Ciencias Ambientales' },
+        { nombre: 'Aulas para Clases Teóricas', icono: '📝', facultad: '' }
+      ]
+    },
+    {
+      numero: 2,
+      nombre: 'Segundo Piso',
+      imagen: '/assets/images/laboratorios_piso_2.png',
+      descripcion: 'El Segundo Piso está dedicado a la investigación avanzada y prácticas especializadas. Cuenta con un Laboratorio Clínico equipado con tecnología de punta, instalaciones para enfermería avanzada, espacios de investigación multidisciplinaria y un moderno laboratorio de veterinaria.',
+      instalaciones: [
+        { nombre: 'Laboratorio Clínico Especializado', icono: '🧬', facultad: 'Facultad de Ciencias de la Salud y Ciencias de la Educación' },
+        { nombre: 'Instalaciones de Enfermería Avanzadas', icono: '🏥', facultad: 'Facultad de Ciencias de la Salud y Ciencias de la Educación' },
+        { nombre: 'Laboratorios de Investigación', icono: '🔎', facultad: '' },
+        { nombre: 'Laboratorio de Veterinaria', icono: '🐾', facultad: 'Facultad de Industrias Agropecuarias y Ciencias Ambientales' }
+      ]
+    }
+  ]
+},
   {
     id: 'edificio-central',
     nombre: 'Edificio Central',
