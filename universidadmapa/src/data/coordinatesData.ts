@@ -1,3 +1,5 @@
+
+
 // Archivo: src/data/coordinatesData.ts
 
 // Función para transformar coordenadas
@@ -1850,5 +1852,3 @@ export const areasVerdesupec: AreaVerdeInfo[] = areasVerdes.map(area => ({
   ...area,
   coordenadas: transformPolygon(area.coordenadas)
 }));
-
-
