@@ -331,45 +331,50 @@ const TestMap: React.FC = () => {
             bounds={bounds} 
             isBuilding={selectedItemType === 'edificio' && currentMapImage !== '/assets/images/campus-map.jpg'}
           />
-          
-         {estacionamientos &&
-  estacionamientos.map((est) => {
-    const isSelected = selectedItem?.nombre === est.nombre;
-    const isHovered = hoveredItem?.nombre === est.nombre;
-
-    return (
-      <Polygon
-        key={est.nombre}
-        positions={est.coordenadas as LatLngTuple[]}
-        pathOptions={{
-          color: isSelected || isHovered ? 'rgb(249, 249, 249)': 'transparent', // Borde gris visible solo en hover/selección
-          fillColor: 'rgb(131, 235, 162, 0.3 )', // Color de relleno siempre el mismo
-          fillOpacity: isSelected ? 0.7 : isHovered ? 0.15: 0.08, // Muy transparente siempre
-          weight: isSelected ? 2 : isHovered ? 1.5 : 1 // Grosor del borde
-        }}
-        eventHandlers={{
-          mouseover: () => handleHover(est),
-          mouseout: () => handleHoverOut(),
-          click: () => handleEstacionamientoClick(est)
-        }}
+        {/* Polígonos para los estacionamientos - Siempre visibles */}
+{estacionamientos && estacionamientos.map((estacionamiento) => {
+  const customColor = getColorByElementType('estacionamiento');
+  return (
+    <Polygon
+      key={estacionamiento.nombre}
+      positions={estacionamiento.coordenadas as LatLngTuple[]}
+      pathOptions={{
+        color: customColor,
+        fillColor: customColor,
+        fillOpacity: selectedItem === estacionamiento ? 0.8 : 
+                     hoveredItem === estacionamiento ? 0.7 : 
+                     elementsVisible ? 0.2 : 0,
+        weight: selectedItem === estacionamiento ? 2 : 
+                hoveredItem === estacionamiento ? 1 : 0,
+        className: `map-element parking-area
+                    ${elementsVisible ? 'visible' : ''}
+                    ${hoveredItem === estacionamiento ? 'hovered' : ''}
+                    ${selectedItem === estacionamiento ? 'selected' : ''}`
+      }}
+      eventHandlers={{
+        mouseover: () => handleHover(estacionamiento),
+        mouseout: () => handleHoverOut(),
+        click: () => handleEstacionamientoClick(estacionamiento)
+      }}
+    >
+      <Tooltip 
+        sticky 
+        className={`parking-tooltip ${hoveredItem === estacionamiento ? 'visible' : ''}`}
+        direction="top"
+        offset={[0, -10]}
+        opacity={0.9}
       >
-        <Tooltip
-          sticky
-          className={`parking-tooltip ${isHovered ? 'visible' : ''}`}
-          direction="top"
-          offset={[0, -10]}
-          opacity={0.9}
-        >
-          <div className="tooltip-content">
-            <strong>{est.nombre}</strong>
-            <div className="tooltip-details">
-              <span>Capacidad: {est.capacidad} vehículos</span>
-            </div>
+        <div className="tooltip-content">
+          <strong>{estacionamiento.nombre}</strong>
+          <div className="tooltip-details">
+            <span>Capacidad: {estacionamiento.capacidad} vehículos</span>
           </div>
-        </Tooltip>
-      </Polygon>
-    );
-  })}
+        </div>
+      </Tooltip>
+    </Polygon>
+  );
+})}
+
 
 
           

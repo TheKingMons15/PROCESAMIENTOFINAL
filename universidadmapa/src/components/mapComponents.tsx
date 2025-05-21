@@ -247,26 +247,7 @@ export const AreaVerdeInfoComponent: React.FC<{
 export const EstacionamientoInfoComponent: React.FC<{ 
   estacionamiento: EstacionamientoInfo 
 }> = ({ estacionamiento }) => {
-  const imagenes = estacionamiento.imagenes || [];
-  const [index, setIndex] = useState(0);
-  const [fade, setFade] = useState(true);
-
-  const imagenActual = imagenes[index];
-
-  useEffect(() => {
-    if (imagenes.length > 1) {
-      const interval = setInterval(() => {
-        setFade(false);
-
-        setTimeout(() => {
-          setIndex((prev) => (prev + 1) % imagenes.length);
-          setFade(true);
-        }, 500);
-      }, 9000);
-
-      return () => clearInterval(interval);
-    }
-  }, [imagenes.length]);
+  const imagen = estacionamiento.imagen || ''; // Solo una imagen
 
   return (
     <div className="slider-content-wrapper">
@@ -275,130 +256,46 @@ export const EstacionamientoInfoComponent: React.FC<{
         <span className="item-badge">Estacionamiento</span>
       </div>
 
-      {/* Imagen con animación */}
+      {/* Imagen fija con tamaño específico */}
       <div className="estacionamiento-image-wrapper">
         <div
-          className={`floor-image ${fade ? "visible" : "hidden"}`}
+          className="imagen-fija"
           style={{
-            backgroundImage: imagenActual ? `url(${imagenActual})` : undefined,
             width: '9.5cm',
             height: '6.5cm',
+            backgroundImage: imagen ? `url(${imagen})` : undefined,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             border: '1px solid #ccc',
+            borderRadius: '8px',
+            position: 'relative',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            position: 'relative',
-            animation: fade ? "fadein 0.5s ease-in" : "fadeout 0.5s ease-out",
-            opacity: fade ? 1 : 0
+            margin: '0 auto'
           }}
         >
-          {!imagenActual && <span style={{ fontSize: '3rem' }}>🅿️</span>}
+          {!imagen && <span style={{ fontSize: '3rem' }}>🅿️</span>}
           <div style={{
             position: 'absolute',
             bottom: 0,
             width: '100%',
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
             color: 'white',
             textAlign: 'center',
-            fontSize: '0.9rem',
             padding: '0.3cm',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            fontSize: '0.9rem',
+            borderBottomLeftRadius: '8px',
+            borderBottomRightRadius: '8px'
           }}>
             {estacionamiento.nombre}
           </div>
         </div>
       </div>
 
-      {/* Estilos internos */}
-      <style>{`
-        @keyframes fadein {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        @keyframes fadeout {
-          from { opacity: 1; }
-          to { opacity: 0; }
-        }
-
-        .tarjeta-info, .tarjeta-recomendaciones {
-          background-color: #ffffff;
-          border-radius: 12px;
-          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
-          padding: 20px;
-          margin: 20px 0;
-          transition: all 0.3s ease-in-out;
-        }
-
-        .info-item {
-          display: flex;
-          align-items: flex-start;
-          margin-bottom: 16px;
-        }
-
-        .info-icon {
-          font-size: 1.8rem;
-          margin-right: 12px;
-        }
-
-        .reloj-animado {
-          animation: pulse 1.5s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.1); }
-        }
-
-        .info-text .info-label {
-          font-weight: bold;
-          color: #333;
-          font-size: 1rem;
-        }
-
-        .info-text .info-value {
-          color: #555;
-          font-size: 0.95rem;
-        }
-
-        .destacado {
-          font-weight: 600;
-          color: #007bff;
-        }
-
-        .horario-estilo {
-          background: linear-gradient(90deg, #e3f2fd 0%, #f1f8e9 100%);
-          border-left: 4px solid #2196f3;
-          border-radius: 8px;
-          padding: 10px;
-        }
-
-        .hora-texto {
-          font-size: 1.05rem;
-          color: #0d47a1;
-        }
-
-        .tarjeta-recomendaciones h3 {
-          margin-bottom: 10px;
-          color: #37474f;
-        }
-
-        .tarjeta-recomendaciones ul {
-          padding-left: 20px;
-          list-style-type: none;
-        }
-
-        .tarjeta-recomendaciones li {
-          margin-bottom: 8px;
-          position: relative;
-          padding-left: 1em;
-        }
-      `}</style>
-
       {/* Info del estacionamiento */}
-      <div className="estacionamiento-info animated-fade-in tarjeta-info">
+      <div className="estacionamiento-info tarjeta-info">
         <div className="info-item">
           <div className="info-icon">📍</div>
           <div className="info-text">
@@ -412,17 +309,6 @@ export const EstacionamientoInfoComponent: React.FC<{
           <div className="info-text">
             <div className="info-label">Capacidad</div>
             <div className="info-value">{estacionamiento.capacidad} vehículos</div>
-          </div>
-        </div>
-
-        <div className="info-item horario-estilo">
-          <div className="info-icon reloj-animado">⏰</div>
-          <div className="info-text">
-            <div className="info-label">Horario de atención</div>
-            <div className="info-value">
-              <strong>Lunes a sábado</strong><br />
-              <span className="hora-texto">6:30 AM - 8:30 AM</span>
-            </div>
           </div>
         </div>
 
@@ -458,7 +344,7 @@ export const EstacionamientoInfoComponent: React.FC<{
       </div>
 
       {/* Recomendaciones */}
-      <div className="estacionamiento-recomendaciones animated-fade-in-delayed tarjeta-recomendaciones">
+      <div className="estacionamiento-recomendaciones tarjeta-recomendaciones">
         <h3>🚦 Recomendaciones</h3>
         <ul>
           <li>⚠️ Respete las señales de tránsito y los límites de velocidad.</li>
@@ -467,9 +353,65 @@ export const EstacionamientoInfoComponent: React.FC<{
           <li>🅿️ Utilice los espacios designados según corresponda.</li>
         </ul>
       </div>
+
+      {/* Estilos internos */}
+      <style>{`
+        .tarjeta-info, .tarjeta-recomendaciones {
+          background-color: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+          padding: 20px;
+          margin: 20px 0;
+        }
+
+        .info-item {
+          display: flex;
+          align-items: flex-start;
+          margin-bottom: 16px;
+        }
+
+        .info-icon {
+          font-size: 1.8rem;
+          margin-right: 12px;
+        }
+
+        .info-text .info-label {
+          font-weight: bold;
+          color: #333;
+          font-size: 1rem;
+        }
+
+        .info-text .info-value {
+          color: #555;
+          font-size: 0.95rem;
+        }
+
+        .destacado {
+          font-weight: 600;
+          color: #007bff;
+        }
+
+        .tarjeta-recomendaciones h3 {
+          margin-bottom: 10px;
+          color: #37474f;
+        }
+
+        .tarjeta-recomendaciones ul {
+          padding-left: 20px;
+          list-style-type: none;
+        }
+
+        .tarjeta-recomendaciones li {
+          margin-bottom: 8px;
+          position: relative;
+          padding-left: 1em;
+        }
+      `}</style>
     </div>
   );
 };
+
+
 
 // Componente para renderizar información de ubicación
 const UbicacionItem: React.FC<{
@@ -493,6 +435,8 @@ const UbicacionItem: React.FC<{
         return '🔧';
       case 'SEGURIDAD':
         return '🔒';
+      case 'BAÑOS':
+        return '🧻';
       case 'ALMACÉN':
         return '📦';
       case 'ARCHIVO':
