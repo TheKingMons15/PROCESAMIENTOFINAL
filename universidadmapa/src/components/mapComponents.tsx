@@ -482,8 +482,11 @@ export const EdificioInfo: React.FC<{
       return '/assets/images/Aulas2.jpg';
     }else if (edificio.id === 'edificio1') {
       return '/assets/images/Aulas1.jpg'; 
-    }else if (edificio.id === 'posgrados') 
+    }else if (edificio.id === 'posgrados'){
       return '/assets/images/posgrados.jpg';
+    }else if (edificio.id === 'laboratorios') {
+      return '/assets/images/laboratorio.jpg';
+    }
     return undefined;
   };
   
@@ -548,6 +551,17 @@ export const EdificioInfo: React.FC<{
         return '/assets/images/POSGRADOS-planta3.jpg';
       } else if (pisoNum === 4) {
         return '/assets/images/POSGRADOS-planta4.jpg';
+      }
+    }
+
+      else if (edificio.id === 'laboratorios') {
+      const pisoNum = currentPiso.numero;
+      if (pisoNum === 0) {
+        return '/assets/images/laboratorios_piso0.jpg';
+      } else if (pisoNum === 1) {
+        return '/assets/images/laboraorios_piso1.jpg';
+      } else if (pisoNum === 2) {
+        return '/assets/images/laboratorios_piso2.jpg';
       }
     }
 
