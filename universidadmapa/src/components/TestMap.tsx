@@ -68,6 +68,7 @@ const TestMap: React.FC = () => {
   }, [currentMapImage]);
 
   // Actualizar la imagen del mapa cuando cambia el piso
+  // Este efecto se mantiene igual para no afectar el comportamiento del mapa principal
   useEffect(() => {
     if (selectedItem && selectedItemType === 'edificio' && selectedItem.pisos && selectedItem.pisos[activeFloor]) {
       // Si existe una imagen para este piso, la usamos
@@ -144,7 +145,7 @@ const TestMap: React.FC = () => {
     }
     
     // Actualizar el contexto
-    openSlider(estacionamiento, { type: 'estacionamiento' });
+    openSlider(estacionamiento, 'estacionamiento');
   };
 
   // Función para seleccionar un edificio
@@ -169,10 +170,7 @@ const TestMap: React.FC = () => {
     }
     
     // Actualizar el contexto
-    openSlider(edificio, { 
-      type: 'edificio',
-      floorIndex: floorIndex
-    });
+    openSlider(edificio, 'edificio');
   };
   
   // Función para seleccionar un área deportiva
@@ -189,7 +187,7 @@ const TestMap: React.FC = () => {
     }
     
     // Actualizar el contexto
-    openSlider(area, { type: 'deportivo' });
+    openSlider(area, 'deportivo');
   };
 
   // Función para seleccionar un área verde
@@ -206,7 +204,7 @@ const TestMap: React.FC = () => {
     }
     
     // Actualizar el contexto
-    openSlider(area, { type: 'areasverdes' });
+    openSlider(area, 'areasverdes');
   };
 
   // Función para cerrar el slider con animación de transición
@@ -282,8 +280,6 @@ const TestMap: React.FC = () => {
   };
 
   // Establecer colores según el tipo de elemento
-
-
   const getColorByElementType = (type: string) => {
     switch (type.toUpperCase()) {
       case 'ACADÉMICO':
@@ -478,7 +474,6 @@ const TestMap: React.FC = () => {
           })}
 
           {/* Polígonos para las áreas verdes - Siempre visibles */}
-{/* Polígonos para las áreas verdes - Siempre visibles */}
           {areasVerdesupec &&
   areasVerdesupec.map((area) => {
     const isSelected = selectedItem?.nombre === area.nombre;

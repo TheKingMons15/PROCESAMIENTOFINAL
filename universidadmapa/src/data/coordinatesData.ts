@@ -1,3 +1,5 @@
+
+
 // Archivo: src/data/coordinatesData.ts
 
 // Función para transformar coordenadas
@@ -215,8 +217,6 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       }
     ]
   },
-
-
   
   
   {
@@ -735,7 +735,7 @@ const edificiosOriginales = [
     ]
   },
   {
-    id: 'laboratorios',
+id: 'laboratorios',
     nombre: 'Laboratorios',
     descripcion: 'Complejo de laboratorios científicos.',
     tipo: 'CIENTÍFICO',
@@ -747,29 +747,34 @@ const edificiosOriginales = [
       {
         numero: 0,
         nombre: 'Planta Baja',
-        imagen: '/assets/images/laboratorios-piso0.jpg',
+        imagen: '/assets/images/laboratorios_piso_0.png',
         instalaciones: [
-          { nombre: 'Recepción', icono: '🏢' },
-          { nombre: 'Almacén de Equipos', icono: '🧰' },
-          { nombre: 'Laboratorio de Química', icono: '⚗️' }
+          { nombre: 'Agropecuaria', icono: '🏢' },
+          { nombre: 'Alimentos', icono: '🧰' },
+          { nombre: 'Turismo', icono: '⚗' },
+          { nombre: 'Logistica', icono: '' },
+          { nombre: 'Enfermeria', icono: '⚗' },
+          { nombre: 'Laboratorio Clinico', icono: '⚗' },
+          { nombre: 'Educacion Basica', icono: '⚗' },
         ]
       },
       {
         numero: 1,
         nombre: 'Primer Piso',
-        imagen: '/assets/images/laboratorios-piso1.jpg',
+        imagen: '/assets/images/laboratorios_piso_1.png',
         instalaciones: [
-          { nombre: 'Laboratorio de Física', icono: '🔬' },
-          { nombre: 'Laboratorio de Materiales', icono: '🧪' }
+          { nombre: 'Laboratorio de Enfermeria', icono: '🔬' },
+          { nombre: 'Laboratorio de Alimentos', icono: '🧪' },
+          { nombre: 'Parque Softs', icono: '⚗' }
         ]
       },
       {
         numero: 2,
         nombre: 'Segundo Piso',
-        imagen: '/assets/images/laboratorios-piso2.jpg',
+        imagen: '/assets/images/laboratorios_piso_2.png',
         instalaciones: [
-          { nombre: 'Laboratorio de Biología', icono: '🧬' },
-          { nombre: 'Sala de Investigación', icono: '📋' }
+          { nombre: 'Laboratorio Clinico', icono: '🧬' },
+          { nombre: 'Enfemeria', icono: '📋' }
         ]
       }
     ]
@@ -1847,5 +1852,3 @@ export const areasVerdesupec: AreaVerdeInfo[] = areasVerdes.map(area => ({
   ...area,
   coordenadas: transformPolygon(area.coordenadas)
 }));
-
-
