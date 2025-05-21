@@ -829,11 +829,27 @@ export const edificiosData: Edificio[] = edificiosOriginales.map(ed => ({
   coordenadas: transformPolygon(ed.coordenadas)
 }));
 
+// Función para transformar un punto individual
+const transformAreaVerdePoint = (point: [number, number]): [number, number] => {
+  const [x, y] = point;
+  return [x, y]; // aquí puede aplicar transformaciones si desea
+};
+
+// Función para transformar las coordenadas de un solo polígono
+const transformPolygono = (coordinates: [number, number][]): [number, number][] => {
+  return coordinates.map(point => transformAreaVerdePoint(point));
+};
+
+// Función para transformar todos los polígonos de un área verde
+const transformPolygons = (coordenadas: [number, number][][]): [number, number][][] => {
+  return coordenadas.map(polygon => transformPolygono(polygon));
+};
+
 // tipos para las Areas verdes 
 export interface AreaVerdeInfo {
   nombre: string;
   descripcion: string
-  coordenadas: number[][];
+  coordenadas: [number, number][][];
   color: {
     fill: string;
     border: string;
@@ -847,24 +863,34 @@ export interface AreaVerdeInfo {
 
 // Coordenadas originales para las areas verdes
 const areasVerdes: AreaVerdeInfo[] = [
-{
+  {
     nombre: "Area Verde 1",
     descripcion: "Jardín ornamental junto a los lectores biométricos, con diseño alineado para estética y paso peatonal.",
     coordenadas: [
-    [4964, 594],
-    [4904, 606],
-    [4919, 326],
-    [5002, 328],
-  ],
+      [ // Primer polígono
+        [5577, 162],
+        [5574, 208],
+        [5023, 310],
+        [5020, 284]
+      ],
+      [ // Segundo polígono
+        [4964, 594],
+        [4904, 606],
+        [4919, 326],
+        [5002, 328]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Entrada principal del edificio norte(Edificio de Postgrados)",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area1.jpeg",
     imagenes: [
@@ -875,22 +901,36 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 2",
     descripcion: "Franja vegetal con alineación simétrica de cinco árboles ornamentales, ideal para sombra y estética.",
     coordenadas: [
-      [4004, 558],
-      [3909, 1006],
-      [3970, 974],
-      [4038, 620],
-      [4528, 600],
-      [4550, 438]
-  ],
+      [ //Polígono 1
+        [4553, 426],
+        [4535, 605],
+        [4036, 603],
+        [4024, 613],
+        [4008, 634],
+        [3993, 775],
+        [3963, 776],
+        [3947, 902],
+        [3961, 904],
+        [3951, 1014],
+        [3924, 1013],
+        [3958, 623],
+        [3969, 592],
+        [3978, 581],
+        [4003, 564],
+        [4037, 550]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Entrada principal del edificio norte(Edificio de Postgrados)",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area2.jpeg",
     imagenes: [
@@ -901,23 +941,62 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 3",
     descripcion: "Grupo de zonas verdes dispuestas en forma triangular, destacando letras gigantes 'UPEC' y áreas de descanso.",
     coordenadas: [
-      [4040, 1490],
-      [4030, 1724],
-      [4141, 1828],
-      [4356, 2058],
-      [4558, 1896],
-      [4696, 1764],
-      [4725, 1580],
-      [4455, 1562]
-  ],
+      [ //Polígono 1
+        [4043, 1500],
+        [4122, 1500],
+        [4125, 1535],
+        [4218, 1540],
+        [4324, 1660],
+        [4324, 1673],
+        [4174, 1804],
+        [4134, 1804],
+        [4048, 1720]
+      ],
+      [ //Polígono 2
+        [4553, 1893],
+        [4529, 1864],
+        [4508, 1856],
+        [4379, 1715],
+        [4363, 1713],
+        [4211, 1847],
+        [4207, 1885],
+        [4323, 2011],
+        [4341, 2007],
+        [4350, 2020],
+        [4347, 2023],
+        [4373, 2054]
+      ],
+      [ // Polígono 3
+        [4533, 1565],
+        [4593, 1566],
+        [4595, 1558],
+        [4730, 1566],
+        [4726, 1740],
+        [4598, 1849],
+        [4541, 1814],
+        [4420, 1681],
+        [4416, 1665]
+      ],
+      [
+        [4452, 1559],
+        [4379, 1625],
+        [4366, 1623],
+        [4287, 1548]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Frente al edificio de postgrados",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso bajo cubierta vegetal', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area3.jpeg",
@@ -926,55 +1005,95 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea3_1.jpg"
     ]
   },
-    {
+  {
     nombre: "Area Verde 4",
     descripcion: "Jardín central con zonas verdes bien definidas, punto de encuentro entre edificios académicos.",
     coordenadas: [
-      [5208, 1542],
-      [4798, 1550],
-      [4776, 1750],
-      [5116, 1772],
-      [5172, 1810],
-      [5218, 1770]
-  ],
+      [
+        [5026, 1557],
+        [5025, 1537],
+        [4852, 1531],
+        [4840, 1547],
+        [4839, 1571],
+        [4788, 1567],
+        [4782, 1712],
+        [4775, 1719],
+        [4774, 1729],
+        [4778, 1739],
+        [4782, 1742],
+        [5119, 1747],
+        [5181, 1808],
+        [5198, 1798],
+        [5207, 1782],
+        [5214, 1557],
+        [5204, 1543],
+        [5175, 1543],
+        [5173, 1560]
+      ],
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Por el edificio de postrgados al frente del edificio de laboratorios",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area4.jpeg",
     imagenes: [
       "/assets/images/zonas/plantas/plantasarea4.jpg"
     ]
   },
-      {
+  {
     nombre: "Area Verde 5",
     descripcion: "Espacio paisajístico con árboles y senderos curvos.",
     coordenadas: [
-    [5344, 1384],
-    [5265, 1380],
-    [5248, 1880],
-    [5315, 1920],
-    [5492, 2070],
-    [5538, 2026],
-    [5536, 1842],
-    [5454, 1796],
-    [5384, 1738],
-    [5340, 1716]
-  ],
+      [ //Poligono 1
+        [5406, 1307],
+        [5408, 1367],
+        [5399, 1356],
+        [5390, 1346],
+        [5378, 1340],
+        [5261, 1336],
+        [5232, 1358],
+        [5232, 1321],
+        [5257, 1297]
+      ],
+      [ // Polígono 2
+        [5349, 1382],
+        [5274, 1381],
+        [5253, 1880],
+        [5382, 1755],
+        [5337, 1719]
+      ],
+      [ // Polígono 3
+        [5448, 1797],
+        [5326, 1915],
+        [5352, 1950],
+        [5374, 1927],
+        [5489, 2041],
+        [5502, 2027],
+        [5532, 2030],
+        [5541, 1850]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Por el edificio de postrgados al frente del edificio de laboratorios",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area5.jpeg",
@@ -982,50 +1101,100 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea5.jpg"
     ]
   },
-        {
+  {
     nombre: "Area Verde 6",
     descripcion: "Área ajardinada con caminos peatonales, rodeada de vegetación y diseñada para el descanso activo.",
     coordenadas: [
-      [3930, 1282],
-      [3901, 1294],
-      [3887, 1634],
-      [3969, 1648],
-      [3966, 1508],
-      [3904, 1502]
-  ],
+      [ //Polígono 1
+        [3909, 1370],
+        [3924, 1369],
+        [3927, 1289],
+        [3909, 1288],
+        [3902, 1297],
+        [3893, 1607],
+        [3906, 1607],
+        [3913, 1627],
+        [3919, 1639],
+        [3970, 1641],
+        [3967, 1502],
+        [3905, 1498]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Frente al edificio de postgrados",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area6.jpeg",
     imagenes: [
       "/assets/images/zonas/plantas/plantasarea6.jpg"
     ]
   },
-    {
+  {
     nombre: "Area Verde 7",
     descripcion: "Zona triangular con árboles en los extremos, ubicada entre bloques académicos, ideal para recreación ligera.",
     coordenadas: [
-      [4204, 2612],
-      [4524, 2892],
-      [4516, 3008],
-      [4172, 3300]
-  ],
+      [ //Polígono 7
+        [4211, 2559],
+        [4225, 2571],
+        [4217, 2584],
+        [4228, 2613],
+        [4238, 2627],
+        [4251, 2643],
+        [4267, 2659],
+        [4284, 2673],
+        [4300, 2685],
+        [4312, 2689],
+        [4317, 2690],
+        [4319, 2683],
+        [4329, 2685],
+        [4428, 2795],
+        [4421, 2798],
+        [4427, 2811],
+        [4459, 2845],
+        [4483, 2833],
+        [4511, 2842],
+        [4521, 2848],
+        [4532, 2849],
+        [4543, 2872],
+        [4552, 2883],
+        [4555, 2975],
+        [4485, 3042],
+        [4476, 3037],
+        [4471, 3052],
+        [4467, 3043],
+        [4459, 3043],
+        [4425, 3077],
+        [4425, 3088],
+        [4317, 3195],
+        [4310, 3184],
+        [4293, 3195],
+        [4275, 3206],
+        [4255, 3219],
+        [4235, 3242],
+        [4215, 3269],
+        [4200, 3293],
+        [4207, 3310],
+        [4191, 3328]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "En medio de los edificios de aulas 1 y 3",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
     ],
     fotografia: "/assets/images/zonas/Area7.jpeg",
     imagenes: [
@@ -1033,53 +1202,107 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea7_1.jpg"
     ]
   },
- {
+  {
     nombre: "Area Verde 8",
     descripcion: "Espacio verde amplio, rodeado de árboles altos, diseñado para sombra y relajación al aire libre.",
     coordenadas: [
-      [6208, 1330],
-      [6170, 1588],
-      [6167, 1752],
-      [6172, 1984],
-      [6369, 1986]
-  ],
+      [ // Polígono 8
+        [6211, 1270],
+        [6393, 2033],
+        [6450, 2152],
+        [6151, 2141],
+        [6187, 1749],
+        [6156, 1751],
+        [6172, 1599],
+        [6205, 1594]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Detras del edificio de Laboratorios",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' }
     ],
     fotografia: "/assets/images/zonas/Area8.jpeg",
     imagenes: [
       "/assets/images/zonas/plantas/plantasarea8.jpg"
     ]
   },
-              {
+  {
     nombre: "Area Verde 9",
     descripcion: "Área al aire libre para actividades recreativas y pausas activas.'",
     coordenadas: [
-       [5127, 2660],
-      [5359, 2874],
-      [5351, 2992],
-      [5117, 3214],
-      [4861, 3210],
-      [4651, 2976],
-      [4637, 2880],
-      [4861, 2640]
-  ],
+      [ // Polígono 1
+        [5039, 2738],
+        [5054, 2745],
+        [5068, 2751],
+        [5099, 2766],
+        [5118, 2782],
+        [5140, 2799],
+        [5165, 2840],
+        [5176, 2865],
+        [5184, 2892],
+        [5374, 2887],
+        [5138, 2657],
+        [5045, 2648]
+      ],
+      [ // Poligono 2
+        [5181, 2966],
+        [5376, 2966],
+        [5129, 3205],
+        [5036, 3210],
+        [5033, 3107],
+        [5065, 3102],
+        [5097, 3083],
+        [5126, 3060],
+        [5159, 3025]
+      ],
+      [ // Polígono 3
+        [4954, 3116],
+        [4950, 3179],
+        [4959, 3206],
+        [4869, 3203],
+        [4650, 2969],
+        [4811, 2963],
+        [4824, 3007],
+        [4846, 3044],
+        [4840, 3052],
+        [4859, 3074],
+        [4871, 3066],
+        [4904, 3092]
+      ],
+      [ // Polígono 4
+        [4963, 2652],
+        [4963, 2740],
+        [4932, 2752],
+        [4904, 2768],
+        [4878, 2788],
+        [4859, 2802],
+        [4838, 2830],
+        [4821, 2862],
+        [4805, 2893],
+        [4655, 2886],
+        [4878, 2649]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "En medio de los edificios de aulas 1 y 3",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
     ],
     fotografia: "/assets/images/zonas/Area29.jpeg",
     imagenes: [
@@ -1087,24 +1310,31 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea29_1.jpg"
     ]
   },
-                {
+  {
     nombre: "Area Verde 10",
     descripcion: "Área abierta con senderos peatonales entre zonas de césped, ideal para circulación y descanso.",
     coordenadas: [
-      [5925, 2620],
-      [5925, 2492],
-      [5460, 2868],
-      [5877, 2876],
-      [5932, 2710]
-  ],
+      [ // Polígono 1
+        [5717, 2640],
+        [5755, 2662],
+        [5834, 2677],
+        [5860, 2851],
+        [5840, 2886],
+        [5811, 2891],
+        [5802, 2880],
+        [5482, 2882]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al edificio nuevo",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area10.jpeg",
@@ -1116,19 +1346,28 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 11",
     descripcion: "Espacio lineal con senderos que conecta distintos sectores del campus, en medio de jardines amplios.",
     coordenadas: [
-      [5472, 2972],
-      [5915, 2970],
-      [5921, 3260],
-      [5736, 3276]
-  ],
+      [ // Polígono 1
+        [5485, 2970],
+        [5839, 2976],
+        [5848, 3006],
+        [5822, 3098],
+        [5774, 3160],
+        [5704, 3211]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al edificio nuevo",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area11.jpeg",
@@ -1140,21 +1379,26 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 12",
     descripcion: "Zona con árboles nativos y vegetación baja, ubicada cerca de estacionamientos para aulas.",
     coordenadas: [
-      [4631, 3934],
-      [4685, 3988],
-      [4203, 3956],
-      [4364, 3778],
-      [4553, 3974]
-  ],
+      [ // Polígono 1
+        [4697, 4002],
+        [4641, 3922],
+        [4567, 3984],
+        [4373, 3784],
+        [4217, 3938],
+        [4234, 3984]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al Edificio de Aulas 1 cerca de su estacionamiento",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area12.jpeg",
     imagenes: [
@@ -1163,36 +1407,74 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea12.jpg"
     ]
   },
-     {
+  {
     nombre: "Area Verde 13",
     descripcion: "Gran extensión verde con abundante vegetación, caminos internos y árboles que rodean la plaza roja.",
     coordenadas: [
-      [5715, 3628],
-      [5795, 3716],
-      [5739, 3852],
-      [5583, 3900],
-      [5485, 4072],
-      [5481, 4112],
-      [5483, 4160],
-      [5527, 4200],
-      [5579, 4236],
-      [5643, 4270],
-      [5627, 4360],
-      [5465, 4368],
-      [5379, 4372],
-      [5191, 4368],
-      [5191, 4058],
-      [5193, 3968],
-      [5259, 4014]
-  ],
+      [ // Polígono 1
+        [5196, 4048],
+        [5231, 4048],
+        [5260, 4082],
+        [5287, 4103],
+        [5337, 4105],
+        [5334, 4363],
+        [5192, 4365]
+      ],
+      [ // Polígono 2
+        [5416, 4097],
+        [5397, 4097],
+        [5393, 4366],
+        [5412, 4366]
+      ],
+      [ // Polígono 3
+        [5628, 3692],
+        [5685, 3778],
+        [5719, 3850],
+        [5675, 3868],
+        [5641, 3880],
+        [5604, 3902],
+        [5585, 3919],
+        [5546, 3967],
+        [5520, 4011],
+        [5507, 4052],
+        [5284, 4046],
+        [5280, 4050],
+        [5262, 4032],
+        [5244, 4001],
+        [5229, 3999],
+        [5226, 4006],
+        [5196, 4003],
+        [5195, 3971],
+        [5229, 3969],
+        [5271, 4010]
+      ],
+      [ // Polígono 4
+        [5475, 4099],
+        [5495, 4144],
+        [5531, 4193],
+        [5555, 4224],
+        [5598, 4251],
+        [5631, 4268],
+        [5653, 4274],
+        [5623, 4358],
+        [5611, 4365],
+        [5464, 4366],
+        [5462, 4097]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto a la concha acustica de la plaza roja",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area13.jpeg",
@@ -1201,27 +1483,34 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea13_1.jpg"
     ]
   },
-       {
+  {
     nombre: "Area Verde 14",
     descripcion: "Área ajardinada cercana al edificio principal, con árboles y zonas sombreadas para estancia.",
     coordenadas: [
-      [5121, 4046],
-      [4861, 4062],
-      [4809, 4006],
-      [4779, 4004],
-      [4747, 4336],
-      [4853, 4362],
-      [5127, 4358]
-  ],
+      [ // Polígono 1
+        [5133, 4046],
+        [5130, 4360],
+        [4861, 4363],
+        [4866, 4047]
+      ],
+      [ // Polígono 2
+        [4810, 4001],
+        [4780, 4000],
+        [4771, 4332],
+        [4799, 4330]
+      ],
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al edificio principal ",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/1.jpeg",
     imagenes: [
@@ -1231,58 +1520,88 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea14_3.jpg"
     ]
   },
-       {
+  {
     nombre: "Area Verde 15",
     descripcion: "Zona con árboles frondosos y caminos peatonales, pensada para el esparcimiento y circulación estudiantil.",
     coordenadas: [
-      [5965, 4200],
-      [6053, 4258],
-      [6039, 4318],
-      [5965, 4318],
-      [5951, 4378],
-      [5907, 4420],
-      [5801, 4416],
-      [5781, 4286],
-      [5879, 4266]
-  ],
+      [ // Polígono 1
+        [5963, 4186],
+        [6053, 4296],
+        [6047, 4308],
+        [5966, 4305],
+        [5952, 4318],
+        [5951, 4388],
+        [5898, 4418],
+        [5801, 4418],
+        [5788, 4294],
+        [5849, 4271],
+        [5895, 4239],
+        [5923, 4220]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto a la concha acustica de la plaza roja",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area15.jpeg",
     imagenes: [
       "/assets/images/zonas/plantas/plantasarea15.jpg"
     ]
   },
-         {
+  {
     nombre: "Area Verde 16",
     descripcion: "Área rodeada de árboles y senderos para caminar.",
     coordenadas: [
-       [3929, 4096],
-      [4041, 4108],
-      [4017, 4254],
-      [3967, 4382],
-      [3953, 4428],
-      [3955, 4476],
-      [3959, 4560],
-      [3975, 4612],
-      [3911, 4610]
-  ],
+      [ // Polígono 1
+        [4037, 4093],
+        [4030, 4205],
+        [4035, 4219],
+        [4027, 4246],
+        [4018, 4274],
+        [4005, 4302],
+        [3991, 4328],
+        [3976, 4360],
+        [3964, 4399],
+        [3957, 4444],
+        [3954, 4477],
+        [3957, 4512],
+        [3966, 4560],
+        [3976, 4590],
+        [3987, 4614],
+        [3913, 4617],
+        [3928, 4093]
+      ],
+      [ // Polígono 2
+        [4036, 4334],
+        [4031, 4611],
+        [4019, 4598],
+        [4011, 4568],
+        [4004, 4553],
+        [3999, 4524],
+        [3995, 4491],
+        [3997, 4454],
+        [4002, 4416],
+        [4011, 4381]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Al frente del edificio principal ",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌱' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' }
     ],
     fotografia: "/assets/images/zonas/Area16.jpeg",
     imagenes: [
@@ -1290,71 +1609,85 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea24_1.jpg"
     ]
   },
-           {
+  {
     nombre: "Area Verde 17",
     descripcion: "Área rodeada de árboles y senderos para caminar.",
     coordenadas: [
-      [4845, 4422],
-      [5335, 4422],
-      [5331, 4628],
-      [5245, 4610],
-      [5239, 4488],
-      [4766, 4486]
-  ],
+      [ // Polígono 1
+        [4849, 4416],
+        [4768, 4487],
+        [5251, 4473],
+        [5248, 4608],
+        [5307, 4621],
+        [5334, 4618],
+        [5339, 4423]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al edificio principal",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area17.jpeg",
     imagenes: [
       "/assets/images/zonas/plantas/plantasarea17.jpg"
     ]
   },
-             {
+  {
     nombre: "Area Verde 18",
     descripcion: "Área con senderos para caminar.",
     coordenadas: [
-      [6234, 4394],
-      [6158, 4390],
-      [6139, 4864],
-      [6238, 4846]
-  ],
+      [ // Polígono 1
+        [6236, 4395],
+        [6184, 4393],
+        [6153, 4372],
+        [6150, 4855],
+        [6238, 4850]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto a la cancha A1 ",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area18y19.jpeg",
     imagenes: [
       "/assets/images/zonas/plantas/plantasarea18y19.jpg"
     ]
   },
- {
+  {
     nombre: "Area Verde 19",
     descripcion: "Área rodeada de árboles y senderos para caminar.",
     coordenadas: [
-     [6232, 4923], [6146, 4927], [6136, 5393], [6222, 5469]
+      [
+        [6235, 4931],
+        [6148, 4929],
+        [6144, 5397],
+        [6226, 5481]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto a la coancha A1 y Plaza Roja",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area18y19.jpeg",
     imagenes: [
@@ -1365,16 +1698,164 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 20",
     descripcion: "Área verde de forma geometrica con Altar de Bnaderas",
     coordenadas: [
-     [5790, 5343], [5884, 5349], [6326, 5783], [6308, 6303], [5876, 6271], [5436, 5793], [5458, 5781], [5480, 5767], [5488, 5743], [5490, 5719], [5496, 5695], [5498, 5673], [5488, 5659], [5488, 5647], [5488, 5631], [5490, 5619], [5502, 5599], [5504, 5581], [5788, 5359], [5784, 5381], [5790, 5396], [5829, 5412], [5859, 5436], [5884, 5464], [5906, 5491], [5923, 5524], [5932, 5564], [5944, 5608], [5949, 5645], [5941, 5684], [5940, 5724], [5931, 5755], [5918, 5776], [5906, 5792], [5885, 5810], [5868, 5828], [5841, 5850], [5813, 5862], [5781, 5874], [5745, 5881], [5718, 5884], [5697, 5882], [5677, 5875], [5658, 5866], [5640, 5858], [5617, 5844], [5601, 5832], [5580, 5807], [5557, 5781], [5538, 5767]
+      [ // Polígono 1
+        [5457, 5345],
+        [5619, 5346],
+        [5638, 5394],
+        [5608, 5408],
+        [5577, 5418],
+        [5550, 5441],
+        [5523, 5472],
+        [5498, 5509],
+        [5476, 5527],
+        [5451, 5519]
+      ],
+      [ // Polígono 2
+        [5533, 5570],
+        [5521, 5602],
+        [5514, 5634],
+        [5512, 5664],
+        [5515, 5693],
+        [5522, 5716],
+        [5528, 5738],
+        [5539, 5758],
+        [5552, 5780],
+        [5567, 5800],
+        [5579, 5812],
+        [5598, 5831],
+        [5612, 5842],
+        [5635, 5858],
+        [5658, 5869],
+        [5690, 5877],
+        [5708, 5879],
+        [5734, 5882],
+        [5767, 5879],
+        [5793, 5874],
+        [5813, 5867],
+        [5828, 5857],
+        [5847, 5849],
+        [5861, 5840],
+        [5875, 5827],
+        [5890, 5811],
+        [5910, 5788],
+        [5923, 5770],
+        [5933, 5748],
+        [5940, 5729],
+        [5946, 5707],
+        [5951, 5680],
+        [5952, 5655],
+        [5951, 5631],
+        [5951, 5620],
+        [5944, 5599],
+        [5935, 5574],
+        [5932, 5551],
+        [5929, 5531],
+        [5886, 5469],
+        [5868, 5453],
+        [5851, 5437],
+        [5832, 5422],
+        [5812, 5409],
+        [5795, 5400],
+        [5773, 5396],
+        [5794, 5345],
+        [5877, 5349],
+        [5917, 5394],
+        [5965, 5439],
+        [6017, 5491],
+        [6032, 5501],
+        [6052, 5505],
+        [6094, 5546],
+        [6155, 5611],
+        [6233, 5690],
+        [6295, 5755],
+        [6330, 5792],
+        [6322, 5944],
+        [6314, 6299],
+        [6277, 6296],
+        [6235, 6290],
+        [6189, 6281],
+        [6164, 6279],
+        [6142, 6268],
+        [6136, 6282],
+        [6073, 6277],
+        [6038, 6271],
+        [5986, 6269],
+        [5928, 6263],
+        [5893, 6260],
+        [5438, 5790],
+        [5458, 5770],
+        [5471, 5755],
+        [5486, 5731],
+        [5492, 5707],
+        [5491, 5684],
+        [5493, 5571]
+      ],
+      [ // Polígono 3
+        [5866, 5620],
+        [5829, 5644],
+        [5829, 5670],
+        [5827, 5685],
+        [5822, 5700],
+        [5814, 5714],
+        [5807, 5723],
+        [5799, 5731],
+        [5791, 5739],
+        [5782, 5745],
+        [5773, 5749],
+        [5763, 5751],
+        [5751, 5754],
+        [5740, 5755],
+        [5722, 5755],
+        [5709, 5755],
+        [5699, 5750],
+        [5690, 5746],
+        [5679, 5742],
+        [5669, 5733],
+        [5658, 5722],
+        [5649, 5709],
+        [5642, 5696],
+        [5638, 5685],
+        [5636, 5672],
+        [5634, 5656],
+        [5634, 5642],
+        [5595, 5611],
+        [5588, 5627],
+        [5584, 5648],
+        [5585, 5672],
+        [5591, 5697],
+        [5599, 5717],
+        [5609, 5739],
+        [5625, 5756],
+        [5646, 5775],
+        [5668, 5790],
+        [5696, 5801],
+        [5723, 5805],
+        [5751, 5802],
+        [5774, 5794],
+        [5803, 5784],
+        [5819, 5769],
+        [5832, 5754],
+        [5845, 5741],
+        [5855, 5725],
+        [5865, 5704],
+        [5873, 5685],
+        [5873, 5654],
+        [5874, 5632]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto a la coancha A1, plaza roja y Edifico aulas  2",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N20', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area20.jpeg",
@@ -1387,17 +1868,83 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 21",
     descripcion: "Área verde de árboles y senderos para caminar.",
     coordenadas: [
-    [5337, 5014], [5243, 5018], [5235, 5132], [5163, 5112], [5067, 5164], [4969, 5174], [4947, 5198], [5177, 5208], [5175, 5262], [5167, 5548], [5251, 5534], [5241, 5592], [5375, 5742], [5413, 5698], [5417, 5578], [5381, 5594], [5337, 5578], [5325, 5532], [5337, 5498], [5323, 5408], [5333, 5292], [5341, 5144]
+      [ // Polígono 1
+        [5337, 5024],
+        [5309, 5023],
+        [5308, 5030],
+        [5302, 5032],
+        [5301, 5038],
+        [5277, 5035],
+        [5278, 5023],
+        [5269, 5024],
+        [5266, 5017],
+        [5237, 5016],
+        [5237, 5116],
+        [5167, 5115],
+        [5159, 5127],
+        [5154, 5134],
+        [5144, 5141],
+        [5133, 5146],
+        [5122, 5150],
+        [5112, 5154],
+        [5104, 5155],
+        [5094, 5156],
+        [5083, 5158],
+        [5074, 5158],
+        [5065, 5157],
+        [5060, 5158],
+        [5060, 5174],
+        [4961, 5171],
+        [4945, 5202],
+        [5257, 5203],
+        [5337, 5221]
+      ],
+      [ // Polígono 2
+        [5314, 5514],
+        [5251, 5274],
+        [5266, 5260],
+        [5334, 5277],
+        [5336, 5492]
+      ],
+      [ // Polígono 3
+        [5208, 5263],
+        [5186, 5262],
+        [5181, 5543],
+        [5240, 5541],
+        [5256, 5464]
+      ],
+      [ // Polígono 4
+        [5290, 5479],
+        [5298, 5507],
+        [5306, 5534],
+        [5320, 5562],
+        [5337, 5586],
+        [5355, 5599],
+        [5370, 5603],
+        [5389, 5603],
+        [5399, 5597],
+        [5408, 5590],
+        [5419, 5575],
+        [5417, 5696],
+        [5412, 5701],
+        [5376, 5740],
+        [5323, 5691],
+        [5235, 5592],
+        [5260, 5484],
+        [5260, 5479]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "En medio del edificio central y edificio aulas 2",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N21', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
     ],
     fotografia: "/assets/images/zonas/Area21.jpeg",
     imagenes: [
@@ -1408,17 +1955,35 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 22",
     descripcion: "Área de forma cuadrada de árboles y senderos para caminar.",
     coordenadas: [
-    [5126, 5259], [4854, 5251], [4857, 5533], [5126, 5539] 
+      [ // / Polígono 1
+        [5128, 5266],
+        [5123, 5259],
+        [4857, 5250],
+        [4851, 5257],
+        [4855, 5527],
+        [4866, 5533],
+        [5125, 5539]
+      ],
+      [ // Polígono 2
+        [4795, 5278],
+        [4767, 5276],
+        [4760, 5527],
+        [4777, 5533],
+        [4796, 5426]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al edificio central y edificio aulas 2",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N22', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' }
     ],
     fotografia: "/assets/images/zonas/Area22.jpeg",
     imagenes: [
@@ -1430,17 +1995,26 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 23",
     descripcion: "Área de forma triangular con árbol en el centro y senderos para caminar.",
     coordenadas: [
-   [4521, 5948], [4278, 5656], [4286, 5647], [4710, 5647], [4720, 5635], [4740, 5620], [4768, 5606], [4775, 5707]
+      [ // Polígono 1
+        [4718, 5644],
+        [4773, 5645],
+        [4774, 5705],
+        [4521, 5954],
+        [4280, 5672],
+        [4288, 5632]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "En medio del edificio central y edificio aulas 2",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N23', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' }
     ],
     fotografia: "/assets/images/zonas/Area23.jpeg",
     imagenes: [
@@ -1448,21 +2022,52 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea23_1.jpg"
     ]
   },
-   {
+  {
     nombre: "Area Verde 24",
     descripcion: "Área verde con abundante vegetacion",
     coordenadas: [
-   [4074, 5644], [3970, 5642], [3908, 4940], [3996, 4930], [4034, 5287], [4029, 5273], [4023, 5260], [4019, 5246], [4010, 5232], [4001, 5215], [3991, 5186], [3978, 5168], [3967, 5135], [3957, 5103], [3952, 5069], [3953, 5049], [3953, 5025], [3960, 5005], [3967, 4983], [3973, 4974], [3978, 4964], [3984, 4954], [3988, 4943]
+      [ // Polígono 1
+        [3917, 4943],
+        [3986, 4934],
+        [3975, 4958],
+        [3967, 4976],
+        [3961, 5003],
+        [3959, 5031],
+        [3958, 5062],
+        [3960, 5101],
+        [3969, 5136],
+        [3975, 5161],
+        [3986, 5182],
+        [3998, 5212],
+        [4011, 5231],
+        [4021, 5250],
+        [4030, 5273],
+        [4036, 5295],
+        [4046, 5322],
+        [4049, 5354],
+        [4051, 5403],
+        [4061, 5522],
+        [4069, 5577],
+        [4086, 5640],
+        [4010, 5640],
+        [4010, 5631],
+        [3999, 5630],
+        [4000, 5633],
+        [3980, 5632],
+        [3968, 5641]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Frente al edificio central",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N24', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' },
     ],
     fotografia: "/assets/images/zonas/Area24y25.jpeg",
     imagenes: [
@@ -1470,21 +2075,33 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea24_1.jpg"
     ]
   },
-   {
+  {
     nombre: "Area Verde 25",
     descripcion: "Área verde con abundante vegetacion",
     coordenadas: [
-   [4033, 5059], [4041, 5217], [4035, 5204], [4029, 5189], [4025, 5176], [4016, 5158], [4012, 5143], [4010, 5130], [4003, 5111], [4000, 5086], [3999, 5070], [3997, 5046], [3996, 5038], [3999, 5029], [4002, 5021], [4004, 5013], [4006, 5004], [4010, 4997]
+      [ // Polígono 1
+        [4011, 4991],
+        [4023, 5053],
+        [4035, 5055],
+        [4040, 5217],
+        [4016, 5154],
+        [4004, 5127],
+        [3999, 5091],
+        [3999, 5057],
+        [4002, 5012]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Frente al edificio central con senderos para caminar",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N25', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' }
     ],
     fotografia: "/assets/images/zonas/Area24y25.jpeg",
     imagenes: [
@@ -1495,17 +2112,30 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 26",
     descripcion: "Área Verde",
     coordenadas: [
-   [7246, 6020], [7317, 6033], [7285, 5730], [7290, 5751], [7296, 5773], [7301, 5793], [7304, 5815], [7303, 5840], [7306, 5869], [7313, 5895], [7316, 5921], [7317, 5946], [7317, 5963], [7319, 5984], [7321, 6010], [7318, 6021], [7242, 5921], [6935, 5930], [6936, 5846], [7073, 5839], [7087, 5836], [7088, 5830], [7087, 5737], [7095, 5727], [7281, 5728]
+      [ // Polígono 1
+        [7294, 5718],
+        [7319, 5897],
+        [7323, 6029],
+        [7247, 6019],
+        [7245, 5913],
+        [6936, 5928],
+        [6940, 5842],
+        [7086, 5841],
+        [7087, 5731],
+        [7098, 5723]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al Coliseo 5 de Abril",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N26', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Árboles frutales de uso comunitario', icono: '🍊' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
     ],
     fotografia: "/assets/images/zonas/Area26.jpeg",
     imagenes: [
@@ -1517,16 +2147,50 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 27",
     descripcion: "Área verde sin arboles",
     coordenadas: [
-    [7375, 5577], [7092, 5580], [7101, 5434], [6966, 5434], [6976, 5317], [7012, 5314], [7010, 5355], [7032, 5359], [7042, 5360], [7061, 5361], [7080, 5361], [7097, 5360], [7112, 5357], [7128, 5353], [7140, 5349], [7145, 5343], [7176, 4674], [7188, 4686], [7192, 4706], [7209, 4712], [7211, 4728], [7216, 4743], [7222, 4759], [7224, 4772], [7224, 4790], [7224, 4809], [7226, 4827], [7228, 4846], [7225, 4865], [7226, 4884], [7227, 4902], [7227, 4922], [7227, 4940], [7225, 4964], [7224, 4986], [7221, 5005], [7219, 5021], [7216, 5034], [7210, 5050], [7207, 5070], [7205, 5088], [7208, 5099], [7231, 5104], [7257, 5104], [7282, 5101], [7303, 5093], [7313, 5081], [7313, 5066], [7319, 5050], [7320, 5039], [7321, 5029], [7322, 5029], [7324, 5021], [7325, 5014], [7325, 5008], [7325, 5002], [7326, 4995], [7326, 4989], [7327, 4983], [7328, 4976], [7328, 4969], [7328, 4963], [7328, 4958], [7328, 4951], [7328, 4944], [7328, 4938], [7330, 4934], [7330, 4930], [7330, 4924], [7331, 4920], [7332, 4916], [7332, 4912], [7332, 4908], [7332, 4904], [7332, 4900], [7332, 4895], [7332, 4891], [7332, 4886], [7332, 4884], [7332, 4880], [7334, 4875], [7335, 4870], [7336, 4863], [7336, 4857], [7336, 4852], [7336, 4846], [7336, 4843], [7337, 4839], [7338, 4835], [7340, 4831], [7341, 4826], [7341, 4823], [7342, 4818], [7342, 4816], [7342, 4810], [7342, 4804], [7341, 4799], [7342, 4793], [7342, 4789], [7342, 4784], [7342, 4781], [7342, 4776], [7342, 4772], [7341, 4768], [7342, 4761], [7342, 4752], [7342, 4747], [7342, 4742], [7342, 4736], [7342, 4729], [7342, 4724], [7342, 4720], [7342, 4714], [7342, 4709], [7342, 4704], [7342, 4698], [7342, 4693], [7342, 4689], [7342, 4685], [7342, 4680], [7343, 4676], [7343, 4671], [7343, 4666], [7343, 4661], [7343, 4656], [7343, 4652], [7344, 4646], [7344, 4642], [7344, 4636], [7344, 4631], [7345, 4626], [7344, 4619], [7344, 4612], [7344, 4605], [7344, 4600]
+      [ // Polígono 1
+        [7373, 4592],
+        [7340, 4593],
+        [7334, 4798],
+        [7323, 4931],
+        [7305, 5080],
+        [7284, 5092],
+        [7265, 5097],
+        [7213, 5093],
+        [7214, 5055],
+        [7230, 4993],
+        [7232, 4909],
+        [7234, 4774],
+        [7202, 4692],
+        [7182, 4667],
+        [7166, 4664],
+        [7154, 5107],
+        [7138, 5339],
+        [7124, 5348],
+        [7098, 5355],
+        [7018, 5357],
+        [7017, 5310],
+        [6972, 5309],
+        [6965, 5441],
+        [7098, 5429],
+        [7093, 5505],
+        [7085, 5510],
+        [7083, 5544],
+        [7091, 5548],
+        [7093, 5583],
+        [7374, 5581]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto a la coancha A1",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N27', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area27.jpeg",
@@ -1539,16 +2203,51 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 28",
     descripcion: "Área verde de y senderos para caminar.",
     coordenadas: [
-    [6296, 6784], [5740, 6780], [5672, 6780], [5522, 6778], [5486, 6730], [5592, 6670], [5629, 6644], [5690, 6580], [5700, 6592], [5717, 6591], [5887, 6440], [5882, 6435], [5874, 6429], [5868, 6425], [5861, 6417], [5859, 6409], [5923, 6340], [5973, 6344], [6144, 6358], [6314, 6387]
+      [ // Polígono 1
+        [6314, 6390],
+        [6310, 6798],
+        [5742, 6780],
+        [5627, 6641],
+        [5688, 6578],
+        [5707, 6599],
+        [5829, 6481],
+        [5839, 6490],
+        [5875, 6451],
+        [5872, 6434],
+        [5856, 6408],
+        [5922, 6344],
+        [6071, 6362],
+        [6143, 6361],
+        [6159, 6372],
+        [6248, 6378]
+      ],
+      [ // Polígono 2
+        [5596, 6669],
+        [5686, 6773],
+        [5519, 6772],
+        [5484, 6734],
+        [5526, 6691],
+        [5552, 6705],
+        [5558, 6697],
+        [5554, 6686],
+        [5562, 6679],
+        [5577, 6691]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "En medio del edifico aulas 2 y Coliseo 5 de Abril",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N28', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area28.jpeg",
@@ -1556,21 +2255,81 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea34.jpg"
     ]
   },
-   {
+  {
     nombre: "Area Verde 29",
     descripcion: "Área verde entre pileta. edificio aulas 2 y edificio aulas 4",
     coordenadas: [
-    [5343, 6875], [5121, 7095], [5019, 7091], [4955, 7107], [4873, 7109], [4701, 6865], [4719, 6739], [4831, 6579], [4973, 6563], [5111, 6559], [5229, 6567], [5355, 6747]
+      [ // Polígono 1
+        [5043, 6611],
+        [5048, 6583],
+        [5204, 6574],
+        [5365, 6730],
+        [5360, 6776],
+        [5182, 6771],
+        [5172, 6737],
+        [5160, 6704],
+        [5144, 6679],
+        [5107, 6647]
+      ],
+      [ // Polígono 2
+        [5177, 6847],
+        [5351, 6849],
+        [5354, 6878],
+        [5127, 7100],
+        [5026, 7097],
+        [5028, 7002],
+        [5038, 6991],
+        [5055, 6991],
+        [5081, 6980],
+        [5113, 6957],
+        [5140, 6929],
+        [5156, 6907],
+        [5168, 6877]
+      ],
+      [ // Polígono 3
+        [4959, 6996],
+        [4956, 7093],
+        [4855, 7092],
+        [4690, 6871],
+        [4701, 6823],
+        [4822, 6827],
+        [4836, 6859],
+        [4845, 6882],
+        [4853, 6906],
+        [4861, 6916],
+        [4857, 6923],
+        [4874, 6944],
+        [4881, 6936],
+        [4911, 6965]
+      ],
+      [ // Polígono 4
+        [4987, 6603],
+        [4975, 6574],
+        [4890, 6576],
+        [4880, 6564],
+        [4853, 6564],
+        [4692, 6722],
+        [4705, 6755],
+        [4829, 6758],
+        [4842, 6721],
+        [4863, 6680],
+        [4897, 6643],
+        [4941, 6617]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "En medio del edificio aulas 2 y edificio aulas 4",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N29', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
     ],
     fotografia: "/assets/images/zonas/Area29.jpeg",
     imagenes: [
@@ -1578,20 +2337,47 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea29_1.jpg"
     ]
   },
-    {
+  {
     nombre: "Area Verde 30",
     descripcion: "Área verde de forma triangular con vegetacion y arbol en el cento",
     coordenadas: [
-    [4580, 6827], [4518, 6890], [4505, 6881], [4494, 6874], [4471, 6881], [4460, 6891], [4455, 6899], [4446, 6909], [4436, 6918], [4438, 6933], [4427, 6945], [4416, 6958], [4407, 6966], [4394, 6980], [4384, 6993], [4368, 7006], [4354, 7017], [4340, 7028], [4328, 7029], [4312, 7026], [4296, 7024], [4281, 7025], [4270, 7031], [4260, 7038], [4255, 7048], [4281, 6524], [4296, 6536], [4305, 6560], [4316, 6577], [4324, 6590], [4332, 6603], [4344, 6612], [4356, 6624], [4364, 6628], [4382, 6636], [4400, 6632], [4415, 6625], [4431, 6620], [4450, 6624], [4466, 6652], [4485, 6680], [4505, 6697], [4530, 6720], [4546, 6739], [4565, 6762], [4592, 6788]
+      [ // Polígono 1
+        [4581, 6758],
+        [4438, 6608],
+        [4393, 6614],
+        [4365, 6614],
+        [4335, 6593],
+        [4316, 6562],
+        [4301, 6536],
+        [4310, 6522],
+        [4280, 6494],
+        [4284, 6540],
+        [4244, 7125],
+        [4273, 7080],
+        [4319, 7050],
+        [4338, 7038],
+        [4346, 7047],
+        [4451, 6937],
+        [4443, 6930],
+        [4480, 6888],
+        [4494, 6896],
+        [4500, 6884],
+        [4514, 6897],
+        [4579, 6827]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al edificio de aulas 2, edificio aulas 4 y parqueadero",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N30', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area7.jpeg",
@@ -1600,21 +2386,28 @@ const areasVerdes: AreaVerdeInfo[] = [
       "/assets/images/zonas/plantas/plantasarea30_1.jpg"
     ]
   },
-   {
+  {
     nombre: "Area Verde 31",
     descripcion: "Área verde y senderos para caminar.",
     coordenadas: [
-    [6090, 6873], [5990, 6869], [5995, 6874], [6001, 6881], [6007, 6885], [6011, 6890], [6016, 6895], [6021, 6900], [6024, 6905], [6030, 6908], [6036, 6911], [6042, 6912], [6048, 6912], [6054, 6911], [6059, 6907], [6064, 6903], [6068, 6899], [6073, 6895], [6078, 6891], [6083, 6886], [6088, 6880], [6091, 6875]
+      [ // Polígono 1
+        [6090, 6875],
+        [6052, 6912],
+        [6030, 6913],
+        [5993, 6870]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Frente al Coliseo 5 de Abril",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N31', icono: '🌳' },
-      { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' },
+      { nombre: 'Espacio natural con esculturas', icono: '🗿' }
     ],
     fotografia: "/assets/images/zonas/Area31.jpeg",
     imagenes: [
@@ -1626,16 +2419,43 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 32",
     descripcion: "Área rodeada de árboles y senderos para caminar.",
     coordenadas: [
-    [5505, 6854], [5488, 6902], [6116, 7652], [6230, 7658], [6240, 7202], [6282, 7200], [6282, 6976], [6283, 6974], [6290, 6969], [6294, 6965], [6299, 6960], [6304, 6956], [6308, 6950], [6311, 6946], [6314, 6941], [6317, 6937], [6318, 6930], [6319, 6922], [6319, 6917], [6317, 6908], [6317, 6899], [6316, 6894], [6315, 6889], [6314, 6883], [6314, 6881], [6140, 6876], [6131, 6883], [6123, 6890], [6119, 6896], [6113, 6903], [6106, 6913], [6099, 6920], [6093, 6928], [6085, 6935], [6077, 6942], [6071, 6948], [6062, 6950], [6051, 6954], [6044, 6954], [6033, 6954], [6023, 6953], [6018, 6949], [6011, 6944], [6002, 6936], [5995, 6927], [5992, 6925], [5985, 6915], [5977, 6907], [5970, 6898], [5961, 6888], [5954, 6878], [5945, 6870], [5939, 6866]
+      [ // Polígono 1
+        [6309, 6886],
+        [6312, 6933],
+        [6274, 6976],
+        [6285, 6974],
+        [6281, 7198],
+        [6247, 7197],
+        [6234, 7657],
+        [6126, 7655],
+        [5890, 7379],
+        [5862, 7342],
+        [5490, 6908],
+        [5485, 6885],
+        [5513, 6853],
+        [5943, 6870],
+        [6018, 6950],
+        [6034, 6955],
+        [6049, 6956],
+        [6066, 6952],
+        [6078, 6944],
+        [6136, 6876]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "En medio del Coliseo 5 de Abril y Edifio de aulas 4",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N32', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Sendero interpretativo entre vegetación nativa', icono: '🚶‍♂️' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area32.jpeg",
@@ -1647,16 +2467,30 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 33",
     descripcion: "Área verde con vegetacion a su alrededor",
     coordenadas: [
-     [4626, 7831], [4623, 7962], [4237, 7904], [4232, 7902], [4230, 7899], [4229, 7895], [4229, 7892], [4229, 7888], [4231, 7885], [4232, 7883], [4234, 7880], [4237, 7874], [4397, 7690], [4555, 7892], [4620, 7830]
+      [ // Polígono 1
+        [4401, 7687],
+        [4228, 7884],
+        [4227, 7897],
+        [4232, 7903],
+        [4624, 7961],
+        [4624, 7835],
+        [4616, 7837],
+        [4615, 7828],
+        [4554, 7887]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
     ubicacion: "Junto al edifico de aulas 4 y parqueadero",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N33', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Jardinería ecológica de bajo mantenimiento', icono: '🧑‍🌾' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area33.jpeg",
@@ -1668,16 +2502,33 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 34",
     descripcion: "Área verde con senderos para caminar",
     coordenadas: [
-     [5794, 7418], [6014, 7712], [5622, 7696], [5364, 7866], [5398, 7830], [5436, 7776], [5476, 7730], [5532, 7676], [5570, 7628], [5612, 7580], [5666, 7532], [5710, 7492], [5760, 7444], [5586, 7776], [5580, 8053], [5320, 8037], [5326, 7949]
+      [ // Polígono 1
+        [6045, 7717],
+        [5798, 7415],
+        [5334, 7885],
+        [5615, 7698]
+      ],
+      [ // Polígono 2
+        [5604, 7791],
+        [5592, 8051],
+        [5353, 8035],
+        [5334, 8022],
+        [5332, 7950],
+        [5585, 7782],
+        [5597, 7781]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
-    ubicacion: "En medio de del edificoo de aulas 4 y parqueadero de buses",
+    ubicacion: "En medio de del edificio de aulas 4 y parqueadero de buses",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N34', icono: '🌳' },
+      { nombre: 'Presencia de vegetación nativa y adaptada', icono: '🌳' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Espacio natural para contemplación y relajación', icono: '🧘' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area34.jpeg",
@@ -1689,80 +2540,84 @@ const areasVerdes: AreaVerdeInfo[] = [
     nombre: "Area Verde 35",
     descripcion: "Área rodeada de árboles y senderos para caminar.",
     coordenadas: [
-    [3368, 2048],
-    [3023, 1996],
-    [3008, 2044],
-    [3119, 2080],
-    [3168, 2120],
-    [3187, 2188],
-    [3232, 2260],
-    [3264, 2328],
-    [3292, 2379],
-    [3301, 2429],
-    [3305, 2473],
-    [3306, 2514],
-    [3306, 2549],
-    [3303, 2584],
-    [3301, 2603],
-    [3299, 2612],
-    [3297, 2622],
-    [3295, 2635],
-    [3293, 2647],
-    [3287, 2677],
-    [3283, 2694],
-    [3279, 2702],
-    [3276, 2712],
-    [3273, 2722],
-    [3268, 2737],
-    [3266, 2746],
-    [3277, 2748],
-    [3275, 2765],
-    [3274, 2793],
-    [3274, 2851],
-    [3234, 2939],
-    [3163, 2994],
-    [3070, 2991],
-    [3022, 3010],
-    [2979, 3023],
-    [2924, 3031],
-    [2881, 3032],
-    [2844, 3031],
-    [2814, 3024],
-    [2779, 3016],
-    [2747, 3004],
-    [2704, 2985],
-    [2681, 2971],
-    [2659, 2957],
-    [2636, 2937],
-    [2636, 2937],
-    [2616, 2914],
-    [2599, 2895],
-    [2579, 2869],
-    [2557, 2836],
-    [2543, 2811],
-    [2526, 2779],
-    [2512, 2751],
-    [2497, 2715],
-    [2490, 2687],
-    [2487, 2673],
-    [2465, 2682],
-    [2440, 2721],
-    [2245, 3014],
-    [2278, 3047],
-    [2277, 3117],
-    [3302, 3101],
-    [3340, 3082],
-    [3357, 3024],
-    [3404, 2050]
-  ],
+      [ // Polígono 1
+        [3368, 2048],
+        [3023, 1996],
+        [3008, 2044],
+        [3119, 2080],
+        [3168, 2120],
+        [3187, 2188],
+        [3232, 2260],
+        [3264, 2328],
+        [3292, 2379],
+        [3301, 2429],
+        [3305, 2473],
+        [3306, 2514],
+        [3306, 2549],
+        [3303, 2584],
+        [3301, 2603],
+        [3299, 2612],
+        [3297, 2622],
+        [3295, 2635],
+        [3293, 2647],
+        [3287, 2677],
+        [3283, 2694],
+        [3279, 2702],
+        [3276, 2712],
+        [3273, 2722],
+        [3268, 2737],
+        [3266, 2746],
+        [3277, 2748],
+        [3275, 2765],
+        [3274, 2793],
+        [3274, 2851],
+        [3234, 2939],
+        [3163, 2994],
+        [3070, 2991],
+        [3022, 3010],
+        [2979, 3023],
+        [2924, 3031],
+        [2881, 3032],
+        [2844, 3031],
+        [2814, 3024],
+        [2779, 3016],
+        [2747, 3004],
+        [2704, 2985],
+        [2681, 2971],
+        [2659, 2957],
+        [2636, 2937],
+        [2636, 2937],
+        [2616, 2914],
+        [2599, 2895],
+        [2579, 2869],
+        [2557, 2836],
+        [2543, 2811],
+        [2526, 2779],
+        [2512, 2751],
+        [2497, 2715],
+        [2490, 2687],
+        [2487, 2673],
+        [2465, 2682],
+        [2440, 2721],
+        [2245, 3014],
+        [2278, 3047],
+        [2277, 3117],
+        [3302, 3101],
+        [3340, 3082],
+        [3357, 3024],
+        [3404, 2050]
+      ]
+    ],
     color: {
-fill: '#2e7d32',     // verde fuerte (relleno)
-border: '#1b5e20'
+      fill: '#2e7d32',     // verde fuerte (relleno)
+      border: '#1b5e20'
     },
     ubicacion: "Junto a la concha acustica límites entre calle México y Avenida Universitaria",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
+      { nombre: 'Cobertura arbórea para conservación ambiental', icono: '🌿' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area35.jpeg",
@@ -1774,23 +2629,25 @@ border: '#1b5e20'
     nombre: "Area Verde 36",
     descripcion: "Área rodeada de árboles y senderos para caminar.",
     coordenadas: [
-      [2123, 700],
-      [2311, 880],
-      [2595, 496],
-      [2926, 784],
-      [3037, 788],
-      [3036, 415],
-      [3053, 385],
-      [3032, 318]
+      [ // Polígono 1
+        [2123, 700],
+        [2311, 880],
+        [2595, 496],
+        [2926, 784],
+        [3037, 788],
+        [3036, 415],
+        [3053, 385],
+        [3032, 318]
+      ]
     ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
-    ubicacion: "Junto a la concha acustica límites entre calle México y Avenida Universitaria",
+    ubicacion: "Junto a las aulas de aprendizaje cultural, contiguo al Parqueadero",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area36.jpeg",
@@ -1801,48 +2658,51 @@ border: '#1b5e20'
     nombre: "Area Verde 37",
     descripcion: "Área rodeada de árboles y senderos para caminar.",
     coordenadas: [
-    [1598, 2749],
-    [1900, 3034],
-    [1909, 3115],
-    [865, 3106],
-    [864, 2996],
-    [782, 2996],
-    [758, 3101],
-    [731, 3103],
-    [123, 1697],
-    [2112, 706],
-    [2032, 826],
-    [2048, 850],
-    [2037, 866],
-    [2006, 836],
-    [2021, 818],
-    [1996, 792],
-    [1978, 812],
-    [1965, 801],
-    [1095, 2110],
-    [1066, 2075],
-    [1036, 2125],
-    [562, 1660],
-    [355, 2009],
-    [819, 2492],
-    [776, 2569],
-    [825, 2560],
-    [1368, 3086]
-  ],
+      [ // Polígono 1
+        [1598, 2749],
+        [1900, 3034],
+        [1909, 3115],
+        [865, 3106],
+        [864, 2996],
+        [782, 2996],
+        [758, 3101],
+        [731, 3103],
+        [123, 1697],
+        [2112, 706],
+        [2032, 826],
+        [2048, 850],
+        [2037, 866],
+        [2006, 836],
+        [2021, 818],
+        [1996, 792],
+        [1978, 812],
+        [1965, 801],
+        [1095, 2110],
+        [1066, 2075],
+        [1036, 2125],
+        [562, 1660],
+        [355, 2009],
+        [819, 2492],
+        [776, 2569],
+        [825, 2560],
+        [1368, 3086]
+      ]
+    ],
     color: {
-    fill: '#2e7d32', 
-    border: '#1b5e20' 
+      fill: '#2e7d32',
+      border: '#1b5e20'
     },
-    ubicacion: "Junto a las aulas de aprendizaje cultural, contiguo al Parqueadero",
+    ubicacion: "Límites de las canchas de baloncesto y fútbol y cerramiento del Centro Cultural.",
     tipo: 'AREA VERDE ORNAMENTAL',
     instalaciones: [
-      { nombre: 'Espacio verde N39', icono: '🌳' },
+      { nombre: 'Zona de descanso', icono: '🛋️' },
+      { nombre: 'Cobertura de césped', icono: '🌾' },
       { nombre: 'Acceso libre para estudiantes', icono: '👨‍🎓' }
     ],
     fotografia: "/assets/images/zonas/Area37.jpeg",
     imagenes: [
       "/assets/images/zonas/plantas/plantasarea37.jpg"
-      
+
     ]
   },
 ]
@@ -1850,5 +2710,5 @@ border: '#1b5e20'
 // Crear areas verdes con coordenadas transformadas
 export const areasVerdesupec: AreaVerdeInfo[] = areasVerdes.map(area => ({
   ...area,
-  coordenadas: transformPolygon(area.coordenadas)
+  coordenadas: transformPolygons(area.coordenadas)
 }));
