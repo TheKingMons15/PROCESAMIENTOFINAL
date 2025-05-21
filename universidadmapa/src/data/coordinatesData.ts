@@ -137,6 +137,7 @@ export interface AreaDeportiva {
   color: string;
   selectedColor?: string;
   coordenadas: number[][];
+  plano?: string; // <-- Nuevo campo para la imagen del plano
   instalaciones: {
     nombre: string;
     icono: string;
@@ -161,6 +162,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha principal de fútbol',
     tipo: 'DEPORTIVO',
     color: '#2ecc71',
+    plano: '/assets/images/Cancha_22.jpg', // <-- Ruta del plano
     selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
     coordenadas: [
       [1955, 900], [1622, 1432], [2404, 2192], [2763, 1684]
@@ -201,6 +203,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha secundaria de fútbol',
     tipo: 'DEPORTIVO',
     color: '#27ae60',
+    plano: '/assets/images/Cancha_31.jpg', // <-- Ruta del plano
     selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
     coordenadas: [
       [1590, 1500], [2367, 2248], [2036, 2768], [1210, 2016]
