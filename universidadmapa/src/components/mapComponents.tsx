@@ -480,6 +480,7 @@ export const EdificioInfo: React.FC<{
       return '/assets/images/Aulas3.jpg';
     } else if (edificio.id === 'edificio2') {
       return '/assets/images/Aulas2.jpg';
+    
     }
     return undefined;
   };
