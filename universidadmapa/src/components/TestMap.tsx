@@ -475,43 +475,43 @@ const TestMap: React.FC = () => {
 
           {/* Polígonos para las áreas verdes - Siempre visibles */}
           {areasVerdesupec &&
-  areasVerdesupec.map((area) => {
-    const isSelected = selectedItem?.nombre === area.nombre;
-    const isHovered = hoveredItem?.nombre === area.nombre;
+            areasVerdesupec.map((area) => {
+              const isSelected = selectedItem?.nombre === area.nombre;
+              const isHovered = hoveredItem?.nombre === area.nombre;
 
-    return (
-<Polygon
-  key={area.nombre}
-  positions={area.coordenadas as LatLngTuple[]}
-  pathOptions={{
-    color: isSelected ? '#00aa00' : area.color.border,
-    fillColor: isSelected ? '#66ff66' : area.color.fill,
-    fillOpacity: isSelected ? 0.8 : isHovered ? 0.7 : elementsVisible ? 0.2 : 0,
-    weight: isSelected ? 2 : isHovered ? 1 : 0
-  }}
-  eventHandlers={{
-    mouseover: () => handleHover(area),
-    mouseout: () => handleHoverOut(),
-    click: () => handleAreaverdeClick(area)
-  }}
->
-        <Tooltip
-          sticky
-          className={`greenarea-tooltip ${isHovered ? 'visible' : ''}`}
-          direction="top"
-          offset={[0, -10]}
-          opacity={0.9}
-        >
-          <div className="tooltip-content">
-            <strong>{area.nombre}</strong>
-            <div className="tooltip-details">
-              <span>{area.descripcion}</span>
-            </div>
-          </div>
-        </Tooltip>
-      </Polygon>
-    );
-  })}
+              return (
+                <Polygon
+                  key={area.nombre}
+                  positions={area.coordenadas as LatLngTuple[][]}
+                  pathOptions={{
+                    color: isSelected ? '#00aa00' : area.color.border,
+                    fillColor: isSelected ? '#66ff66' : area.color.fill,
+                    fillOpacity: isSelected ? 0.8 : isHovered ? 0.7 : elementsVisible ? 0.2 : 0,
+                    weight: isSelected ? 2 : isHovered ? 1 : 0
+                  }}
+                  eventHandlers={{
+                    mouseover: () => handleHover(area),
+                    mouseout: () => handleHoverOut(),
+                    click: () => handleAreaverdeClick(area)
+                  }}
+                >
+                  <Tooltip
+                    sticky
+                    className={`greenarea-tooltip ${isHovered ? 'visible' : ''}`}
+                    direction="top"
+                    offset={[0, -10]}
+                    opacity={0.9}
+                  >
+                    <div className="tooltip-content">
+                      <strong>{area.nombre}</strong>
+                      <div className="tooltip-details">
+                        <span>{area.descripcion}</span>
+                      </div>
+                    </div>
+                  </Tooltip>
+                </Polygon>
+              );
+            })}
 
         </MapContainer>
         {/* Mensaje de estado de carga con animación */}
@@ -520,8 +520,8 @@ const TestMap: React.FC = () => {
             <div className="loader-spinner"></div>
             <span>Cargando mapa interactivo</span>
             <div className="loader-progress-container">
-              <div 
-                className="loader-progress-bar" 
+              <div
+                className="loader-progress-bar"
                 style={{ width: '0%' }}
                 ref={(el) => {
                   if (el) {
@@ -535,22 +535,22 @@ const TestMap: React.FC = () => {
             </div>
           </div>
         )}
-        
+
         {/* Overlay de transición al cerrar el slider */}
-        <div 
-          className="transition-overlay" 
+        <div
+          className="transition-overlay"
           ref={overlayRef}
         >
           <span>Volviendo al mapa principal</span>
           <div className="loader-progress-container">
-            <div 
-              className="loader-progress-bar" 
+            <div
+              className="loader-progress-bar"
               ref={progressBarRef}
               style={{ width: '0%' }}
             />
           </div>
         </div>
-        
+
         {/* Notificación de cambio de piso */}
         {showFloorNotice && (
           <div className="floor-change-notice">
@@ -558,11 +558,11 @@ const TestMap: React.FC = () => {
           </div>
         )}
       </div>
-      
+
       {/* Slider lateral - Ahora se muestra a la derecha */}
-      <Slider 
-        isOpen={isSliderOpen} 
-        onClose={handleCloseSlider} 
+      <Slider
+        isOpen={isSliderOpen}
+        onClose={handleCloseSlider}
         title={selectedItem?.nombre || "Información"}
       >
         {selectedItem ? (
@@ -570,13 +570,13 @@ const TestMap: React.FC = () => {
             <EstacionamientoInfoComponent estacionamiento={selectedItem} />
           ) : selectedItemType === 'deportivo' ? (
             <AreaDeportivaInfo area={selectedItem} />
-          )  : selectedItemType === 'areasverdes' ? (
+          ) : selectedItemType === 'areasverdes' ? (
             <AreaVerdeIn area={selectedItem} />
           ) : (
-            <EdificioInfo 
-              edificio={selectedItem} 
-              activeFloor={activeFloor} 
-              changeFloor={changeFloor} 
+            <EdificioInfo
+              edificio={selectedItem}
+              activeFloor={activeFloor}
+              changeFloor={changeFloor}
             />
           )
         ) : (
