@@ -520,7 +520,9 @@ export const EdificioInfo: React.FC<{
         return '/assets/images/AULAS2-planta2.jpg';
       }
     }
-    
+    // Imágenes específicas para el Edificio 1
+
+
     // Para otros edificios o si no hay imagen específica, usar la imagen por defecto del piso
     return currentPiso.imagen ? currentPiso.imagen : undefined;
   };
