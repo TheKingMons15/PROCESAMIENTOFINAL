@@ -536,6 +536,8 @@ export const EdificioInfo: React.FC<{
       return '/assets/images/Aulas3.jpg';
     } else if (edificio.id === 'edificio2') {
       return '/assets/images/Aulas2.jpg';
+    } else if (edificio.id === 'edificio1') {
+      return '/assets/images/Aulas1.jpg';
     }
     return undefined;
   };
@@ -573,6 +575,17 @@ export const EdificioInfo: React.FC<{
         return '/assets/images/AULAS2-planta1.jpg';
       } else if (pisoNum === 2) {
         return '/assets/images/AULAS2-planta2.jpg';
+      }
+    }
+    // Imágenes específicas para el Edificio 1
+    else if (edificio.id === 'edificio1') {
+      const pisoNum = currentPiso.numero;
+      if (pisoNum === 0) {
+        return '/assets/images/AULAS1-PLANTABAJA.jpg';
+      } else if (pisoNum === 1) {
+        return '/assets/images/AULAS1-planta1.jpg';
+      } else if (pisoNum === 2) {
+        return '/assets/images/AULAS1-planta2.jpg';
       }
     }
     
@@ -860,80 +873,154 @@ export const AreaDeportivaInfo: React.FC<{
 };
 
 // Componente para renderizar la información de área verdes en el slider (MEJORADO)
+
 export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
-  // Estados para el carrusel y modal de fotos
   const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [allPhotos, setAllPhotos] = useState<string[]>([]);
-  
-  // Preparar el array de fotos cuando cambia el área
+
   useEffect(() => {
-    let photos: string[] = [];
-    if (area.fotografia) {
-      photos.push(area.fotografia);
-    }
+    // Cargar todas las imágenes sin filtrar
     if (area.imagenes && area.imagenes.length > 0) {
-      photos = [...photos, ...area.imagenes.filter(img => img !== area.fotografia)];
+      setAllPhotos(area.imagenes);
+    } else {
+      setAllPhotos([]);
     }
-    setAllPhotos(photos);
   }, [area]);
-  
-  // Funciones para navegación de fotos
+
   const handlePhotoClick = (index: number) => {
-    setCurrentPhotoIndex(index);
+    setCurrentPhotoIndex(index + 1); // +1 porque la fotografía principal va primero
     setIsPhotoModalOpen(true);
   };
-  
+
   const closePhotoModal = () => {
     setIsPhotoModalOpen(false);
   };
-  
+
   const nextPhoto = () => {
-    if (allPhotos.length > 0) {
-      setCurrentPhotoIndex((prev) => (prev + 1) % allPhotos.length);
-    }
+    const total = [area.fotografia, ...allPhotos].length;
+    setCurrentPhotoIndex((prev) => (prev + 1) % total);
   };
-  
+
   const prevPhoto = () => {
-    if (allPhotos.length > 0) {
-      setCurrentPhotoIndex((prev) => (prev - 1 + allPhotos.length) % allPhotos.length);
-    }
+    const total = [area.fotografia, ...allPhotos].length;
+    setCurrentPhotoIndex((prev) => (prev - 1 + total) % total);
   };
-  
+
   return (
     <div className="slider-content-wrapper">
       <div className="slider-header-section">
         <h2 className="item-title">{area.nombre}</h2>
-        <span className="item-badge">Área Verde</span>
+        <span className="item-badge"
+          style={{
+            color: '#000000',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '16px',
+            fontWeight: 'bold'
+          }}
+        >Área Verde</span>
       </div>
 
-      <p className="item-description animated-fade-in">{area.descripcion}</p>
+      <p className="item-description animated-fade-in"
+        style={{
+          color: '#000000',                 
+          fontFamily: 'Times New Roman, serif',
+          fontSize: '16px',               
+          lineHeight: '1.4'                 
+        }}
+      >{area.descripcion}</p>
+
+      {/* Imagen principal destacada */}
+      {area.fotografia && (
+        <div className="main-photo-container animated-fade-in">
+          <img
+            src={area.fotografia}
+            alt={`Fotografía principal de ${area.nombre}`}
+            className="main-photo"
+            onClick={() => {
+              setCurrentPhotoIndex(0); // Mostrar primero la imagen principal en el modal
+              setIsPhotoModalOpen(true);
+            }}
+            style={{
+              cursor: "pointer",
+              width: "100%",
+              maxHeight: "400px",
+              objectFit: "cover",
+              borderRadius: "12px",
+              marginBottom: "1rem",
+            }}
+          />
+        </div>
+      )}
 
       <div className="area-verde-info animated-fade-in">
         <div className="info-item">
           <div className="info-icon">🌳</div>
           <div className="info-text">
-            <div className="info-label">Tipo</div>
-            <div className="info-value">{area.tipo}</div>
+            <div className="info-label"
+              style={{
+                color: '#000000',
+                fontFamily: 'Times New Roman, serif',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}
+            >Tipo</div>
+            <div className="info-value"
+            style={{
+              color: '#000000',
+              fontFamily: 'Times New Roman, serif',
+              fontSize: '16px',
+              lineHeight: '1.4'
+            }}
+            >{area.tipo}</div>
           </div>
         </div>
 
         <div className="info-item">
           <div className="info-icon">📍</div>
           <div className="info-text">
-            <div className="info-label">Ubicación</div>
-            <div className="info-value">{area.ubicacion}</div>
+            <div className="info-label"
+              style={{
+                color: '#000000',
+                fontFamily: 'Times New Roman, serif',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}
+            >Ubicación</div>
+            <div className="info-value" 
+            style={{
+              color: '#000000',
+              fontFamily: 'Times New Roman, serif',
+              fontSize: '16px',
+              lineHeight: '1.4'
+            }}
+            >{area.ubicacion}</div>
           </div>
         </div>
 
         {area.instalaciones && area.instalaciones.length > 0 && (
           <div className="info-item">
-            <div className="info-icon">🏗️</div>
+            <div className="info-icon">📋</div>
             <div className="info-text">
-              <div className="info-label">Instalaciones</div>
+              <div className="info-label" 
+                style={{
+                  color: '#000000',
+                  fontFamily: 'Times New Roman, serif',
+                  fontSize: '16px',
+                  fontWeight: 'bold'
+                }}
+              >Elementos del Paisaje Natural</div>
               <div className="info-values">
                 {area.instalaciones.map((inst, idx) => (
-                  <span key={idx} className="badge">
+                  <span key={idx} className="badge"
+                    style={{
+                      backgroundColor: 'transparent',
+                      color: '#000000',
+                      fontSize: '14px',
+                      fontFamily: 'Times New Roman, serif',
+                      fontWeight: 'normal'
+                    }}
+                  >
                     {inst.icono} {inst.nombre}
                   </span>
                 ))}
@@ -943,15 +1030,20 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
         )}
       </div>
 
-      {/* Carrusel de fotos */}
+      {/* Carrusel de fotos adicionales */}
       {allPhotos.length > 0 && (
-        <PhotoCarousel 
-          photos={allPhotos} 
-          onPhotoClick={handlePhotoClick} 
-        />
+        <PhotoCarousel photos={allPhotos} onPhotoClick={handlePhotoClick} />
       )}
 
-      <div className="area-verde-recomendaciones animated-fade-in-delayed">
+      <div
+        className="area-verde-recomendaciones animated-fade-in-delayed"
+        style={{
+          fontFamily: 'Times New Roman, serif',  
+          fontSize: '15px',              
+          color: '#000000',              
+          lineHeight: '1.5'             
+        }}
+      >
         <h3>Recomendaciones</h3>
         <ul>
           <li>No arroje basura; utilice los tachos designados.</li>
@@ -961,11 +1053,12 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
           <li>Mantenga mascotas con correa y recoja sus desechos.</li>
         </ul>
       </div>
-      
+
+
       {/* Modal para ver fotos ampliadas */}
-      <PhotoModal 
+      <PhotoModal
         isOpen={isPhotoModalOpen}
-        photos={allPhotos}
+        photos={[area.fotografia, ...allPhotos]} // El modal contiene todas las fotos, empezando por la principal
         currentIndex={currentPhotoIndex}
         onClose={closePhotoModal}
         onNext={nextPhoto}

@@ -2726,3 +2726,6 @@ export const areasVerdesupec: AreaVerdeInfo[] = areasVerdes.map(area => ({
   ...area,
   coordenadas: transformPolygons(area.coordenadas)
 }));
+
+
+
