@@ -210,7 +210,7 @@ const CoordinateMapper: React.FC = () => {
     img.onerror = (error) => {
       console.error("Error cargando la imagen:", error);
     };
-    img.src = '/assets/images/campus-map.jpg';
+    img.src = '/assets/images/edificio3-piso2.jpg';
   }, []);
   
   // Funciones para manipular puntos y polígonos
@@ -294,7 +294,7 @@ const CoordinateMapper: React.FC = () => {
           maxZoom={2}
         >
           <ImageOverlay
-            url="/assets/images/campus-map.jpg"
+            url="/assets/images/edificio3-piso2.jpg"
             bounds={bounds}
           />
           
