@@ -172,8 +172,16 @@ export const PhotoCarousel: React.FC<{
   
   return (
     <div className="photo-carousel-container">
-      <h3 className="carousel-title">Fotografías</h3>
-      
+      <h3 className="carousel-title"
+      style={{
+          color: '#000000',                 
+          fontFamily: 'Times New Roman, serif',
+          fontSize: '18px',               
+          lineHeight: '1.4',
+          textAlign: 'center'                 
+        }}
+      >Fotografías</h3>
+
       <div className="photo-grid">
         {photos.slice(0, 9).map((photo, index) => (
           <div 
@@ -293,14 +301,27 @@ export const EstacionamientoInfoComponent: React.FC<{
           </div>
         </div>
       </div>
+            
 
       {/* Info del estacionamiento */}
+      
       <div className="estacionamiento-info tarjeta-info">
         <div className="info-item">
           <div className="info-icon">📍</div>
           <div className="info-text">
             <div className="info-label">Ubicación</div>
             <div className="info-value destacado">{estacionamiento.ubicacion}</div>
+          </div>
+        </div>
+        
+  <div className="info-item horario-estilo">
+          <div className="info-icon reloj-animado">⏰</div>
+          <div className="info-text">
+            <div className="info-label">Horario de atención</div>
+            <div className="info-value">
+              <strong>Lunes a sábado</strong><br />
+              <span className="hora-texto">6:30 AM - 8:30 AM</span>
+            </div>
           </div>
         </div>
 
@@ -340,8 +361,39 @@ export const EstacionamientoInfoComponent: React.FC<{
               <div className="info-value">{estacionamiento.edificiosCercanos.join(', ')}</div>
             </div>
           </div>
+
         )}
+        
       </div>
+<div className="info-section">
+  <div className="info-item">
+    <span className="info-icon" role="img" aria-label="Car">🚗</span>
+    <div className="info-content">
+      <h3 className="info-title">Adquiere tu lugar en el parqueadero de UPEC</h3>
+      <div className="info-details">
+        <p className="info-step">
+          <span className="step-icon" role="img" aria-label="Location">📍</span>
+          Dirígete a la <strong>empresa pública</strong> ubicada en el 
+          <strong>edificio de aulas N.º 2</strong>, planta baja.
+        </p>
+        <p className="info-step">
+          <span className="step-icon" role="img" aria-label="Pointer">🔹</span>
+          Se encuentra al <strong>lado izquierdo</strong> de la entrada principal y al 
+          <strong>lado derecho del elevador</strong>.
+        </p>
+        <p className="info-step">
+          <span className="step-icon" role="img" aria-label="Document">📝</span>
+          Ahí podrás solicitar la información y los documentos requeridos para tu solicitud.
+        </p>
+        <p className="info-step">
+          <span className="step-icon" role="img" aria-label="Person">👤</span>
+          El Gerente general es el <strong>MSc. Cristian Terán</strong>, quien podrá brindarte 
+          asistencia personalizada.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
       {/* Recomendaciones */}
       <div className="estacionamiento-recomendaciones tarjeta-recomendaciones">
@@ -363,7 +415,20 @@ export const EstacionamientoInfoComponent: React.FC<{
           padding: 20px;
           margin: 20px 0;
         }
-
+        .horario-estilo {
+          background: linear-gradient(90deg, #e3f2fd 0%, #f1f8e9 100%);
+          border-left: 4px solid #2196f3;
+          border-radius: 8px;
+          padding: 10px;
+        }
+        .destacado {
+          font-weight: 600;
+          color: #007bff;
+        }
+        .hora-texto {
+          font-size: 1.05rem;
+          color: #0d47a1;
+        }
         .info-item {
           display: flex;
           align-items: flex-start;
@@ -862,10 +927,24 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
     <div className="slider-content-wrapper">
       <div className="slider-header-section">
         <h2 className="item-title">{area.nombre}</h2>
-        <span className="item-badge">Área Verde</span>
+        <span className="item-badge"
+          style={{
+            color: '#000000',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '16px',
+            fontWeight: 'bold'
+          }}
+        >Área Verde</span>
       </div>
 
-      <p className="item-description animated-fade-in">{area.descripcion}</p>
+      <p className="item-description animated-fade-in"
+        style={{
+          color: '#000000',                 
+          fontFamily: 'Times New Roman, serif',
+          fontSize: '16px',               
+          lineHeight: '1.4'                 
+        }}
+      >{area.descripcion}</p>
 
       {/* Imagen principal destacada */}
       {area.fotografia && (
@@ -894,16 +973,44 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
         <div className="info-item">
           <div className="info-icon">🌳</div>
           <div className="info-text">
-            <div className="info-label">Tipo</div>
-            <div className="info-value">{area.tipo}</div>
+            <div className="info-label"
+              style={{
+                color: '#000000',
+                fontFamily: 'Times New Roman, serif',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}
+            >Tipo</div>
+            <div className="info-value"
+            style={{
+              color: '#000000',
+              fontFamily: 'Times New Roman, serif',
+              fontSize: '16px',
+              lineHeight: '1.4'
+            }}
+            >{area.tipo}</div>
           </div>
         </div>
 
         <div className="info-item">
           <div className="info-icon">📍</div>
           <div className="info-text">
-            <div className="info-label">Ubicación</div>
-            <div className="info-value">{area.ubicacion}</div>
+            <div className="info-label"
+              style={{
+                color: '#000000',
+                fontFamily: 'Times New Roman, serif',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}
+            >Ubicación</div>
+            <div className="info-value" 
+            style={{
+              color: '#000000',
+              fontFamily: 'Times New Roman, serif',
+              fontSize: '16px',
+              lineHeight: '1.4'
+            }}
+            >{area.ubicacion}</div>
           </div>
         </div>
 
@@ -911,10 +1018,25 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
           <div className="info-item">
             <div className="info-icon">📋</div>
             <div className="info-text">
-              <div className="info-label">Elementos del Paisaje Natural</div>
+              <div className="info-label" 
+                style={{
+                  color: '#000000',
+                  fontFamily: 'Times New Roman, serif',
+                  fontSize: '16px',
+                  fontWeight: 'bold'
+                }}
+              >Elementos del Paisaje Natural</div>
               <div className="info-values">
                 {area.instalaciones.map((inst, idx) => (
-                  <span key={idx} className="badge">
+                  <span key={idx} className="badge"
+                    style={{
+                      backgroundColor: 'transparent',
+                      color: '#000000',
+                      fontSize: '14px',
+                      fontFamily: 'Times New Roman, serif',
+                      fontWeight: 'normal'
+                    }}
+                  >
                     {inst.icono} {inst.nombre}
                   </span>
                 ))}
@@ -929,7 +1051,15 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
         <PhotoCarousel photos={allPhotos} onPhotoClick={handlePhotoClick} />
       )}
 
-      <div className="area-verde-recomendaciones animated-fade-in-delayed">
+      <div
+        className="area-verde-recomendaciones animated-fade-in-delayed"
+        style={{
+          fontFamily: 'Times New Roman, serif',  
+          fontSize: '15px',              
+          color: '#000000',              
+          lineHeight: '1.5'             
+        }}
+      >
         <h3>Recomendaciones</h3>
         <ul>
           <li>No arroje basura; utilice los tachos designados.</li>
@@ -939,6 +1069,7 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
           <li>Mantenga mascotas con correa y recoja sus desechos.</li>
         </ul>
       </div>
+
 
       {/* Modal para ver fotos ampliadas */}
       <PhotoModal
