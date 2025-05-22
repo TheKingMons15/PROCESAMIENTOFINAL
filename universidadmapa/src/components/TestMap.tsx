@@ -11,7 +11,8 @@ import {
   EstacionamientoInfoComponent, 
   EdificioInfo, 
   AreaDeportivaInfo,
-  AreaVerdeIn 
+  AreaVerdeIn,
+  EdificiosAreasRenderer // 🔥 NUEVA IMPORTACIÓN UNIVERSAL
 } from './mapComponents';
 import Slider from './common/Slider/Slider';
 import { useSlider } from './SliderContext';
@@ -67,19 +68,43 @@ const TestMap: React.FC = () => {
     img.src = currentMapImage;
   }, [currentMapImage]);
 
-  // Actualizar la imagen del mapa cuando cambia el piso
-  // Este efecto se mantiene igual para no afectar el comportamiento del mapa principal
+  // 🔥 ACTUALIZAR LA IMAGEN DEL MAPA - MODIFICADO PARA MÚLTIPLES EDIFICIOS
   useEffect(() => {
     if (selectedItem && selectedItemType === 'edificio' && selectedItem.pisos && selectedItem.pisos[activeFloor]) {
-      // Si existe una imagen para este piso, la usamos
-      if (selectedItem.pisos[activeFloor].imagen) {
+      // Lógica específica para el Edificio 4
+      if (selectedItem.id === 'edificio4') {
+        const pisoNum = selectedItem.pisos[activeFloor].numero;
+        if (pisoNum === 0) {
+          setCurrentMapImage('/assets/images/edificio4-plantabaja.jpg');
+        } else if (pisoNum === 1) {
+          setCurrentMapImage('/assets/images/edificio4-piso1.jpg');
+        } else if (pisoNum === 2) {
+          setCurrentMapImage('/assets/images/edificio4-piso2.jpg');
+        } else {
+          setCurrentMapImage('/assets/images/campus-map.jpg');
+        }
+      }
+      // Lógica específica para el Edificio 3
+      else if (selectedItem.id === 'edificio3') {
+        const pisoNum = selectedItem.pisos[activeFloor].numero;
+        if (pisoNum === 0) {
+          setCurrentMapImage('/assets/images/edificio3-plantabaja.jpg');
+        } else if (pisoNum === 1) {
+          setCurrentMapImage('/assets/images/edificio3-piso1.jpg');
+        } else if (pisoNum === 2) {
+          setCurrentMapImage('/assets/images/edificio3-piso2.jpg');
+        } else {
+          setCurrentMapImage('/assets/images/campus-map.jpg');
+        }
+      }
+      // Lógica para otros edificios
+      else if (selectedItem.pisos[activeFloor].imagen) {
         setCurrentMapImage(selectedItem.pisos[activeFloor].imagen);
       } else {
-        // Si no hay imagen específica para este piso, mantener el mapa general
         setCurrentMapImage('/assets/images/campus-map.jpg');
       }
     } else {
-      // Si no hay elemento seleccionado o no hay imagen para este piso, mostrar el mapa general
+      // Si no hay elemento seleccionado, mostrar el mapa general
       setCurrentMapImage('/assets/images/campus-map.jpg');
     }
   }, [selectedItem, selectedItemType, activeFloor]);
@@ -90,10 +115,16 @@ const TestMap: React.FC = () => {
       setFloorNoticeName(selectedItem.pisos[activeFloor].nombre);
       setShowFloorNotice(true);
       
-      // Ocultar la notificación después de 2 segundos
+      // 🔥 NOTIFICACIÓN ESPECIAL PARA EDIFICIOS CON ÁREAS ESPECÍFICAS
+      if ((selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3')) {
+        const edificioNombre = selectedItem.id === 'edificio4' ? 'Edificio 4' : 'Edificio 3';
+        setFloorNoticeName(`${edificioNombre} - ${selectedItem.pisos[activeFloor].nombre} - Áreas específicas activas`);
+      }
+      
+      // Ocultar la notificación después de 3 segundos (más tiempo para leer)
       const timer = setTimeout(() => {
         setShowFloorNotice(false);
-      }, 2000);
+      }, 3000);
       
       return () => clearTimeout(timer);
     }
@@ -175,24 +206,24 @@ const TestMap: React.FC = () => {
   
   // Función para seleccionar un área deportiva
   const handleDeportivoClick = (area: typeof areasDeportivas[0]) => {
-  if (isTransitioning) return;
-  
-  setSelectedItem(area);
-  setSelectedItemType('deportivo');
-  
-  // Cambiar al plano si existe
-  if (area.plano) {
-    setCurrentMapImage(area.plano);
-  } else {
-    setCurrentMapImage('/assets/images/campus-map.jpg');
-  }
-  
-  if (!isSliderOpen) {
-    setIsSliderOpen(true);
-  }
-  
-  openSlider(area, { type: 'deportivo' });
-};
+    if (isTransitioning) return;
+    
+    setSelectedItem(area);
+    setSelectedItemType('deportivo');
+    
+    // Cambiar al plano si existe
+    if (area.plano) {
+      setCurrentMapImage(area.plano);
+    } else {
+      setCurrentMapImage('/assets/images/campus-map.jpg');
+    }
+    
+    if (!isSliderOpen) {
+      setIsSliderOpen(true);
+    }
+    
+    openSlider(area, { type: 'deportivo' });
+  };
 
   // Función para seleccionar un área verde
   const handleAreaverdeClick = (area: typeof areasVerdesupec[0]) => {
@@ -209,6 +240,21 @@ const TestMap: React.FC = () => {
     
     // Actualizar el contexto
     openSlider(area, 'areasverdes');
+  };
+
+  // 🔥 NUEVA FUNCIÓN PARA MANEJAR CLICK EN ÁREAS ESPECÍFICAS
+  const handleEdificioAreaClick = (area: any) => {
+    console.log('Área específica seleccionada:', area.nombre);
+    // Aquí puedes añadir lógica adicional, como mostrar información específica del área
+    // Por ejemplo, podrías abrir un modal o actualizar el slider con información específica
+    
+    // Ejemplo: mostrar alert con información del área
+    let mensaje = `📍 ${area.nombre}\n`;
+    mensaje += `🏷️ Categoría: ${area.categoria}\n`;
+    if (area.direccion) {
+      mensaje += `👤 Director: ${area.direccion}\n`;
+    }
+    alert(mensaje);
   };
 
   // Función para cerrar el slider con animación de transición
@@ -299,6 +345,13 @@ const TestMap: React.FC = () => {
     }
   };
 
+  // 🔥 FUNCIÓN HELPER PARA DETERMINAR SI MOSTRAR ÁREAS ESPECÍFICAS
+  const shouldShowEspecificAreas = () => {
+    return selectedItem && 
+           (selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3') && 
+           selectedItemType === 'edificio';
+  };
+
   return (
     <div className="map-test-container" ref={mapContainerRef}>
       {/* Mensaje informativo que se muestra al inicio */}
@@ -335,45 +388,54 @@ const TestMap: React.FC = () => {
             bounds={bounds} 
             isBuilding={selectedItemType === 'edificio' && currentMapImage !== '/assets/images/campus-map.jpg'}
           />
-        {/* Polígonos para los estacionamientos - Siempre visibles */}
-{estacionamientos &&
-  estacionamientos.map((est) => {
-    const isSelected = selectedItem?.nombre === est.nombre;
-    const isHovered = hoveredItem?.nombre === est.nombre;
 
-    return (
-      <Polygon
-        key={est.nombre}
-        positions={est.coordenadas as LatLngTuple[]}
-        pathOptions={{
-          color: isSelected || isHovered ? 'rgba(249, 249, 249, 0)': 'transparent', // Borde gris visible solo en hover/selección
-          fillColor: 'rgba(255, 250, 104, 0.55)', // Color de relleno siempre el mismo
-          fillOpacity: isSelected ? 0.7 : isHovered ? 0.15: 0.08, // Muy transparente siempre
-          weight: isSelected ? 2 : isHovered ? 1.5 : 1 // Grosor del borde
-        }}
-        eventHandlers={{
-          mouseover: () => handleHover(est),
-          mouseout: () => handleHoverOut(),
-          click: () => handleEstacionamientoClick(est)
-        }}
-      >
-        <Tooltip
-          sticky
-          className={`parking-tooltip ${isHovered ? 'visible' : ''}`}
-          direction="top"
-          offset={[0, -10]}
-          opacity={0.9}
-        >
-          <div className="tooltip-content">
-            <strong>{est.nombre}</strong>
-            <div className="tooltip-details">
-              <span>Capacidad: {est.capacidad} vehículos</span>
-            </div>
-          </div>
-        </Tooltip>
-      </Polygon>
-    );
-  })}   
+          {/* 🔥 COMPONENTE UNIVERSAL PARA ÁREAS ESPECÍFICAS DE EDIFICIOS */}
+          <EdificiosAreasRenderer
+            edificioId={selectedItem?.id || ''}
+            activeFloor={activeFloor}
+            onAreaClick={handleEdificioAreaClick}
+          />
+
+          {/* Polígonos para los estacionamientos - Siempre visibles */}
+          {estacionamientos &&
+            estacionamientos.map((est) => {
+              const isSelected = selectedItem?.nombre === est.nombre;
+              const isHovered = hoveredItem?.nombre === est.nombre;
+
+              return (
+                <Polygon
+                  key={est.nombre}
+                  positions={est.coordenadas as LatLngTuple[]}
+                  pathOptions={{
+                    color: isSelected || isHovered ? 'rgba(249, 249, 249, 0)': 'transparent', // Borde gris visible solo en hover/selección
+                    fillColor: 'rgba(255, 250, 104, 0.55)', // Color de relleno siempre el mismo
+                    fillOpacity: isSelected ? 0.7 : isHovered ? 0.15: 0.08, // Muy transparente siempre
+                    weight: isSelected ? 2 : isHovered ? 1.5 : 1 // Grosor del borde
+                  }}
+                  eventHandlers={{
+                    mouseover: () => handleHover(est),
+                    mouseout: () => handleHoverOut(),
+                    click: () => handleEstacionamientoClick(est)
+                  }}
+                >
+                  <Tooltip
+                    sticky
+                    className={`parking-tooltip ${isHovered ? 'visible' : ''}`}
+                    direction="top"
+                    offset={[0, -10]}
+                    opacity={0.9}
+                  >
+                    <div className="tooltip-content">
+                      <strong>{est.nombre}</strong>
+                      <div className="tooltip-details">
+                        <span>Capacidad: {est.capacidad} vehículos</span>
+                      </div>
+                    </div>
+                  </Tooltip>
+                </Polygon>
+              );
+            })}   
+          
           {/* Polígonos para las áreas deportivas - Siempre visibles */}
           {areasDeportivas && areasDeportivas.map((area) => (
             <Polygon
@@ -423,6 +485,12 @@ const TestMap: React.FC = () => {
           {/* Polígonos para los edificios - Siempre visibles */}
           {edificiosData.map((edificio) => {
             const customColor = getColorByElementType(edificio.tipo);
+            
+            // 🔥 OCULTAR EL POLÍGONO DEL EDIFICIO CUANDO ESTAMOS VIENDO SU PLANO INTERNO
+            const isShowingInternalFloor = selectedItem === edificio && 
+                                         selectedItemType === 'edificio' && 
+                                         currentMapImage !== '/assets/images/campus-map.jpg';
+            
             return (
               <Polygon
                 key={edificio.id}
@@ -430,41 +498,53 @@ const TestMap: React.FC = () => {
                 pathOptions={{
                   color: customColor,
                   fillColor: customColor,
-                  fillOpacity: selectedItem === edificio ? 0.8 : 
+                  // 🔥 Si estamos mostrando el plano interno, ocultar completamente el polígono
+                  fillOpacity: isShowingInternalFloor ? 0 : 
+                              selectedItem === edificio ? 0.8 : 
                               hoveredItem === edificio ? 0.7 : 
                               elementsVisible ? 0.2 : 0,
-                  // Ocultar bordes por defecto, mostrarlos solo en hover/seleccionado
-                  weight: selectedItem === edificio ? 2 : 
+                  // 🔥 También ocultar el borde cuando mostramos el plano interno
+                  weight: isShowingInternalFloor ? 0 :
+                          selectedItem === edificio ? 2 : 
                           hoveredItem === edificio ? 1 : 0,
                   className: `map-element building
                             ${elementsVisible ? 'visible' : ''}
                             ${hoveredItem === edificio ? 'hovered' : ''}
-                            ${selectedItem === edificio ? 'selected' : ''}`
+                            ${selectedItem === edificio ? 'selected' : ''}
+                            ${isShowingInternalFloor ? 'hidden-internal' : ''}`
                 }}
                 eventHandlers={{
                   mouseover: () => {
-                    handleHover(edificio);
+                    // 🔥 No mostrar hover si estamos en vista interna
+                    if (!isShowingInternalFloor) {
+                      handleHover(edificio);
+                    }
                   },
                   mouseout: () => {
-                    handleHoverOut();
+                    if (!isShowingInternalFloor) {
+                      handleHoverOut();
+                    }
                   },
                   click: () => handleEdificioClick(edificio)
                 }}
               >
-                <Tooltip 
-                  sticky 
-                  className={`building-tooltip ${hoveredItem === edificio ? 'visible' : ''}`}
-                  direction="top"
-                  offset={[0, -10]}
-                  opacity={0.9}
-                >
-                  <div className="tooltip-content">
-                    <strong>{edificio.nombre}</strong>
-                    <div className="tooltip-details">
-                      <span className="building-type">{edificio.tipo}</span>
+                {/* 🔥 Solo mostrar tooltip si no estamos en vista interna */}
+                {!isShowingInternalFloor && (
+                  <Tooltip 
+                    sticky 
+                    className={`building-tooltip ${hoveredItem === edificio ? 'visible' : ''}`}
+                    direction="top"
+                    offset={[0, -10]}
+                    opacity={0.9}
+                  >
+                    <div className="tooltip-content">
+                      <strong>{edificio.nombre}</strong>
+                      <div className="tooltip-details">
+                        <span className="building-type">{edificio.tipo}</span>
+                      </div>
                     </div>
-                  </div>
-                </Tooltip>
+                  </Tooltip>
+                )}
               </Polygon>
             );
           })}
@@ -510,6 +590,7 @@ const TestMap: React.FC = () => {
             })}
 
         </MapContainer>
+
         {/* Mensaje de estado de carga con animación */}
         {!imageLoaded && (
           <div className="map-loader">
@@ -547,10 +628,24 @@ const TestMap: React.FC = () => {
           </div>
         </div>
 
-        {/* Notificación de cambio de piso */}
+        {/* 🔥 NOTIFICACIÓN MEJORADA DE CAMBIO DE PISO */}
         {showFloorNotice && (
-          <div className="floor-change-notice">
-            Mostrando: Piso {selectedItem?.pisos[activeFloor]?.numero} - {floorNoticeName}
+          <div className="floor-change-notice" style={{
+            backgroundColor: shouldShowEspecificAreas() ? '#e8f5e8' : undefined,
+            border: shouldShowEspecificAreas() ? '2px solid #4caf50' : undefined,
+            color: shouldShowEspecificAreas() ? '#2e7d32' : undefined
+          }}>
+            {shouldShowEspecificAreas() ? (
+              <>
+                <span style={{ fontSize: '16px', marginRight: '8px' }}>✨</span>
+                Mostrando: {floorNoticeName}
+                <div style={{ fontSize: '12px', marginTop: '4px' }}>
+                  Áreas específicas activas - Haz clic en ellas
+                </div>
+              </>
+            ) : (
+              <>Mostrando: Piso {selectedItem?.pisos[activeFloor]?.numero} - {floorNoticeName}</>
+            )}
           </div>
         )}
       </div>
