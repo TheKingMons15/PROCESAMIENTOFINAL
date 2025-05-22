@@ -843,7 +843,6 @@ export const edificiosData: Edificio[] = edificiosOriginales.map(ed => ({
   coordenadas: transformPolygon(ed.coordenadas)
 }));
 
-///// Copiar desde aqui para modificar ////////
 // Función para transformar un punto individual
 const transformAreaVerdePoint = (point: [number, number]): [number, number] => {
   const [x, y] = point;
