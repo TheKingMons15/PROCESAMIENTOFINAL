@@ -172,8 +172,16 @@ export const PhotoCarousel: React.FC<{
   
   return (
     <div className="photo-carousel-container">
-      <h3 className="carousel-title">Fotografías</h3>
-      
+      <h3 className="carousel-title"
+      style={{
+          color: '#000000',                 
+          fontFamily: 'Times New Roman, serif',
+          fontSize: '18px',               
+          lineHeight: '1.4',
+          textAlign: 'center'                 
+        }}
+      >Fotografías</h3>
+
       <div className="photo-grid">
         {photos.slice(0, 9).map((photo, index) => (
           <div 
@@ -862,10 +870,24 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
     <div className="slider-content-wrapper">
       <div className="slider-header-section">
         <h2 className="item-title">{area.nombre}</h2>
-        <span className="item-badge">Área Verde</span>
+        <span className="item-badge"
+          style={{
+            color: '#000000',
+            fontFamily: 'Arial, sans-serif',
+            fontSize: '16px',
+            fontWeight: 'bold'
+          }}
+        >Área Verde</span>
       </div>
 
-      <p className="item-description animated-fade-in">{area.descripcion}</p>
+      <p className="item-description animated-fade-in"
+        style={{
+          color: '#000000',                 
+          fontFamily: 'Times New Roman, serif',
+          fontSize: '16px',               
+          lineHeight: '1.4'                 
+        }}
+      >{area.descripcion}</p>
 
       {/* Imagen principal destacada */}
       {area.fotografia && (
@@ -894,16 +916,44 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
         <div className="info-item">
           <div className="info-icon">🌳</div>
           <div className="info-text">
-            <div className="info-label">Tipo</div>
-            <div className="info-value">{area.tipo}</div>
+            <div className="info-label"
+              style={{
+                color: '#000000',
+                fontFamily: 'Times New Roman, serif',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}
+            >Tipo</div>
+            <div className="info-value"
+            style={{
+              color: '#000000',
+              fontFamily: 'Times New Roman, serif',
+              fontSize: '16px',
+              lineHeight: '1.4'
+            }}
+            >{area.tipo}</div>
           </div>
         </div>
 
         <div className="info-item">
           <div className="info-icon">📍</div>
           <div className="info-text">
-            <div className="info-label">Ubicación</div>
-            <div className="info-value">{area.ubicacion}</div>
+            <div className="info-label"
+              style={{
+                color: '#000000',
+                fontFamily: 'Times New Roman, serif',
+                fontSize: '16px',
+                fontWeight: 'bold'
+              }}
+            >Ubicación</div>
+            <div className="info-value" 
+            style={{
+              color: '#000000',
+              fontFamily: 'Times New Roman, serif',
+              fontSize: '16px',
+              lineHeight: '1.4'
+            }}
+            >{area.ubicacion}</div>
           </div>
         </div>
 
@@ -911,10 +961,25 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
           <div className="info-item">
             <div className="info-icon">📋</div>
             <div className="info-text">
-              <div className="info-label">Elementos del Paisaje Natural</div>
+              <div className="info-label" 
+                style={{
+                  color: '#000000',
+                  fontFamily: 'Times New Roman, serif',
+                  fontSize: '16px',
+                  fontWeight: 'bold'
+                }}
+              >Elementos del Paisaje Natural</div>
               <div className="info-values">
                 {area.instalaciones.map((inst, idx) => (
-                  <span key={idx} className="badge">
+                  <span key={idx} className="badge"
+                    style={{
+                      backgroundColor: 'transparent',
+                      color: '#000000',
+                      fontSize: '14px',
+                      fontFamily: 'Times New Roman, serif',
+                      fontWeight: 'normal'
+                    }}
+                  >
                     {inst.icono} {inst.nombre}
                   </span>
                 ))}
@@ -929,7 +994,15 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
         <PhotoCarousel photos={allPhotos} onPhotoClick={handlePhotoClick} />
       )}
 
-      <div className="area-verde-recomendaciones animated-fade-in-delayed">
+      <div
+        className="area-verde-recomendaciones animated-fade-in-delayed"
+        style={{
+          fontFamily: 'Times New Roman, serif',  
+          fontSize: '15px',              
+          color: '#000000',              
+          lineHeight: '1.5'             
+        }}
+      >
         <h3>Recomendaciones</h3>
         <ul>
           <li>No arroje basura; utilice los tachos designados.</li>
@@ -939,6 +1012,7 @@ export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {
           <li>Mantenga mascotas con correa y recoja sus desechos.</li>
         </ul>
       </div>
+
 
       {/* Modal para ver fotos ampliadas */}
       <PhotoModal
