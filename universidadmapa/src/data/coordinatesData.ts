@@ -203,7 +203,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha secundaria de fútbol',
     tipo: 'DEPORTIVO',
     color: '#27ae60',
-    plano: '/assets/images/Cancha_31.jpg', // <-- Ruta del plano
+    plano: '/assets/images/Cancha_33.jpg', // <-- Ruta del plano
     selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
     coordenadas: [
       [1590, 1500], [2367, 2248], [2036, 2768], [1210, 2016]
