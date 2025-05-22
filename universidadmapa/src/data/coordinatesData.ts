@@ -174,12 +174,12 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     ],
     imagenes: [
       {
-        url: '/assets/images/CanchaFutbol.jpg',
+        url: '/assets/images/VistaPanoramica.jpg',
         alt: 'Cancha principal de fútbol',
         descripcion: 'Vista panorámica de la cancha principal'
       },
       {
-        url: '/assets/images/cancha-futbol-1-detalle.jpg',
+        url: '/assets/images/Cesped.jpg',
         alt: 'Detalle del césped sintético',
         descripcion: 'Detalle de la superficie de juego'
       }
@@ -187,7 +187,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     equipamiento: [
       {
         nombre: 'Arcos',
-        imagen: '/assets/images/equipo-arcos.jpg',
+        imagen: '/assets/images/ArcoFutbol1.jpg',
         descripcion: 'Arcos reglamentarios con redes'
       },
       {

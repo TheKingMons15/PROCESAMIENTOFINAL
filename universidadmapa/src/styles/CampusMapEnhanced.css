@@ -1,605 +1,605 @@
-/* CampusMapEnhanced.css - Estilos modernos para el mapa interactivo del campus */
+  /* CampusMapEnhanced.css - Estilos modernos para el mapa interactivo del campus */
 
-/* Configuración de variables CSS para fácil personalización */
-:root {
-  --primary-color: #27ae60;
-  --accent-color: #3498db;
-  --highlight-color: #f1c40f;
-  --admin-color: #34495e;
-  --sports-color: #2ecc71;
-  --labs-color: #f1c40f;
-  --parking-color: #e74c3c;
-  --light-gray: #f8f9fa;
-  --dark-gray: #333;
-  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-large: 0 6px 12px rgba(0, 0, 0, 0.15);
-  --transition: all 0.3s ease;
-  --border-radius: 12px;
-  --tooltip-padding: 8px 12px;
-}
-
-/* Contenedor principal del mapa */
-.campus-map-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  --font-family: 'OSCINE', 'Open Sans', sans-serif;
-}
-
-.campus-map-container:hover {
-  box-shadow: var(--shadow-large);
-}
-/* Archivo: src/styles/mapEnhanced.css */
-/* Animaciones y mejoras visuales para el mapa interactivo */
-
-/* Animación de carga */
-.map-loader {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.9);
-  z-index: 1000;
-}
-
-.loader-spinner {
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #3498db;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 15px;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Animación de notificación de cambio de piso */
-.floor-change-notice {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(52, 152, 219, 0.9);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  z-index: 900;
-  animation: fadeInOut 2s ease-in-out;
-  font-weight: 500;
-}
-
-@keyframes fadeInOut {
-  0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-  15% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  85% { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-}
-
-/* Tooltips mejorados */
-.leaflet-tooltip {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  opacity: 0;
-  transform: translateY(10px);
-  pointer-events: none;
-}
-
-.leaflet-tooltip.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.tooltip-content {
-  padding: 5px;
-}
-
-.tooltip-content strong {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: #2c3e50;
-}
-
-.tooltip-details {
-  font-size: 12px;
-  color: #7f8c8d;
-}
-
-.building-tooltip {
-  border-left: 3px solid #3498db;
-}
-
-.parking-tooltip {
-  border-left: 3px solid #e74c3c;
-}
-
-.sports-tooltip {
-  border-left: 3px solid #27ae60;
-}
-
-/* Animaciones para los elementos del mapa */
-.map-element {
-  transition: all 0.3s ease;
-  opacity: 0;
-}
-
-.map-element.visible {
-  opacity: 1;
-}
-
-.map-element.hovered {
-  transition: all 0.2s ease;
-  filter: brightness(1.2);
-}
-
-.map-element.selected {
-  transition: all 0.2s ease;
-  filter: brightness(1.3) drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
-  z-index: 500 !important;
-}
-
-/* Animaciones para el contenido del slider */
-.animated-fade-in {
-  animation: fadeIn 0.5s ease forwards;
-  opacity: 0;
-}
-
-.animated-fade-in-delayed {
-  animation: fadeIn 0.5s ease forwards;
-  animation-delay: 0.3s;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animated-item {
-  opacity: 0;
-  animation: fadeInItem 0.5s ease forwards;
-}
-
-@keyframes fadeInItem {
-  from { opacity: 0; transform: translateX(-10px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-/* Estilos para la información por lados en un piso */
-.floor-sides-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 15px;
-}
-
-.floor-side {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: rgba(240, 240, 240, 0.5);
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.side-title {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  color: #2c3e50;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 5px;
-}
-
-.facilities-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.facility-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  padding: 5px 0;
-}
-
-.facility-icon {
-  margin-right: 10px;
-  font-size: 18px;
-}
-
-.facility-name {
-  flex: 1;
-  font-size: 14px;
-}
-
-.facility-description {
-  font-size: 12px;
-  color: #7f8c8d;
-  margin-left: 10px;
-  font-style: italic;
-}
-
-/* Estilos responsivos para dispositivos móviles */
-@media (max-width: 768px) {
-  .floor-sides-container {
-    flex-direction: column;
+  /* Configuración de variables CSS para fácil personalización */
+  :root {
+    --primary-color: #27ae60;
+    --accent-color: #3498db;
+    --highlight-color: #f1c40f;
+    --admin-color: #34495e;
+    --sports-color: #2ecc71;
+    --labs-color: #f1c40f;
+    --parking-color: #e74c3c;
+    --light-gray: #f8f9fa;
+    --dark-gray: #333;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-large: 0 6px 12px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+    --border-radius: 12px;
+    --tooltip-padding: 8px 12px;
   }
-  
-  .floor-side {
+
+  /* Contenedor principal del mapa */
+  .campus-map-container {
+    position: relative;
     width: 100%;
-    margin-right: 0;
+    height: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    --font-family: 'OSCINE', 'Open Sans', sans-serif;
+  }
+
+  .campus-map-container:hover {
+    box-shadow: var(--shadow-large);
+  }
+  /* Archivo: src/styles/mapEnhanced.css */
+  /* Animaciones y mejoras visuales para el mapa interactivo */
+
+  /* Animación de carga */
+  .map-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+  }
+
+  .loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
     margin-bottom: 15px;
   }
-  
-  .floor-image {
-    height: 120px;
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
-}
 
-/* Estilos para tablets y pantallas mayores */
-@media (min-width: 769px) {
-  .floor-image {
-    height: 150px;
+  /* Animación de notificación de cambio de piso */
+  .floor-change-notice {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(52, 152, 219, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    z-index: 900;
+    animation: fadeInOut 2s ease-in-out;
+    font-weight: 500;
   }
-}
 
-/* Estilos para pantallas grandes */
-@media (min-width: 1200px) {
-  .floor-sides-container {
-    flex-direction: row;
+  @keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
   }
-  
-  .floor-side {
-    width: calc(50% - 10px);
-    margin-right: 20px;
+
+  /* Tooltips mejorados */
+  .leaflet-tooltip {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
   }
-  
-  .floor-side:last-child {
-    margin-right: 0;
-  }
-}
-/* Contenedor del mapa Leaflet */
-.leaflet-map-container {
-  width: 100%;
-  height: 100%;
-}
 
-/* Mejorar los controles de zoom */
-.leaflet-control-zoom {
-  border-radius: var(--border-radius) !important;
-  overflow: hidden;
-  box-shadow: var(--shadow) !important;
-}
-
-.leaflet-control-zoom a {
-  background-color: white !important;
-  color: var(--dark-gray) !important;
-  transition: var(--transition) !important;
-  border: none !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 36px !important;
-  height: 36px !important;
-  font-size: 18px !important;
-  font-weight: bold !important;
-}
-
-.leaflet-control-zoom a:hover {
-  background-color: var(--primary-color) !important;
-  color: white !important;
-}
-
-/* Tooltips mejorados */
-.leaflet-tooltip {
-  background-color: white !important;
-  border: none !important;
-  box-shadow: var(--shadow) !important;
-  border-radius: 8px !important;
-  font-family: var(--font-family) !important;
-  padding: var(--tooltip-padding) !important;
-  font-size: 14px !important;
-  transition: var(--transition) !important;
-  min-width: 180px !important;
-  opacity: 0 !important;
-  transform: translateY(10px) !important;
-  animation: fadeIn 0.3s forwards !important;
-}
-
-.leaflet-tooltip.visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-@keyframes fadeIn {
-  to {
+  .leaflet-tooltip.visible {
     opacity: 1;
     transform: translateY(0);
   }
-}
 
-.tooltip-content h3 {
-  margin: 0 0 5px 0;
-  font-size: 16px;
-  color: var(--dark-gray);
-}
-
-.tooltip-content p {
-  margin: 0;
-  font-size: 13px;
-  color: #7f8c8d;
-}
-
-.building-tooltip {
-  border-left: 4px solid var(--primary-color) !important;
-}
-
-.parking-tooltip {
-  border-left: 4px solid var(--parking-color) !important;
-}
-
-.sports-tooltip {
-  border-left: 4px solid var(--sports-color) !important;
-}
-
-.building-type {
-  display: inline-block;
-  font-size: 12px;
-  background-color: var(--light-gray);
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-top: 4px;
-  color: #7f8c8d;
-}
-
-/* Animaciones para polígonos */
-.building-polygon,
-.parking-polygon,
-.sports-area-polygon {
-  transition: fill-opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-              stroke-width 0.3s ease,
-              stroke-dasharray 0.3s ease !important;
-  cursor: pointer !important;
-}
-
-.building-polygon.visible,
-.parking-polygon.visible,
-.sports-area-polygon.visible {
-  animation: fadeInPolygon 0.6s forwards;
-}
-
-@keyframes fadeInPolygon {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
+  .tooltip-content {
+    padding: 5px;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  .tooltip-content strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #2c3e50;
   }
-}
 
-.building-polygon.highlighted,
-.parking-polygon.highlighted,
-.sports-area-polygon.highlighted {
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)) !important;
-}
-
-.building-polygon.selected {
-  animation: pulse 2s infinite !important;
-}
-
-@keyframes pulse {
-  0% {
-    filter: brightness(1);
-  }
-  50% {
-    filter: brightness(1.1);
-  }
-  100% {
-    filter: brightness(1);
-  }
-}
-
-/* Loader mejorado */
-.map-loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 16px 24px;
-  background-color: white;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  z-index: 1000;
-  color: var(--dark-gray);
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  animation: loaderPulse 1.5s infinite;
-}
-
-@keyframes loaderPulse {
-  0% { opacity: 0.8; }
-  50% { opacity: 1; }
-  100% { opacity: 0.8; }
-}
-
-.loader-spinner {
-  width: 20px;
-  height: 20px;
-  margin-right: 12px;
-  border: 3px solid var(--primary-color);
-  border-radius: 50%;
-  border-top-color: transparent;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Leyenda del mapa */
-.map-legend {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-  background-color: white;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
-  z-index: 400;
-  font-family: var(--font-family);
-  max-width: 300px;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
-
-.map-legend:hover {
-  opacity: 1;
-}
-
-.map-legend h4 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  color: var(--dark-gray);
-}
-
-.legend-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  margin: 3px 0;
-  font-size: 14px;
-}
-
-.color-box {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  border-radius: 3px;
-}
-
-.color-box.academic { background-color: var(--primary-color); }
-.color-box.admin { background-color: var(--admin-color); }
-.color-box.sports { background-color: var(--sports-color); }
-.color-box.labs { background-color: var(--labs-color); }
-.color-box.parking { background-color: var(--parking-color); }
-
-/* Estilos para la información de pisos en el slider */
-.floor-details {
-  width: 100%;
-}
-
-.floor-tabs {
-  display: flex;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 15px;
-}
-
-.floor-tab {
-  padding: 8px 16px;
-  background: none;
-  border: none;
-  font-size: 14px;
-  color: #7f8c8d;
-  cursor: pointer;
-  transition: all 0.2s;
-  border-bottom: 2px solid transparent;
-}
-
-.floor-tab:hover {
-  color: var(--primary-color);
-}
-
-.floor-tab.active {
-  color: var(--dark-gray);
-  border-bottom-color: var(--primary-color);
-  font-weight: 500;
-}
-
-.floor-content {
-  padding: 10px 0;
-}
-
-.floor-image {
-  margin-bottom: 15px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.floor-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.floor-content h4 {
-  margin: 0 0 10px 0;
-  font-size: 16px;
-  color: var(--dark-gray);
-}
-
-.facility-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.facility-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.facility-icon {
-  margin-right: 10px;
-  font-size: 18px;
-}
-
-.facility-name {
-  font-size: 14px;
-  color: var(--dark-gray);
-}
-
-/* Adaptación para dispositivos móviles */
-@media (max-width: 768px) {
-  .map-legend {
-    left: 10px;
-    bottom: 50px;
-    max-width: calc(100% - 20px);
-    padding: 8px;
-  }
-  
-  .legend-item {
+  .tooltip-details {
     font-size: 12px;
+    color: #7f8c8d;
   }
-  
-  .leaflet-tooltip {
-    max-width: 200px !important;
-    font-size: 12px !important;
+
+  .building-tooltip {
+    border-left: 3px solid #3498db;
   }
-  
-  .map-loader {
-    padding: 12px 16px;
+
+  .parking-tooltip {
+    border-left: 3px solid #e74c3c;
+  }
+
+  .sports-tooltip {
+    border-left: 3px solid #27ae60;
+  }
+
+  /* Animaciones para los elementos del mapa */
+  .map-element {
+    transition: all 0.3s ease;
+    opacity: 0;
+  }
+
+  .map-element.visible {
+    opacity: 1;
+  }
+
+  .map-element.hovered {
+    transition: all 0.2s ease;
+    filter: brightness(1.2);
+  }
+
+  .map-element.selected {
+    transition: all 0.2s ease;
+    filter: brightness(1.3) drop-shadow(0 0 5px rgba(0, 0, 0, 0.3));
+    z-index: 500 !important;
+  }
+
+  /* Animaciones para el contenido del slider */
+  .animated-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+  }
+
+  .animated-fade-in-delayed {
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animated-item {
+    opacity: 0;
+    animation: fadeInItem 0.5s ease forwards;
+  }
+
+  @keyframes fadeInItem {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Estilos para la información por lados en un piso */
+  .floor-sides-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .floor-side {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(240, 240, 240, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .side-title {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #2c3e50;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+  }
+
+  .facilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .facility-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 5px 0;
+  }
+
+  .facility-icon {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  .facility-name {
+    flex: 1;
     font-size: 14px;
   }
-}
+
+  .facility-description {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-left: 10px;
+    font-style: italic;
+  }
+
+  /* Estilos responsivos para dispositivos móviles */
+  @media (max-width: 768px) {
+    .floor-sides-container {
+      flex-direction: column;
+    }
+    
+    .floor-side {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+    
+    .floor-image {
+      height: 120px;
+    }
+  }
+
+  /* Estilos para tablets y pantallas mayores */
+  @media (min-width: 769px) {
+    .floor-image {
+      height: 150px;
+    }
+  }
+
+  /* Estilos para pantallas grandes */
+  @media (min-width: 1200px) {
+    .floor-sides-container {
+      flex-direction: row;
+    }
+    
+    .floor-side {
+      width: calc(50% - 10px);
+      margin-right: 20px;
+    }
+    
+    .floor-side:last-child {
+      margin-right: 0;
+    }
+  }
+  /* Contenedor del mapa Leaflet */
+  .leaflet-map-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Mejorar los controles de zoom */
+  .leaflet-control-zoom {
+    border-radius: var(--border-radius) !important;
+    overflow: hidden;
+    box-shadow: var(--shadow) !important;
+  }
+
+  .leaflet-control-zoom a {
+    background-color: white !important;
+    color: var(--dark-gray) !important;
+    transition: var(--transition) !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+  }
+
+  .leaflet-control-zoom a:hover {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+  }
+
+  /* Tooltips mejorados */
+  .leaflet-tooltip {
+    background-color: white !important;
+    border: none !important;
+    box-shadow: var(--shadow) !important;
+    border-radius: 8px !important;
+    font-family: var(--font-family) !important;
+    padding: var(--tooltip-padding) !important;
+    font-size: 14px !important;
+    transition: var(--transition) !important;
+    min-width: 180px !important;
+    opacity: 0 !important;
+    transform: translateY(10px) !important;
+    animation: fadeIn 0.3s forwards !important;
+  }
+
+  .leaflet-tooltip.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .tooltip-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: var(--dark-gray);
+  }
+
+  .tooltip-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #7f8c8d;
+  }
+
+  .building-tooltip {
+    border-left: 4px solid var(--primary-color) !important;
+  }
+
+  .parking-tooltip {
+    border-left: 4px solid var(--parking-color) !important;
+  }
+
+  .sports-tooltip {
+    border-left: 4px solid var(--sports-color) !important;
+  }
+
+  .building-type {
+    display: inline-block;
+    font-size: 12px;
+    background-color: var(--light-gray);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 4px;
+    color: #7f8c8d;
+  }
+
+  /* Animaciones para polígonos */
+  .building-polygon,
+  .parking-polygon,
+  .sports-area-polygon {
+    transition: fill-opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+                stroke-width 0.3s ease,
+                stroke-dasharray 0.3s ease !important;
+    cursor: pointer !important;
+  }
+
+  .building-polygon.visible,
+  .parking-polygon.visible,
+  .sports-area-polygon.visible {
+    animation: fadeInPolygon 0.6s forwards;
+  }
+
+  @keyframes fadeInPolygon {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .building-polygon.highlighted,
+  .parking-polygon.highlighted,
+  .sports-area-polygon.highlighted {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.3)) !important;
+  }
+
+  .building-polygon.selected {
+    animation: pulse 2s infinite !important;
+  }
+
+  @keyframes pulse {
+    0% {
+      filter: brightness(1);
+    }
+    50% {
+      filter: brightness(1.1);
+    }
+    100% {
+      filter: brightness(1);
+    }
+  }
+
+  /* Loader mejorado */
+  .map-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 16px 24px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    color: var(--dark-gray);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    animation: loaderPulse 1.5s infinite;
+  }
+
+  @keyframes loaderPulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+  }
+
+  .loader-spinner {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    border: 3px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Leyenda del mapa */
+  .map-legend {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    background-color: white;
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    z-index: 400;
+    font-family: var(--font-family);
+    max-width: 300px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .map-legend:hover {
+    opacity: 1;
+  }
+
+  .map-legend h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: var(--dark-gray);
+  }
+
+  .legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+    font-size: 14px;
+  }
+
+  .color-box {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 3px;
+  }
+
+  .color-box.academic { background-color: var(--primary-color); }
+  .color-box.admin { background-color: var(--admin-color); }
+  .color-box.sports { background-color: var(--sports-color); }
+  .color-box.labs { background-color: var(--labs-color); }
+  .color-box.parking { background-color: var(--parking-color); }
+
+  /* Estilos para la información de pisos en el slider */
+  .floor-details {
+    width: 100%;
+  }
+
+  .floor-tabs {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+  }
+
+  .floor-tab {
+    padding: 8px 16px;
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+
+  .floor-tab:hover {
+    color: var(--primary-color);
+  }
+
+  .floor-tab.active {
+    color: var(--dark-gray);
+    border-bottom-color: var(--primary-color);
+    font-weight: 500;
+  }
+
+  .floor-content {
+    padding: 10px 0;
+  }
+
+  .floor-image {
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .floor-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .floor-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: var(--dark-gray);
+  }
+
+  .facility-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .facility-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .facility-icon {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  .facility-name {
+    font-size: 14px;
+    color: var(--dark-gray);
+  }
+
+  /* Adaptación para dispositivos móviles */
+  @media (max-width: 768px) {
+    .map-legend {
+      left: 10px;
+      bottom: 50px;
+      max-width: calc(100% - 20px);
+      padding: 8px;
+    }
+    
+    .legend-item {
+      font-size: 12px;
+    }
+    
+    .leaflet-tooltip {
+      max-width: 200px !important;
+      font-size: 12px !important;
+    }
+    
+    .map-loader {
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+  }
