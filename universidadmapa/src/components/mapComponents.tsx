@@ -252,16 +252,18 @@ export const AreaVerdeInfoComponent: React.FC<{
 export const EstacionamientoInfoComponent: React.FC<{ 
   estacionamiento: EstacionamientoInfo 
 }> = ({ estacionamiento }) => {
-  const imagen = estacionamiento.imagen || ''; // Solo una imagen
+  const imagen = estacionamiento.imagen || '';
 
   return (
     <div className="slider-content-wrapper">
+      
+      {/* Encabezado */}
       <div className="slider-header-section">
         <h2 className="item-title">{estacionamiento.nombre}</h2>
         <span className="item-badge">Estacionamiento</span>
       </div>
 
-      {/* Imagen fija con tamaño específico */}
+      {/* Imagen */}
       <div className="estacionamiento-image-wrapper">
         <div
           className="imagen-fija"
@@ -299,8 +301,9 @@ export const EstacionamientoInfoComponent: React.FC<{
         </div>
       </div>
 
-      {/* Info del estacionamiento */}
+      {/* Información */}
       <div className="estacionamiento-info tarjeta-info">
+        {/* Ubicación */}
         <div className="info-item">
           <div className="info-icon">📍</div>
           <div className="info-text">
@@ -309,6 +312,19 @@ export const EstacionamientoInfoComponent: React.FC<{
           </div>
         </div>
 
+        {/* Horario */}
+        <div className="info-item horario-estilo">
+          <div className="info-icon reloj-animado">⏰</div>
+          <div className="info-text">
+            <div className="info-label">Horario de atención</div>
+            <div className="info-value">
+              <strong>Lunes a sábado</strong><br />
+              <span className="hora-texto">6:30 AM - 8:30 AM</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Capacidad */}
         <div className="info-item">
           <div className="info-icon">🚗</div>
           <div className="info-text">
@@ -317,6 +333,7 @@ export const EstacionamientoInfoComponent: React.FC<{
           </div>
         </div>
 
+        {/* Accesibilidad */}
         {estacionamiento.espaciosDiscapacitados && (
           <div className="info-item">
             <div className="info-icon">♿</div>
@@ -327,6 +344,7 @@ export const EstacionamientoInfoComponent: React.FC<{
           </div>
         )}
 
+        {/* Motocicletas */}
         {estacionamiento.espaciosMotocicletas && (
           <div className="info-item">
             <div className="info-icon">🏍️</div>
@@ -337,6 +355,7 @@ export const EstacionamientoInfoComponent: React.FC<{
           </div>
         )}
 
+        {/* Edificios cercanos */}
         {estacionamiento.edificiosCercanos && (
           <div className="info-item">
             <div className="info-icon">🏢</div>
@@ -346,6 +365,37 @@ export const EstacionamientoInfoComponent: React.FC<{
             </div>
           </div>
         )}
+      </div>
+
+      {/* Instrucciones para adquirir lugar */}
+      <div className="info-section">
+        <div className="info-item">
+          <span className="info-icon" role="img" aria-label="Car">🚗</span>
+          <div className="info-content">
+            <h3 className="info-title">Adquiere tu lugar en el parqueadero de UPEC</h3>
+            <div className="info-details">
+              <p className="info-step">
+                <span className="step-icon">📍</span>
+                Dirígete a la <strong>empresa pública</strong> ubicada en el 
+                <strong> edificio de aulas N.º 2</strong>, planta baja.
+              </p>
+              <p className="info-step">
+                <span className="step-icon">🔹</span>
+                Se encuentra al <strong>lado izquierdo</strong> de la entrada principal y al 
+                <strong> lado derecho del elevador</strong>.
+              </p>
+              <p className="info-step">
+                <span className="step-icon">📝</span>
+                Ahí podrás solicitar la información y los documentos requeridos para tu solicitud.
+              </p>
+              <p className="info-step">
+                <span className="step-icon">👤</span>
+                El Gerente general es el <strong>MSc. Cristian Terán</strong>, quien podrá brindarte 
+                asistencia personalizada.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Recomendaciones */}
@@ -368,44 +418,46 @@ export const EstacionamientoInfoComponent: React.FC<{
           padding: 20px;
           margin: 20px 0;
         }
-
+        .horario-estilo {
+          background: linear-gradient(90deg, #e3f2fd 0%, #f1f8e9 100%);
+          border-left: 4px solid #2196f3;
+          border-radius: 8px;
+          padding: 10px;
+        }
+        .destacado {
+          font-weight: 600;
+          color: #007bff;
+        }
+        .hora-texto {
+          font-size: 1.05rem;
+          color: #0d47a1;
+        }
         .info-item {
           display: flex;
           align-items: flex-start;
           margin-bottom: 16px;
         }
-
         .info-icon {
           font-size: 1.8rem;
           margin-right: 12px;
         }
-
         .info-text .info-label {
           font-weight: bold;
           color: #333;
           font-size: 1rem;
         }
-
         .info-text .info-value {
           color: #555;
           font-size: 0.95rem;
         }
-
-        .destacado {
-          font-weight: 600;
-          color: #007bff;
-        }
-
         .tarjeta-recomendaciones h3 {
           margin-bottom: 10px;
           color: #37474f;
         }
-
         .tarjeta-recomendaciones ul {
           padding-left: 20px;
           list-style-type: none;
         }
-
         .tarjeta-recomendaciones li {
           margin-bottom: 8px;
           position: relative;
@@ -415,6 +467,7 @@ export const EstacionamientoInfoComponent: React.FC<{
     </div>
   );
 };
+
 
 // Componente para renderizar información de ubicación
 const UbicacionItem: React.FC<{
