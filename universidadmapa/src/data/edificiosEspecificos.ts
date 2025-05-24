@@ -477,7 +477,8 @@ const edificio2: EdificioEspecifico = {
           coordenadas: [[4668, 5896],[4664, 5886],[4527, 6014],[4657, 6163],[4792, 6169], [4796, 6020]],
           icono: '🏛️',
           color: getColorCategoria('ADMINISTRATIVO'),
-          categoria: 'ADMINISTRATIVO'
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'Dr. Cesar Enríquez'
         },
 
         {
