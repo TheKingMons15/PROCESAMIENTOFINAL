@@ -1671,6 +1671,7 @@ const edificio1: EdificioEspecifico = {
 export const edificiosEspecificos: EdificioEspecifico[] = [
   edificio4,
   edificio3,
+  edificio2,
   edificio1
 ];
 
