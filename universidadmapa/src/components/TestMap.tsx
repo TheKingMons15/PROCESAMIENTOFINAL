@@ -142,10 +142,16 @@ const TestMap: React.FC = () => {
       setShowFloorNotice(true);
       
       // 🔥 NOTIFICACIÓN ESPECIAL PARA EDIFICIOS CON ÁREAS ESPECÍFICAS
-      if ((selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3' || selectedItem.id === 'edificio1')) {
-        const edificioNombre = selectedItem.id === 'edificio4' ? 'Edificio 4' : selectedItem.id === 'edificio3' ? 'Edificio 3' : 'Edificio 1';
-        setFloorNoticeName(`${edificioNombre} - ${selectedItem.pisos[activeFloor].nombre} - Áreas específicas activas`);
-      }
+      if ((selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3' || selectedItem.id === 'edificio2' || selectedItem.id === 'edificio1')) {
+          const edificioNombre = selectedItem.id === 'edificio4'
+            ? 'Edificio 4'
+            : selectedItem.id === 'edificio3'
+            ? 'Edificio 3'
+            : selectedItem.id === 'edificio2'
+            ? 'Edificio 2'
+            : 'Edificio 1';
+          setFloorNoticeName(`${edificioNombre} - ${selectedItem.pisos[activeFloor].nombre} - Áreas específicas activas`);
+        }
       
       // Ocultar la notificación después de 3 segundos (más tiempo para leer)
       const timer = setTimeout(() => {
@@ -374,7 +380,7 @@ const TestMap: React.FC = () => {
   // 🔥 FUNCIÓN HELPER PARA DETERMINAR SI MOSTRAR ÁREAS ESPECÍFICAS
   const shouldShowEspecificAreas = () => {
     return selectedItem && 
-           (selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3' || selectedItem.id === 'edificio1') && 
+           (selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3' || selectedItem.id === 'edificio1' || selectedItem.id === 'edificio2') && 
            selectedItemType === 'edificio';
   };
 
