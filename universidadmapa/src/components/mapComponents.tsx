@@ -483,8 +483,18 @@ const UbicacionItem: React.FC<{
         return '🏫';
       case 'ADMINISTRATIVO':
         return '🏢';
+      case 'ADMINISTRATIVOS':
+        return '🏛️';
       case 'LABORATORIO':
         return '🧪';
+      case 'LABORATORIOS':
+        return '🖥️';
+      case 'DOCENTES':
+        return '👨‍💻';
+      case 'SECRETARIA':
+        return '📝';
+      case 'DIRECCION':
+        return '🎓';
       case 'SERVICIO':
         return '🛎️';
       case 'TÉCNICO':
@@ -492,7 +502,7 @@ const UbicacionItem: React.FC<{
       case 'SEGURIDAD':
         return '🔒';
       case 'BAÑOS':
-        return '🧻';
+        return '🚻';
       case 'ALMACÉN':
         return '📦';
       case 'ARCHIVO':
@@ -638,7 +648,7 @@ export const EdificioInfo: React.FC<{
       </div>
       
       {/* INDICADOR PARA EDIFICIOS CON ÁREAS ESPECÍFICAS */}
-      {(edificio.id === 'edificio4' || edificio.id === 'edificio3') && (
+      {(edificio.id === 'edificio4' || edificio.id === 'edificio3' || edificio.id === 'edificio1') && (
         <div className="edificio-areas-indicator animated-fade-in" style={{
           marginTop: '15px',
           marginBottom: '15px',
@@ -661,6 +671,9 @@ export const EdificioInfo: React.FC<{
             {edificio.id === 'edificio3' && activeFloor === 0 && 'Planta Baja - Aulas y laboratorios TICS'}
             {edificio.id === 'edificio3' && activeFloor === 1 && 'Primer Piso - Aulas numeradas'}
             {edificio.id === 'edificio3' && activeFloor === 2 && 'Segundo Piso - Aulas y nivelación'}
+            {edificio.id === 'edificio1' && activeFloor === 0 && 'Planta Baja - Aulas, Sala de Docentes y Direcciones'}
+            {edificio.id === 'edificio1' && activeFloor === 1 && 'Primer Piso - Aulas de Comercio Exteriro y Administración de Empresas'}
+            {edificio.id === 'edificio1' && activeFloor === 2 && 'Segundo Piso - Aulas de Administracion Publica'}
           </div>
         </div>
       )}

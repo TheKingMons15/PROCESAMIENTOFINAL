@@ -850,10 +850,419 @@ const edificio3: EdificioEspecifico = {
   ]
 };
 
+// EDIFICIO 1 - TODOS LOS PISOS
+const edificio1: EdificioEspecifico = {
+  id: 'edificio1',
+  nombre: 'Edificio Aulas 1',
+  pisos: [
+    // PISO 0 - PLANTA BAJA
+    {
+      numero: 0,
+      imagen: '/assets/images/edificio1-plantabaja.jpg',
+      areas: [
+        {
+          id: 'sala-docentes-administracion',
+          nombre: 'Sala Docentes Adm. Empresas',
+          coordenadas: [[5667, 3324],[5547, 3448],[5702, 3604],[5807, 3460]],
+          icono: '👨‍💻',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Dependencia',
+          nombre: 'Dependencia',
+          coordenadas: [[5665, 3590],[5541, 3731],[5376, 3558],[5477, 3438],[5520, 3438],[5543, 3456]],
+          icono: '🏛️',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'sala-docentes-comercio esteriror',
+          nombre: 'Sala Docentes Comercio Exterior',
+          coordenadas: [[5537, 3732],[5415, 3870],[5289, 3735],[5295, 3650],[5378, 3554]],
+          icono: '👨‍💻',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Direcion de Comercio Exterior',
+          nombre: 'Dirección de Comercio Exterior',
+          coordenadas: [[5416, 3869],[5293, 4006],[5165, 3876],[5161, 3737],[5291, 3735]],
+          icono: '🎓',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'MSc. Gerardo Mera'
+        },
+        {
+          id: 'direccion-administracion-empresas',
+          nombre: 'Dirección Administración de Empresas',
+          coordenadas: [[5385, 3022],[5536, 3178],[5406, 3323],[5259, 3167]],
+          icono: '🎓',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'MSc. Freddy Quinde  '
+        },
+        {
+          id: 'Secretaria Administracion de empresas',
+          nombre: 'Secretaria Adm. Empresas',
+          coordenadas: [[5449, 3291],[5505, 3343],[5611, 3221],[5565, 3182],[5533, 3207],[5515, 3199]],
+          icono: '📝',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'secretaria-planta-baja',
+          nombre: 'Salada de docentes Adoministración de Empresas',
+          coordenadas: [[5409, 3320],[5424, 3343],[5428, 3384],[5346, 3470],[5325, 3495],[5160, 3324],[5276, 3185]],
+          icono: '👨‍💻',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Archivero FCIIAEE',
+          nombre: 'Archivero FCIIAEE',
+          coordenadas: [[5321, 3496],[5226, 3606],[5162, 3609],[5123, 3564],[5086, 3536],[5085, 3432],[5181, 3427],[5211, 3390]],
+          icono: '📁',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Bodega',
+          nombre: 'Bodega',
+          coordenadas: [[4786, 3536],[4720, 3614],[4659, 3617],[4443, 3402],[4445, 3354],[4587, 3194],[4715, 3331],[4659, 3399]],
+          icono: '📦',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Decanato FCIIAEE',
+          nombre: 'Decanato FCIIAEE',
+          coordenadas: [[4462, 3338],[4605, 3175],[4477, 3042],[4333, 3203]],
+          icono: '🏢',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'MSc. Marcelo Cahuasqui'
+        },
+        {
+          id: 'secretaria de comercio exterior',
+          nombre: 'Secretaría de Comercio Exterior',
+          coordenadas: [[4361, 3373],[4309, 3436],[4210, 3340],[4242, 3255]],
+          icono: '📝',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Sala de docentes Comercio Exterior',
+          nombre: 'Sala de docentes Comercio Exterior',
+          coordenadas: [[4211, 3342],[4070, 3499],[4198, 3631],[4340, 3473]],
+          icono: '👨‍💻',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Aula Virtual',
+          nombre: 'Aula Virtual',
+          coordenadas: [[4222, 3610],[4346, 3743],[4502, 3567],[4398, 3456],[4358, 3455]],
+          icono: '🏫',
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Laboratorio 04',
+          nombre: 'Laboratorio 04',
+          coordenadas: [[4501, 3569],[4348, 3748],[4473, 3884],[4593, 3749],[4593, 3662]],
+          icono: '🖥️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'Laboratorio LAB GO',
+          nombre: 'Laboratorio LAB GO',
+          coordenadas: [[4598, 3749],[4475, 3891],[4599, 4022],[4726, 3887],[4698, 3825],[4657, 3819],[4659, 3752]],
+          icono: '🖥️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        }
+      ]
+    },
+    // PISO 1
+    {
+      numero: 1,
+      imagen: '/assets/images/edificio1-piso1.jpg',
+      areas: [
+        {
+          id: 'aula-107',
+          nombre: 'Aula 107',
+          coordenadas: [[5037, 3341],[5031, 3468],[5158, 3613],[5212, 3619],[5320, 3505],[5166, 3335]],
+          icono: getIconoCategoria('AULA', 'Aula 107'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-108',
+          nombre: 'Aula 108',
+          coordenadas: [[5167, 3334],[5317, 3507],[5432, 3391],[5434, 3352],[5293, 3200]],
+          icono: getIconoCategoria('AULA', 'Aula 108'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-109',
+          nombre: 'Aula 109',
+          coordenadas: [[5275, 3181],[5436, 3353],[5556, 3220],[5396, 3052]],
+          icono: getIconoCategoria('AULA', 'Aula 109'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'banos-piso1-1',
+          nombre: 'Baños',
+          coordenadas: [[5471, 3324],[5558, 3425],[5670, 3311],[5639, 3252],[5578, 3207]],
+          icono: getIconoCategoria('BAÑOS', 'Baños'),
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'aula-110',
+          nombre: 'Aula 110',
+          coordenadas: [[5530, 3461],[5678, 3635],[5806, 3504],[5652, 3334]],
+          icono: getIconoCategoria('AULA', 'Aula 110'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-111',
+          nombre: 'Aula 111',
+          coordenadas: [[5663, 3621],[5532, 3460],[5492, 3460],[5382, 3577],[5529, 3747]],
+          icono: getIconoCategoria('AULA', 'Aula 111'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-112',
+          nombre: 'Aula 112',
+          coordenadas: [[5291, 3671],[5285, 3745],[5407, 3881],[5531, 3749],[5381, 3573]],
+          icono: getIconoCategoria('AULA', 'Aula 112'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'sala-adupec',
+          nombre: 'Sala ADUPEC',
+          coordenadas: [[5404, 3880],[5275, 4014],[5152, 3879],[5159, 3743],[5284, 3745]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Sala AUPEC'),
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO',
+        },
+        {
+          id: 'archivero-comercio-exterior',
+          nombre: 'Archivero Comercio Exterior',
+          coordenadas: [[4719, 3866],[4587, 4000],[4467, 3860],[4597, 3727],[4716, 3734]],
+          icono: '📁',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO',
+        },
+        {
+          id: 'aula-101',
+          nombre: 'Aula 101',
+          coordenadas: [[4592, 3726],[4595, 3662],[4504, 3554],[4345, 3721],[4467, 3860]],
+          icono: getIconoCategoria('AULA', 'Aula 101'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-102',
+          nombre: 'Aula 102',
+          coordenadas: [[4396, 3431],[4503, 3554],[4341, 3723],[4218, 3583],[4357, 3430]],
+          icono: getIconoCategoria('AULA', 'Aula 102'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-103',
+          nombre: 'Aula 103',
+          coordenadas: [[4356, 3430],[4199, 3599],[4077, 3465],[4236, 3299]],
+          icono: getIconoCategoria('AULA', 'Aula 103'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'banos-piso1-2',
+          nombre: 'Baños',
+          coordenadas: [[4268, 3219],[4328, 3179],[4430, 3295],[4333, 3398],[4228, 3280]],
+          icono: getIconoCategoria('BAÑOS', 'Baños'),
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'aula-104',
+          nombre: 'Aula 104',
+          coordenadas: [[4343, 3193],[4506, 3029],[4624, 3168],[4461, 3329]],
+          icono: getIconoCategoria('AULA', 'Aula 104'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-105',
+          nombre: 'Aula 105',
+          coordenadas: [[4607, 3185],[4730, 3323],[4564, 3490],[4460, 3369],[4457, 3325]],
+          icono: getIconoCategoria('AULA', 'Aula 105'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-106',
+          nombre: 'Aula 106',
+          coordenadas: [[4729, 3328],[4565, 3493],[4666, 3607],[4726, 3606],[4859, 3468],[4862, 3333]],
+          icono: getIconoCategoria('AULA', 'Aula 106'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        }
+      ]
+    },
+    // PISO 2
+    {
+      numero: 2,
+      imagen: '/assets/images/edificio1-piso2.jpg',
+      areas: [
+        {
+          id: 'coordinacion-de-area',
+          nombre: 'Coordinacion de Area',
+          coordenadas: [[5148, 3708],[5282, 3709],[5413, 3838],[5274, 3972],[5146, 3838]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Coordinacion de Area'),
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO',
+        },
+        {
+          id: 'aula-207',
+          nombre: 'Aula 207',
+          coordenadas: [[5151, 3588],[5019, 3455],[5016, 3334],[5149, 3321],[5313, 3479],[5216, 3586]],
+          icono: getIconoCategoria('AULA', 'Aula 207'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-208',
+          nombre: 'Aula 208',
+          coordenadas: [[5151, 3323],[5314, 3479],[5430, 3368],[5430, 3332],[5281, 3191]],
+          icono: getIconoCategoria('AULA', 'Aula 208'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-209',
+          nombre: 'Aula 209',
+          coordenadas: [[5429, 3329],[5260, 3180],[5385, 3047],[5550, 3208]],
+          icono: getIconoCategoria('AULA', 'Aula 209'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'banos-piso2-1',
+          nombre: 'Baños',
+          coordenadas: [[5458, 3306],[5567, 3197],[5631, 3237],[5665, 3292],[5556, 3404]],
+          icono: getIconoCategoria('BAÑOS', 'Baños'),
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'aula-210',
+          nombre: 'Aula 210',
+          coordenadas: [[5528, 3436],[5659, 3305],[5814, 3466],[5686, 3597]],
+          icono: getIconoCategoria('AULA', 'Aula 210'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-211',
+          nombre: 'Aula 211',
+          coordenadas: [[5669, 3582],[5538, 3709],[5381, 3548],[5490, 3433],[5536, 3434]],
+          icono: getIconoCategoria('AULA', 'Aula 211'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-212',
+          nombre: 'Aula 212',
+          coordenadas: [[5379, 3550],[5284, 3643],[5282, 3714],[5414, 3833],[5535, 3704]],
+          icono: getIconoCategoria('AULA', 'Aula 212'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'direccion-administracionpublica',
+          nombre: 'Direccion Administracion Publica',
+          coordenadas: [[4703, 3709],[4701, 3839],[4573, 3971],[4443, 3843],[4571, 3709]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Direccion Administracion Publica'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'PhD. Wladimir Pérez'
+        },
+        {
+          id: 'aula-201',
+          nombre: 'Aula 201',
+          coordenadas: [[4570, 3644],[4468, 3544],[4313, 3709],[4443, 3834],[4570, 3708]],
+          icono: getIconoCategoria('AULA', 'Aula 201'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-202',
+          nombre: 'Aula 202',
+          coordenadas: [[4467, 3543],[4311, 3706],[4183, 3575],[4319, 3433],[4363, 3431]],
+          icono: getIconoCategoria('AULA', 'Aula 202'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-203',
+          nombre: 'Aula 203',
+          coordenadas: [[4319, 3429],[4166, 3593],[4035, 3471],[4192, 3308]],
+          icono: getIconoCategoria('AULA', 'Aula 203'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'banos-piso2-2',
+          nombre: 'Baños',
+          coordenadas: [[4187, 3292],[4222, 3230],[4286, 3197],[4389, 3300],[4301, 3399]],
+          icono: getIconoCategoria('BAÑOS', 'Baños'),
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'aula-204',
+          nombre: 'Aula 204',
+          coordenadas: [[4302, 3203],[4394, 3304],[4441, 3315],[4597, 3171],[4462, 3040]],
+          icono: getIconoCategoria('AULA', 'Aula 204'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-205',
+          nombre: 'Aula 205',
+          coordenadas: [[4575, 3190],[4420, 3333],[4422, 3367],[4540, 3483],[4705, 3324]],
+          icono: getIconoCategoria('AULA', 'Aula 205'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Sala-docentes-Administracion-Publica',
+          nombre: 'Sala docentes Administracion Publica',
+          coordenadas: [[4543, 3487],[4704, 3325],[4836, 3332],[4834, 3452],[4698, 3587],[4642, 3594]],
+          icono: '👨‍💻',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        }
+      ]
+    }
+  ]
+};
 // EXPORTAR TODOS LOS EDIFICIOS ESPECÍFICOS
 export const edificiosEspecificos: EdificioEspecifico[] = [
   edificio4,
-  edificio3
+  edificio3,
+  edificio1
 ];
 
 // Función para obtener edificio por ID

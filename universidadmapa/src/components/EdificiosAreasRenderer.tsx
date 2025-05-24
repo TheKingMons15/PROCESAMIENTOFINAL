@@ -100,7 +100,17 @@ const EdificiosAreasRenderer: React.FC<EdificiosAreasRendererProps> = ({
                   <div style={{ fontSize: '16px', marginBottom: '3px' }}>
                     {area.icono}
                   </div>
-                  <div style={{ fontSize: '12px', lineHeight: '1.3' }}>
+                  <div style={{ fontSize: '12px', 
+                    lineHeight: '1.3', 
+                    marginBottom: '3px',
+                    whiteSpace: 'pre-line',
+                    wordBreak: 'normal',
+                    overflowWrap: 'break-word',
+                    maxWidth: '160px',
+                    minWidth: '120px',
+                    maxHeight: '100px',
+                    overflow: 'auto',
+                    textAlign: 'center'}}>
                     {area.nombre}
                   </div>
                   {area.direccion && (
@@ -153,7 +163,18 @@ const EdificiosAreasRenderer: React.FC<EdificiosAreasRendererProps> = ({
                   <div style={{ fontSize: '18px', marginBottom: '4px' }}>
                     {area.icono}
                   </div>
-                  <div style={{ fontSize: '13px', lineHeight: '1.3', marginBottom: '3px' }}>
+                  <div style={{ 
+                    fontSize: '13px', 
+                    lineHeight: '1.3', 
+                    marginBottom: '3px',
+                    whiteSpace: 'pre-line',
+                    wordBreak: 'normal',
+                    overflowWrap: 'break-word',
+                    maxWidth: '160px',
+                    minWidth: '120px',
+                    maxHeight: '100px',
+                    overflow: 'auto',
+                    textAlign: 'center'  }}>
                     {area.nombre}
                   </div>
                   {area.direccion && (

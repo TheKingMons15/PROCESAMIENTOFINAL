@@ -97,6 +97,32 @@ const TestMap: React.FC = () => {
           setCurrentMapImage('/assets/images/campus-map.jpg');
         }
       }
+      // Lógica específica para el Edificio 2
+      else if (selectedItem.id === 'edificio2') {
+        const pisoNum = selectedItem.pisos[activeFloor].numero;
+        if (pisoNum === 0) {
+          setCurrentMapImage('/assets/images/edificio2-plantabaja.jpg');
+        } else if (pisoNum === 1) {
+          setCurrentMapImage('/assets/images/edificio2-piso1.jpg');
+        } else if (pisoNum === 2) {
+          setCurrentMapImage('/assets/images/edificio2-piso2.jpg');
+        } else {
+          setCurrentMapImage('/assets/images/campus-map.jpg');
+        }
+      }
+      // Lógica específica para el Edificio 1
+      else if (selectedItem.id === 'edificio1') {
+        const pisoNum = selectedItem.pisos[activeFloor].numero;
+        if (pisoNum === 0) {
+          setCurrentMapImage('/assets/images/edificio1-plantabaja.jpg');
+        } else if (pisoNum === 1) {
+          setCurrentMapImage('/assets/images/edificio1-piso1.jpg');
+        } else if (pisoNum === 2) {
+          setCurrentMapImage('/assets/images/edificio1-piso2.jpg');
+        } else {
+          setCurrentMapImage('/assets/images/campus-map.jpg');
+        }
+      }
       // Lógica para otros edificios
       else if (selectedItem.pisos[activeFloor].imagen) {
         setCurrentMapImage(selectedItem.pisos[activeFloor].imagen);
@@ -116,8 +142,8 @@ const TestMap: React.FC = () => {
       setShowFloorNotice(true);
       
       // 🔥 NOTIFICACIÓN ESPECIAL PARA EDIFICIOS CON ÁREAS ESPECÍFICAS
-      if ((selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3')) {
-        const edificioNombre = selectedItem.id === 'edificio4' ? 'Edificio 4' : 'Edificio 3';
+      if ((selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3' || selectedItem.id === 'edificio1')) {
+        const edificioNombre = selectedItem.id === 'edificio4' ? 'Edificio 4' : selectedItem.id === 'edificio3' ? 'Edificio 3' : 'Edificio 1';
         setFloorNoticeName(`${edificioNombre} - ${selectedItem.pisos[activeFloor].nombre} - Áreas específicas activas`);
       }
       
@@ -348,7 +374,7 @@ const TestMap: React.FC = () => {
   // 🔥 FUNCIÓN HELPER PARA DETERMINAR SI MOSTRAR ÁREAS ESPECÍFICAS
   const shouldShowEspecificAreas = () => {
     return selectedItem && 
-           (selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3') && 
+           (selectedItem.id === 'edificio4' || selectedItem.id === 'edificio3' || selectedItem.id === 'edificio1') && 
            selectedItemType === 'edificio';
   };
 

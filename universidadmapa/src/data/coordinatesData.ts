@@ -361,23 +361,22 @@ const edificiosOriginales = [
         nombre: 'Planta Baja',
         imagen: '/assets/images/edificio1-plantabaja.jpg',
         ladoIzquierdo: [
-          { nombre: 'Laboratorio Asuntos públicos y de gobierno (LAB-GO)', tipo: 'LABORATORIO' },
-          { nombre: 'Sala de Reuniones', tipo: 'SERVICIO' },
-          { nombre: 'Laboratorio de informática 04 (LAB-04)', tipo: 'LABORATORIO' },
+          { nombre: 'Laboratorio Asuntos públicos y de gobierno (LAB-GO)', tipo: 'LABORATORIOS' },
+          { nombre: 'Bodega', tipo: 'ALMACÉN' },
+          { nombre: 'Laboratorio de informática 04 (LAB-04)', tipo: 'LABORATORIOS' },
           { nombre: 'Aula Virtual 003 (AV-03)', tipo: 'AULA' },
-          { nombre: 'Sala de Profesores de comercio (SD-EC)', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Secretaria FCIIAEE (Sria. FCIIAEE)', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Decanato F.C.I.I.A.E.E (Dec. FCIIAEE)', tipo: 'ADMINISTRATIVO' }
+          { nombre: 'Sala de Docentes de comercio ', tipo: 'DOCENTES' },
+          { nombre: 'Secretaria de Comercio Exterior', tipo: 'SECRETARIA' },
+          { nombre: 'Decanato F.C.I.I.A.E.E ', tipo: 'ADMINISTRATIVO' }
         ],
         ladoDerecho: [
-          { nombre: 'Dirección de Comercio Exterior y Negosiacion Internacional (Dir.CE&NI)', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Sala de Profesores Comercio Exterior (SD.CE&NI)', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Dependencia (Dep.)', tipo: 'OTRO' },
-          { nombre: 'Sala de Profesores Administración de empresas y Marketing (SD.AE1 Y SD.AE2)', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Secretaria de Administración y Marketing (Sria.AE&M)', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Dirección (Dir.)', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Sala de Profesores Escuela de Administración de Empresas y Marketing (Dir.AE&M)', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Archivo F.C.I.I.A.E.E (Arch.FCIIAEE)', tipo: 'ARCHIVO' }
+          { nombre: 'Dirección de Comercio Exterior y Negociacion Internacional', tipo: 'DIRECCION' },
+          { nombre: 'Sala de Docentes Comercio Exterior', tipo: 'DOCENTES' },
+          { nombre: 'Dependencia ', tipo: 'ADMINISTRATIVOS' },
+          { nombre: 'Salas de Docentes Administración de empresas', tipo: 'DOCENTES' },
+          { nombre: 'Secretaria de Administración y Marketing', tipo: 'SECRETARIA' },
+          { nombre: 'Dirección de Administracion de Empresas', tipo: 'DIRECCION' },
+          { nombre: 'Archivo F.C.I.I.A.E.E', tipo: 'ARCHIVO' }
         ]
       },
       {
@@ -385,9 +384,7 @@ const edificiosOriginales = [
         nombre: 'Primer Piso',
         imagen: '/assets/images/edificio1-piso1.jpg',
         ladoDerecho: [
-          { nombre: 'Ascensor', tipo: 'SERVICIO' },
-          { nombre: 'Servidores', tipo: 'TÉCNICO' },
-          { nombre: 'Archivo Escuela de Comercio', tipo: 'ARCHIVO' },
+          { nombre: 'Archivo Comercio Exterior', tipo: 'ARCHIVO' },
           { nombre: 'Aula 101', tipo: 'AULA' },
           { nombre: 'Aula 102', tipo: 'AULA' },
           { nombre: 'Aula 103', tipo: 'AULA' },
@@ -397,8 +394,7 @@ const edificiosOriginales = [
           { nombre: 'Aula 106', tipo: 'AULA' }
         ],
         ladoIzquierdo: [
-          { nombre: 'Sala ADUPEC', tipo: 'ADMINISTRATIVO' },
-          { nombre: 'Sala de estudiantes', tipo: 'SERVICIO' },
+          { nombre: 'Sala ADUPEC', tipo: 'ADMINISTRATIVOS' },
           { nombre: 'Aula 112', tipo: 'AULA' },
           { nombre: 'Aula 111', tipo: 'AULA' },
           { nombre: 'Aula 110', tipo: 'AULA' },
@@ -413,18 +409,17 @@ const edificiosOriginales = [
         nombre: 'Segundo Piso',
         imagen: '/assets/images/edificio1-piso2.jpg',
         ladoDerecho: [
-          { nombre: 'Ascensor', tipo: 'SERVICIO' },
-          { nombre: 'Dirección Administración Publica', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Dirección Administración Publica', tipo: 'DIRECCION' },
           { nombre: 'Aula 201', tipo: 'AULA' },
           { nombre: 'Aula 202', tipo: 'AULA' },
           { nombre: 'Aula 203', tipo: 'AULA' },
           { nombre: 'Baños', tipo: 'BAÑOS' },
           { nombre: 'Aula 204', tipo: 'AULA' },
           { nombre: 'Aula 205', tipo: 'AULA' },
-          { nombre: 'Sala de docentes Carrera de Administración Publica', tipo: 'ADMINISTRATIVO' }
+          { nombre: 'Sala de docentes Carrera de Administración Publica', tipo: 'DOCENTES' }
         ],
         ladoIzquierdo: [
-          { nombre: 'Coordinación de Area', tipo: 'ADMINISTRATIVO' },
+          { nombre: 'Coordinación de Area', tipo: 'ADMINISTRATIVOS' },
           { nombre: 'Aula 212', tipo: 'AULA' },
           { nombre: 'Aula 211', tipo: 'AULA' },
           { nombre: 'Aula 210', tipo: 'AULA' },
