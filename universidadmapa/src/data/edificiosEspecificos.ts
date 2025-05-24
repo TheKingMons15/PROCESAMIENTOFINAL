@@ -460,7 +460,416 @@ const edificio4: EdificioEspecifico = {
     }
   ]
 };
+//EDIFICIO 2 TODOS
+// EDIFICIO 2 - TODOS LOS PISOS
+const edificio2: EdificioEspecifico = {
+  id: 'edificio2',
+  nombre: 'Edificio Aulas 2',
+  pisos: [
+    // PISO 0 - PLANTA BAJA
+    {
+      numero: 0,
+      imagen: '/assets/images/edificio2-plantabaja.jpg',
+      areas: [
+        {
+          id: 'fcsce',
+          nombre: `Facultad de Ciencias de la 
+        \nSalud y Ciencias de la Educación`,
+          coordenadas: [[4668, 5896],[4664, 5886],[4527, 6014],[4657, 6163],[4792, 6169], [4796, 6020]],
+          icono: '🏛️',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
 
+        {
+          id: 'lab-cyberseguridad',
+          nombre: 'Lab. cyber seguridad',
+          coordenadas: [  [4527, 6020], [4653, 6165], [4651, 6235], [4566, 6314], [4404, 6135]],
+          icono: '🧑🏻‍💻',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'FAB',
+          nombre: 'FAB LAB',
+          coordenadas: [[4375, 6651],[4361, 6664],[4352, 6661],[4337, 6649],[4324, 6639],[4306, 6621],[4299, 6613],[4288, 6598],[4276, 6579],
+                        [4264, 6554],[4275, 6537],[4124, 6370],[4260, 6237],[4279, 6257],[4399, 6141],[4771, 6557],[4652, 6672],[4667, 6692],[4530, 6824]],
+          icono: '🖨️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'bodega-ed2-pb',
+          nombre: 'Bodega',
+          coordenadas: [  [4682, 6443],[4808, 6318],[4779, 6286],[4714, 6283],[4621, 6373]],
+          icono: '📦',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'guardiania-ed2-pb',
+          nombre: 'Guardianía',
+          coordenadas: [[4714, 6482],[4687, 6451],[4816, 6325],[4845, 6355],[4844, 6451],[4752, 6450]],
+          icono: '👮🏻',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'baños-ed2-pb',
+          nombre: 'Baños',
+          coordenadas: [  [4844, 6454], [4843, 6553], [4781, 6551], [4716, 6486], [4753, 6451] ],
+          icono: '🚻',
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'baños2',
+          nombre: 'Baños',
+          coordenadas: [  [5137, 6561],[5140, 6412],[5157, 6398],[5258, 6507],[5199, 6569],[5191, 6561] ],
+          icono: '🚻',
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+          
+        {
+          id: 'camara-de-transformacion',
+          nombre: 'Cámara de transformación',
+          coordenadas: [  [4908, 6430],[4968, 6432],[4969, 6492],[4909, 6493]],
+          icono: '⚡',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'empresa-publica',
+          nombre: 'Empresa Pública',
+          coordenadas: [ [5206, 6578],[5271, 6508],[5146, 6374],[5213, 6307],[5281, 6305],[5473, 6519],[5473, 6555],[5363, 6662],[5339, 6633],
+                        [5294, 6673]],
+          icono: '🦉',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'sala-educacion',
+          nombre: 'Sala de docentes 2',
+          coordenadas: [  [5301, 6718],[5317, 6701],[5299, 6681],[5336, 6645],[5361, 6676],[5461, 6579],[5578, 6714],[5430, 6864]],
+          icono: '🏫',
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Sala-de-docentes',
+          nombre: 'Sala de docentes 1',
+          coordenadas: [  [5554, 6550],[5669, 6676],[5709, 6621],[5697, 6605],[5864, 6445],[5735, 6305],[5582, 6461],[5610, 6491]],
+          icono: '🏫',
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Laboratorios de informática',
+          nombre: 'Laboratorios de informática',
+          coordenadas: [  [5716, 6323],[5549, 6487],[5343, 6265],[5340, 6186],[5285, 6182],[5283, 6108],[5226, 6106],[5225, 6044],[5351, 5918]],
+          icono: '💻',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+
+      ]
+    },
+    // PISO 1
+    {
+      numero: 1,
+      imagen: '/assets/images/edificio2-piso1.jpg',
+      areas: [
+        {
+          id: 'direccion-inicial',
+          nombre: 'Dirección de Educación Inicial',
+          coordenadas: [  [5331, 6181],[5280, 6168],[5281, 6108],[5331, 6058],[5266, 5990],[5343, 5905],[5467, 6045]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Dirección de Educación Inicial'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'MSc. Cecilia Yacelga'
+        },
+        {
+          id: 'aula-104',
+          nombre: 'Aula 104',
+          coordenadas: [  [5338, 6245],[5332, 6183],[5469, 6051],[5589, 6178],[5426, 6342]],
+          icono: getIconoCategoria('AULA', 'Aula 104'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-105',
+          nombre: 'Aula 105',
+          coordenadas: [[5427, 6347],[5594, 6186],[5705, 6309],[5564, 6460],[5533, 6461]],
+          icono: getIconoCategoria('AULA', 'Aula 105'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-106',
+          nombre: 'Sala de docentes educación inicial',
+          coordenadas: [[5693, 6588],[5573, 6464],[5726, 6293],[5786, 6359],[5796, 6356],[5829, 6396],[5829, 6404],[5856, 6434]],
+          icono: getIconoCategoria('AULA', 'Aula 106'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA',
+          sala: 'd'
+        },
+        {
+          id: 'banos-ed2-piso1-1',
+          nombre: 'Baños',
+          coordenadas: [[5592, 6493],[5501, 6585],[5603, 6709],[5620, 6699],[5641, 6685],[5660, 6668],[5677, 6652],[5690, 6634],[5706, 6609]],
+          icono: getIconoCategoria('BAÑOS', 'Baños'),
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'aula-107',
+          nombre: 'Aula 107',
+          coordenadas: [[5297, 6710],[5312, 6695],[5323, 6703],[5473, 6560],[5587, 6692],[5427, 6853],[5400, 6826],[5395, 6826],[5356, 6786],[5359, 6781]],
+          icono: getIconoCategoria('AULA', 'Aula 107'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-108',
+          nombre: 'Aula 108',
+          coordenadas: [[5472, 6555],[5473, 6523],[5367, 6405],[5203, 6569],[5324, 6701]],
+          icono: getIconoCategoria('AULA', 'Aula 108'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-109',
+          nombre: 'Aula 109',
+          coordenadas: [[5070, 6552],[5071, 6417],[5208, 6288],[5264, 6289],[5363, 6400],[5196, 6563],[5189, 6556]],
+          icono: getIconoCategoria('AULA', 'Aula 109'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-110',
+          nombre: 'Aula 110',
+          coordenadas: [[4610, 6376],[4780, 6546],[4903, 6547],[4904, 6408],[4777, 6272],[4722, 6264]],
+          icono: getIconoCategoria('AULA', 'Aula 110'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA',
+        },
+        {
+          id: 'aula-111',
+          nombre: 'Aula 111',
+          coordenadas: [[4500, 6525],[4496, 6488],[4607, 6377],[4771, 6554],[4641, 6679]],
+          icono: getIconoCategoria('AULA', 'Aula 111'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-112',
+          nombre: 'Aula 112',
+          coordenadas: [[4377, 6646],[4498, 6526],[4641, 6684],[4654, 6673],[4669, 6689],[4603, 6748],[4604, 6757],[4568, 6797],[4560, 6794],[4530, 6822]],
+          icono: getIconoCategoria('AULA', 'Aula 112'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'banos-piso1-ed2-2',
+          nombre: 'Baños',
+          coordenadas: [[4361, 6663],[4469, 6546],[4382, 6453],[4267, 6556],[4281, 6585],[4293, 6606],[4306, 6622],[4321, 6637],[4348, 6653]],
+          icono: getIconoCategoria('BAÑOS', 'Baños'),
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'aula-113',
+          nombre: 'Aula 113',
+          coordenadas: [[4260, 6237],[4412, 6415],[4282, 6539],[4126, 6372],[4151, 6345],[4149, 6338],[4185, 6301],[4202, 6301]],
+          icono: getIconoCategoria('AULA', 'Aula 113'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-114',
+          nombre: 'Aula 114',
+          coordenadas: [[4278, 6259],[4397, 6138],[4556, 6311],[4445, 6421],[4413, 6417]],
+          icono: getIconoCategoria('AULA', 'Aula 114'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-115',
+          nombre: 'Aula 115',
+          coordenadas: [[4402, 6134],[4525, 6013],[4650, 6153],[4653, 6215],[4559, 6309]],
+          icono: getIconoCategoria('AULA', 'Aula 115'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'direccion-básica',
+          nombre: 'Dirección de Educación Básica',
+          coordenadas: [[4593, 5948],[4659, 5880],[4783, 6020],[4786, 6153],[4720, 6151],[4717, 6080]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Dirección de Educación Básica'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'PhD. Duván Ávalos'
+        },
+        {
+          id: 'sala-eb',
+          nombre: 'Sala docentes Educación Básica',
+          coordenadas: [  [4653, 6149],[4529, 6008],[4590, 5949],[4708, 6082],[4707, 6151]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Sala docentes Educación Básica'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'bodega-ed2-p1',
+          nombre: 'Bodega',
+          coordenadas: [[5275, 6100],[5323, 6055],[5262, 5990],[5212, 6036],[5214, 6098]],
+          icono: '📦',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        }    
+      ]
+    },
+    // PISO 2
+    {
+      numero: 2,
+      imagen: '/assets/images/edificio2-piso2.jpg',
+      areas: [
+        {
+          id: 'direccion-enfermeria',
+          nombre: 'Dirección Enfermería',
+          coordenadas: [[5286, 6168],[5347, 6168],[5472, 6042],[5351, 5904],[5224, 6033],[5224, 6093],[5287, 6095]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Dirección Enfermería'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'MSc. Mayra Chapi'
+        },
+        {
+          id: 'aula-202',
+          nombre: 'Aula 202',
+          coordenadas: [  [5475, 6048],[5348, 6177],[5347, 6248],[5426, 6341],[5590, 6174]],
+          icono: getIconoCategoria('AULA', 'Aula 202'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-203',
+          nombre: 'Aula 203',
+          coordenadas: [  [5433, 6351],[5596, 6184],[5712, 6309],[5573, 6467],[5538, 6469]],
+          icono: getIconoCategoria('AULA', 'Aula 203'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-204',
+          nombre: 'Aula 204',
+          coordenadas: [  [5801, 6362],[5832, 6399],[5831, 6406],[5859, 6437],[5695, 6595],[5575, 6471],[5722, 6321],[5714, 6310],[5732, 6293],[5793, 6363]],
+          icono: getIconoCategoria('AULA', 'Aula 204'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'banos-piso2-ed2-1',
+          nombre: 'Baños',
+          coordenadas: [ [5600, 6497],[5707, 6613],[5699, 6627],[5694, 6638],[5687, 6652],[5676, 6662],[5662, 6675],[5650, 6686],[5639, 6694],[5626, 6704],[5606, 6714],[5500, 6594]],
+          icono: getIconoCategoria('BAÑOS', 'Baños'),
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'aula-205',
+          nombre: 'Aula 205',
+          coordenadas: [  [5590, 6700],[5478, 6568],[5330, 6712],[5316, 6702],[5299, 6718],[5363, 6787],[5364, 6793],[5396, 6832],[5408, 6831],[5432, 6862]],
+          icono: getIconoCategoria('AULA', 'Aula 205'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-206',
+          nombre: 'Aula 206',
+          coordenadas: [  [5317, 6699],[5328, 6710],[5476, 6566],[5479, 6526],[5373, 6408],[5207, 6576]],
+          icono: getIconoCategoria('AULA', 'Aula 206'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'sala-en',
+          nombre: 'Sala de docentes Enfermería',
+          coordenadas: [ [5074, 6559],[5076, 6432],[5213, 6291],[5272, 6295],[5367, 6400],[5203, 6564]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Sala de docentes Enfermería'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+         
+        {
+          id: 'direccion-lab',
+          nombre: 'Dirección Laboratorio Clínico',
+          coordenadas: [  [4669, 5882],[4796, 6022],[4794, 6162],[4666, 6157],[4540, 6009]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Dirección Laboratorio Clínico'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+          direccion: 'MSc. Liliana Chamorro'
+        },
+        {
+          id: 'aula-208',
+          nombre: 'Aula 208',
+          coordenadas: [[4624, 6379],[4724, 6274],[4783, 6274],[4913, 6415],[4914, 6553],[4785, 6550]],
+          icono: getIconoCategoria('AULA', 'Aula 208'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-209',
+          nombre: 'Aula 209',
+          coordenadas: [[4620, 6384],[4776, 6559],[4649, 6683],[4510, 6531],[4509, 6493]],
+          icono: getIconoCategoria('AULA', 'Aula 209'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-210',
+          nombre: 'Aula 210',
+          coordenadas: [  [4394, 6664],[4509, 6535],[4648, 6686],[4660, 6677],[4678, 6694],[4611, 6759],[4614, 6764],[4576, 6800],[4569, 6799],[4541, 6832]],
+          icono: getIconoCategoria('AULA', 'Aula 210'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'banos-piso2-ed2-2',
+          nombre: 'Baños',
+          coordenadas: [  [4477, 6551],[4372, 6668],[4362, 6663],[4352, 6657],[4341, 6648],[4330, 6639],[4320, 6629],[4310, 6616],[4299, 6604],[4291, 6592],[4284, 6580],[4276, 6561],[4391, 6454]],
+          icono: getIconoCategoria('BAÑOS', 'Baños'),
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'aula-211',
+          nombre: 'Aula 211',
+          coordenadas: [[4290, 6545],[4414, 6428],[4274, 6269],[4286, 6257],[4270, 6239],[4206, 6304],[4198, 6303],[4162, 6338],[4163, 6344],[4133, 6373]],
+          icono: getIconoCategoria('AULA', 'Aula 211'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-212',
+          nombre: 'Aula 212',
+          coordenadas: [[4414, 6426],[4276, 6268],[4406, 6141],[4561, 6317],[4454, 6429]],
+          icono: getIconoCategoria('AULA', 'Aula 212'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'aula-213',
+          nombre: 'Aula 213',
+          coordenadas: [  [4568, 6311],[4411, 6136],[4537, 6008],[4665, 6155],[4662, 6219]],
+          icono: getIconoCategoria('AULA', 'Aula 213'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        }
+      ]
+    }
+  ]
+};
+/////////////////////////////////
 // EDIFICIO 3 - TODOS LOS PISOS
 const edificio3: EdificioEspecifico = {
   id: 'edificio3',
