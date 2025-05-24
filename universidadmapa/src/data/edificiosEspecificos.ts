@@ -473,8 +473,7 @@ const edificio2: EdificioEspecifico = {
       areas: [
         {
           id: 'fcsce',
-          nombre: `Facultad de Ciencias de la 
-        \nSalud y Ciencias de la Educación`,
+          nombre: `Facultad de Ciencias de la Salud y Ciencias de la Educación`,
           coordenadas: [[4668, 5896],[4664, 5886],[4527, 6014],[4657, 6163],[4792, 6169], [4796, 6020]],
           icono: '🏛️',
           color: getColorCategoria('ADMINISTRATIVO'),
@@ -549,29 +548,45 @@ const edificio2: EdificioEspecifico = {
           categoria: 'ADMINISTRATIVO'
         },
         {
-          id: 'sala-educacion',
+          id: 'sala-educacion-2-ed2-pb',
           nombre: 'Sala de docentes 2',
           coordenadas: [  [5301, 6718],[5317, 6701],[5299, 6681],[5336, 6645],[5361, 6676],[5461, 6579],[5578, 6714],[5430, 6864]],
-          icono: '🏫',
-          color: getColorCategoria('AULA'),
-          categoria: 'AULA'
+          icono: '👨🏻‍🏫',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
         },
         {
-          id: 'Sala-de-docentes',
+          id: 'sala-de-docentes-1-ed2-pb',
           nombre: 'Sala de docentes 1',
           coordenadas: [  [5554, 6550],[5669, 6676],[5709, 6621],[5697, 6605],[5864, 6445],[5735, 6305],[5582, 6461],[5610, 6491]],
-          icono: '🏫',
-          color: getColorCategoria('AULA'),
-          categoria: 'AULA'
+          icono: '👨🏻‍🏫',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
         },
         {
-          id: 'Laboratorios de informática',
-          nombre: 'Laboratorios de informática',
-          coordenadas: [  [5716, 6323],[5549, 6487],[5343, 6265],[5340, 6186],[5285, 6182],[5283, 6108],[5226, 6106],[5225, 6044],[5351, 5918]],
+          id: 'laboratorio-de-informatica-5',
+          nombre: 'Laboratorio de informática 5',
+          coordenadas: [[5220, 6107],[5215, 6046],[5351, 5917],[5471, 6051],[5335, 6185],[5285, 6181],[5287, 6107]],
           icono: '💻',
           color: getColorCategoria('LABORATORIO'),
           categoria: 'LABORATORIO'
         },
+        {
+          id: 'laboratorios-de-informatica-6',
+          nombre: 'Laboratorio de informática 6',
+          coordenadas: [[5342, 6194],[5339, 6264],[5422, 6353],[5594, 6185],[5481, 6059]],
+          icono: '💻',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorios-de-informatica-7',
+          nombre: 'Laboratorio de informática 7',
+          coordenadas: [  [5530, 6474],[5570, 6475],[5725, 6329],[5602, 6194],[5428, 6360]],
+          icono: '💻',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        }
 
       ]
     },
@@ -612,7 +627,6 @@ const edificio2: EdificioEspecifico = {
           icono: getIconoCategoria('AULA', 'Aula 106'),
           color: getColorCategoria('AULA'),
           categoria: 'AULA',
-          sala: 'd'
         },
         {
           id: 'banos-ed2-piso1-1',
