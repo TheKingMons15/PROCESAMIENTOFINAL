@@ -648,7 +648,7 @@ export const EdificioInfo: React.FC<{
       </div>
       
       {/* INDICADOR PARA EDIFICIOS CON ÁREAS ESPECÍFICAS */}
-      {(edificio.id === 'edificio4' || edificio.id === 'edificio3' || edificio.id === 'edificio1') && (
+      {(edificio.id === 'edificio4' || edificio.id === 'edificio3' || edificio.id === 'edificio1'|| edificio.id === 'edificio2') && (
         <div className="edificio-areas-indicator animated-fade-in" style={{
           marginTop: '15px',
           marginBottom: '15px',
@@ -671,6 +671,9 @@ export const EdificioInfo: React.FC<{
             {edificio.id === 'edificio3' && activeFloor === 0 && 'Planta Baja - Aulas y laboratorios TICS'}
             {edificio.id === 'edificio3' && activeFloor === 1 && 'Primer Piso - Aulas numeradas'}
             {edificio.id === 'edificio3' && activeFloor === 2 && 'Segundo Piso - Aulas y nivelación'}
+            {edificio.id === 'edificio2' && activeFloor === 0 && 'Planta Baja - Laboratorios, Salas de Docentes y Dirección de la FCSCE.'}
+            {edificio.id === 'edificio2' && activeFloor === 1 && 'Primer Piso - Aulas de Educación Inicial, Actividad Física, Educación Básica y sus Direcciones.'}
+            {edificio.id === 'edificio2' && activeFloor === 2 && 'Segundo Piso - Aulas de Enfermería y Laboratorio Clínico y sus respetivas Direcciones.'}
             {edificio.id === 'edificio1' && activeFloor === 0 && 'Planta Baja - Aulas, Sala de Docentes y Direcciones'}
             {edificio.id === 'edificio1' && activeFloor === 1 && 'Primer Piso - Aulas de Comercio Exteriro y Administración de Empresas'}
             {edificio.id === 'edificio1' && activeFloor === 2 && 'Segundo Piso - Aulas de Administracion Publica'}
