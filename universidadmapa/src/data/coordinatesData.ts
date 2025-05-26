@@ -670,7 +670,9 @@ const edificiosOriginales = [
           { nombre: 'Bodega', tipo: 'ALMACÉN' },
           { nombre: 'Fab lab', tipo: 'LABORATORIO' },
           { nombre: 'Laboratorio de cyber seguridad', tipo: 'LABORATORIO' },
-          { nombre: 'Aula 203', tipo: 'ADMINISTRATIVO', descripcion: 'Dirección de la facultad de las ciencias de la salud y de la educación' }
+          { nombre: 'Aula 203', tipo: 'ADMINISTRATIVO', descripcion: 'Dirección de la facultad de las ciencias de la salud y de la educación' },
+          { nombre: 'Servidor FAB LAB', tipo: 'SERVIDOR', descripcion: '💾 Contiene: Materias dictadas por el Ing. Jeffry Naranjo,📍Ubicacion: Dentro de FABLAB, Estado: inactivo 🔴'},
+          { nombre: 'Servidor Laboratorio seguridad', tipo: 'SERVIDOR', descripcion: '💾 Contiene: Pendiente..... ,📍Ubicacion: Dentro laboratorio CyberSeguridad, Estado: Activo 🟢'}
         ]
       },
       {
@@ -795,7 +797,8 @@ const edificiosOriginales = [
           { nombre: 'Sala de docentes carrera de Agropecuaria', tipo: 'ADMINISTRATIVO' },
           { nombre: 'Aulas 3', tipo: 'AULA' },
           { nombre: 'Archivo', tipo: 'ARCHIVO' },
-          { nombre: 'Baños generales', tipo: 'SERVICIO' }
+          { nombre: 'Baños generales', tipo: 'SERVICIO' },
+          { nombre: 'Servidor Laboratorio Redes de Computación', tipo: 'SERVIDOR', descripcion: '💾 Contiene: Tesis monitoreo de camaras ,📍Ubicacion: Dentro laboratorio Redes, Estado: Activo 🟢'}
         ]
       },
       {
@@ -1035,6 +1038,9 @@ const edificiosOriginales = [
         instalaciones: [
           { nombre: 'Contabilidad', icono: '💰' },
           { nombre: 'Sala de Consejo', icono: '🏛️' }
+        ],
+        ladoIzquierdo: [
+          { nombre: 'DataCenter', tipo: 'DATA', descripcion: '💾 Contiene: 10 Servidores de toda la Universidad,📍Ubicacion: Segunda Planta Edificio Principal , Estado: Activo 🟢'}
         ]
       }
     ]
