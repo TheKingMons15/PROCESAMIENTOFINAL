@@ -1192,16 +1192,16 @@ export const AreaDeportivaInfo: React.FC<{
         
         <div style={{ lineHeight: '1.6' }}>
           <div style={styles.recommendationItem}>
-            Utilice ropa y calzado adecuado para la actividad deportiva.
+           👟 Utilice ropa y calzado adecuado para la actividad deportiva.
           </div>
           <div style={styles.recommendationItem}>
-            Traiga su propia hidratación.
+           💧 Traiga su propia hidratación.
           </div>
           <div style={styles.recommendationItem}>
-            Respete las normas específicas de cada área deportiva.
+           📋 Respete las normas específicas de cada área deportiva.
           </div>
           <div style={styles.recommendationItem}>
-            Coordine la reserva del espacio con anticipación si es necesario.
+           📅 Coordine la reserva del espacio con anticipación si es necesario.
           </div>
         </div>
       </div>
