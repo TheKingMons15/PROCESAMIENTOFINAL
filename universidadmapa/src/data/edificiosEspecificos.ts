@@ -2447,6 +2447,217 @@ const laboratorios: EdificioEspecifico = {
     }
   ]
 };
+// EDIFICIO CENTRAL - TODOS LOS PISOS
+const edificioCentral: EdificioEspecifico = {
+  id: 'edificio-central',
+  nombre: 'Edificio Central',
+  pisos: [
+    // PISO 0 - PLANTA BAJA
+    {
+      numero: 0,
+      imagen: '/assets/images/edificio-central-plantabaja.jpg',
+      areas: [
+        {
+          id: 'oficina-bienes',
+          nombre: 'Oficina Bienes',
+          coordenadas: [[4287, 4146], [4131, 4142], [4124, 4304], [4289, 4310]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina Bienes'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'oficina-contabilidad',
+          nombre: 'Oficina Contabilidad',
+          coordenadas: [[4423, 4150], [4419, 4306], [4286, 4308], [4287, 4152]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina Contabilidad'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'oficina-insumos',
+          nombre: 'Oficina Insumos',
+          coordenadas: [[4569, 4144], [4565, 4310], [4426, 4308], [4427, 4152]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina Insumos'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'bodega-pb',
+          nombre: 'Bodega',
+          coordenadas: [[4257, 4318], [4259, 4464], [4344, 4458], [4323, 4638], [4136, 4620], [4145, 4304]],
+          icono: getIconoCategoria('SERVICIO', 'Bodega'),
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'secretaria-general',
+          nombre: 'Secretaría General',
+          coordenadas: [[4319, 5086], [4327, 5254], [4260, 5260], [4249, 5424], [4162, 5428], [4147, 5100]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Secretaría General'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'sala-reuniones-pb',
+          nombre: 'Sala de Reuniones',
+          coordenadas: [[4421, 5420], [4125, 5424], [4132, 5584], [4423, 5584]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Sala de Reuniones'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'oficina-2-pb',
+          nombre: 'Oficina 2',
+          coordenadas: [[4563, 5410], [4425, 5426], [4432, 5578], [4577, 5572]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina 2'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        }
+      ]
+    },
+    // PISO 1
+    {
+      numero: 1,
+      imagen: '/assets/images/edificio-central-piso1.jpg',
+      areas: [
+        {
+          id: 'contabilidad-p1',
+          nombre: 'Contabilidad',
+          coordenadas: [[4564, 4142], [4433, 4148], [4422, 4324], [4572, 4308]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Contabilidad'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'oficina-101',
+          nombre: 'Oficina 101',
+          coordenadas: [[4430, 4148], [4421, 4306], [4302, 4310], [4289, 4160]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina 101'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'oficina-infraestructura',
+          nombre: 'Oficina de Infraestructura',
+          coordenadas: [[4279, 4140], [4273, 4310], [4130, 4306], [4123, 4144]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina de Infraestructura'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'bodega-2-p1',
+          nombre: 'Bodega 2',
+          coordenadas: [[4269, 4316], [4265, 4468], [4340, 4460], [4331, 4632], [4132, 4626], [4137, 4304]],
+          icono: getIconoCategoria('SERVICIO', 'Bodega 2'),
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'bienes-universitario',
+          nombre: 'Bienes Universitario',
+          coordenadas: [[4337, 5098], [4327, 5270], [4260, 5270], [4257, 5432], [4158, 5414], [4143, 5106]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Bienes Universitario'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'odontologia',
+          nombre: 'Odontología',
+          coordenadas: [[4303, 5422], [4135, 5424], [4124, 5596], [4295, 5582]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Odontología'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'enfermeria-p1',
+          nombre: 'Enfermería',
+          coordenadas: [[4554, 5422], [4307, 5430], [4304, 5586], [4582, 5590]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Enfermería'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        }
+      ]
+    },
+    // PISO 2
+    {
+      numero: 2,
+      imagen: '/assets/images/edificio-central-piso2.jpg',
+      areas: [
+        {
+          id: 'oficina-201',
+          nombre: 'Oficina 201',
+          coordenadas: [[4353, 4098], [4351, 4302], [4098, 4288], [4083, 4126]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina 201'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'oficina-202',
+          nombre: 'Oficina 202',
+          coordenadas: [[4600, 4108], [4598, 4286], [4360, 4282], [4349, 4104]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina 202'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'oficina-203',
+          nombre: 'Oficina 203',
+          coordenadas: [[4227, 4284], [4239, 4448], [4334, 4436], [4315, 4630], [4120, 4628], [4109, 4276]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Oficina 203'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'vinculacion-sociedad',
+          nombre: 'Vinculación con la Sociedad',
+          coordenadas: [[4321, 5130], [4323, 5300], [4228, 5294], [4235, 5464], [4116, 5470], [4119, 5134]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Vinculación con la Sociedad'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'seguridad',
+          nombre: 'Seguridad',
+          coordenadas: [[4271, 5458], [4069, 5468], [4100, 5624], [4267, 5622]],
+          icono: getIconoCategoria('SERVICIO', 'Seguridad'),
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'servidores-universidad',
+          nombre: 'Servidores de la Universidad',
+          coordenadas: [[4580, 5460], [4281, 5468], [4282, 5624], [4580, 5632]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Servidores de la Universidad'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        }
+      ]
+    },
+    // PISO 3
+    {
+      numero: 3,
+      imagen: '/assets/images/edificio-central-piso3.jpg',
+      areas: [
+        {
+          id: 'rectorado',
+          nombre: 'Rectorado',
+          coordenadas: [[4846, 4624], [4844, 4794], [4574, 4794], [4574, 4628]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Rectorado'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'vicerrectorado',
+          nombre: 'Vicerrectorado',
+          coordenadas: [[4850, 4936], [4632, 4948], [4636, 5106], [4850, 5114]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Vicerrectorado'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        }
+      ]
+    }
+  ]
+};
 // EXPORTAR TODOS LOS EDIFICIOS ESPECÍFICOS
 export const edificiosEspecificos: EdificioEspecifico[] = [
   edificio4,
@@ -2454,7 +2665,8 @@ export const edificiosEspecificos: EdificioEspecifico[] = [
   edificio2,
   edificio1,
   posgrados,
-  laboratorios  
+  laboratorios,
+  edificioCentral  
 ];
 
 // Función para obtener edificio por ID

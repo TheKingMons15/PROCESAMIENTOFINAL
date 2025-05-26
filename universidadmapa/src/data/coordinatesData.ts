@@ -1000,51 +1000,64 @@ const edificiosOriginales = [
     }
   ]
 },
-  {
-    id: 'edificio-central',
-    nombre: 'Edificio Central',
-    descripcion: 'Edificio administrativo central del campus.',
-    tipo: 'ADMINISTRATIVO',
-    color: '#34495e',
-    coordenadas: [
-      [4607, 4140], [4139, 4100], [4032, 4204], [4031, 4668],
-      [4004, 5032], [4091, 5504], [4580, 5532], [4696, 5196],
-      [4920, 5184], [4920, 4628], [4560, 4628]
-    ],
-    pisos: [
-      {
-        numero: 0,
-        nombre: 'Planta Baja',
-        imagen: '/assets/images/edificio-central-piso0.jpg',
-        instalaciones: [
-          { nombre: 'Recepción', icono: '🏢' },
-          { nombre: 'Atención al Estudiante', icono: '👥' },
-          { nombre: 'Rectorado', icono: '👨‍💼' }
-        ]
-      },
-      {
-        numero: 1,
-        nombre: 'Primer Piso',
-        imagen: '/assets/images/edificio-central-piso1.jpg',
-        instalaciones: [
-          { nombre: 'Secretaría General', icono: '📝' },
-          { nombre: 'Recursos Humanos', icono: '👥' }
-        ]
-      },
-      {
-        numero: 2,
-        nombre: 'Segundo Piso',
-        imagen: '/assets/images/edificio-central-piso2.jpg',
-        instalaciones: [
-          { nombre: 'Contabilidad', icono: '💰' },
-          { nombre: 'Sala de Consejo', icono: '🏛️' }
-        ],
-        ladoIzquierdo: [
-          { nombre: 'DataCenter', tipo: 'DATA', descripcion: '💾 Contiene: 10 Servidores de toda la Universidad,📍Ubicacion: Segunda Planta Edificio Principal , Estado: Activo 🟢'}
-        ]
-      }
-    ]
-  }
+ {
+  id: 'edificio-central',
+  nombre: 'Edificio Central',
+  descripcion: 'Edificio administrativo central del campus.',
+  tipo: 'ADMINISTRATIVO',
+  color: '#34495e',
+  coordenadas: [
+    [4607, 4140], [4139, 4100], [4032, 4204], [4031, 4668],
+    [4004, 5032], [4091, 5504], [4580, 5532], [4696, 5196],
+    [4920, 5184], [4920, 4628], [4560, 4628]
+  ],
+  pisos: [
+    {
+      numero: 0,
+      nombre: 'Planta Baja',
+      imagen: '/assets/images/edificio-central-piso0.jpg',
+      instalaciones: [
+        { nombre: 'Recepción', icono: '🏢' },
+        { nombre: 'Atención al Estudiante', icono: '👥' },
+        { nombre: 'Unidad Pública', icono: '🏛️' }
+      ]
+    },
+    {
+      numero: 1,
+      nombre: 'Primer Piso',
+      imagen: '/assets/images/edificio-central-piso1.jpg',
+      instalaciones: [
+        { nombre: 'Enfermería', icono: '🏥' },
+        { nombre: 'Odontología', icono: '🦷' },
+        { nombre: 'Nutriólogo', icono: '🥗' },
+        { nombre: 'Vinculación con la Sociedad', icono: '🤝' }
+      ]
+    },
+    {
+      numero: 2,
+      nombre: 'Segundo Piso',
+      imagen: '/assets/images/edificio-central-piso2.jpg',
+      instalaciones: [
+        { nombre: 'Talento Humano', icono: '👥' },
+        { nombre: 'Oficina 1', icono: '🏢' },
+        { nombre: 'Bienestar Universitario', icono: '🎓' },
+        { nombre: 'Nutrición', icono: '🍎' }
+      ],
+      ladoIzquierdo: [
+        { nombre: 'DataCenter', tipo: 'DATA', descripcion: '💾 Contiene: 10 Servidores de toda la Universidad,📍Ubicacion: Segunda Planta Edificio Principal , Estado: Activo 🟢'}
+      ]
+    },
+    {
+      numero: 3,
+      nombre: 'Tercer Piso',
+      imagen: '/assets/images/edificio-central-piso3.jpg',
+      instalaciones: [
+        { nombre: 'Rectorado', icono: '👨‍💼' },
+        { nombre: 'Vicerrectorado', icono: '👩‍💼' }
+      ]
+    }
+  ]
+}
 ];
 
 // Crear edificios con coordenadas transformadas
