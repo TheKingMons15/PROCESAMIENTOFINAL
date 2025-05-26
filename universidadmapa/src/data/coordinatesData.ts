@@ -213,12 +213,12 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       {
         nombre: 'Arcos',
         imagen: '/assets/images/ArcoFutbol.jpg',
-        descripcion: 'Arcos reglamentarios con redes'
+        descripcion: 'Arcos de fútbol reglamentarios con redes'
       },
       {
         nombre: 'Balones',
         imagen: '/assets/images/BALON.jpg',
-        descripcion: 'Balones oficiales para entrenamiento'
+        descripcion: 'Balones de fútbol oficiales para entrenamiento'
       }
     ]
   },
@@ -265,12 +265,12 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       {
         nombre: 'Arcos',
         imagen: '/assets/images/ArcoFutbol.jpg',
-        descripcion: 'Arcos reglamentarios con redes'
+        descripcion: 'Arcos de futbol reglamentarios con redes'
       },
       {
         nombre: 'Balones',
         imagen: '/assets/images/BALON.jpg',
-        descripcion: 'Balones oficiales para entrenamiento'
+        descripcion: 'Balones de fútbol oficiales para entrenamiento'
       }
     ]
   },
@@ -316,14 +316,14 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     ],
     equipamiento: [
       {
-        nombre: 'Arcos',
+        nombre: 'Aros',
         imagen: '/assets/images/ARO.jpg',
-        descripcion: 'Arcos reglamentarios con redes'
+        descripcion: 'Aros de baloncesto reglamentarios con redes trenzadas'
       },
       {
         nombre: 'Balones',
         imagen: '/assets/images/BALON2.jpg',
-        descripcion: 'Balones oficiales para entrenamiento'
+        descripcion: 'Balones de baloncesto oficiales para entrenamiento'
       }
     ]
   },
@@ -368,14 +368,14 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     ],
     equipamiento: [
       {
-        nombre: 'Arcos',
+        nombre: 'Aros',
         imagen: '/assets/images/ARO.jpg',
-        descripcion: 'Arcos reglamentarios con redes'
+        descripcion: 'Aros de baloncesto reglamentarios con redes trenzadas'
       },
       {
         nombre: 'Balones',
         imagen: '/assets/images/BALON2.jpg',
-        descripcion: 'Balones oficiales para entrenamiento'
+        descripcion: 'Balones de baloncesto oficiales para entrenamiento'
       }
     ]
   },
@@ -422,14 +422,14 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
   ],
   equipamiento: [
     {
-      nombre: 'Redes divisiorias',
+      nombre: 'Arcos',
       imagen: '/assets/images/ArcoFutbol.jpg', // (ejemplo, ajustar ruta real)
-      descripcion: 'Redes móviles para diferentes deportes'
+      descripcion: 'Arcos de futbol reglamentarios con redes'
     },
     {
-      nombre: 'Marcadores',
+      nombre: 'Balones',
       imagen: '/assets/images/BALON.jpg', // (ejemplo, ajustar ruta real)
-      descripcion: 'Sistema de marcación electrónico'
+      descripcion: 'Balones de fútbol oficiales para entrenamiento'
     }
   ]
 },
@@ -495,14 +495,19 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     ],
     equipamiento: [
       {
-        nombre: 'Arcos',
+        nombre: 'Aros',
         imagen: '/assets/images/ARO.jpg',
-        descripcion: 'Arcos reglamentarios con redes'
+        descripcion: 'Aros de baloncesto reglamentarios con redes trenzadas'
       },
       {
         nombre: 'Balones',
         imagen: '/assets/images/BALON2.jpg',
-        descripcion: 'Balones oficiales para entrenamiento'
+        descripcion: 'Balones de baloncesto oficiales para entrenamiento'
+      },
+      {
+        nombre: 'Marcadores',
+        imagen: '/assets/images/Marcador.jpg',
+        descripcion: 'Sistema de marcación electrónico'
       }
     ]
   },
