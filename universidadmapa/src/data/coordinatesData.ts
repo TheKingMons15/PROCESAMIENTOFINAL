@@ -379,23 +379,60 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       }
     ]
   },
-  {
-    id: 'cancha-interna',
-    nombre: 'Cancha Múltiple Interna',
-    descripcion: 'Cancha deportiva para actividades internas.',
-    tipo: 'DEPORTIVO',
-    color: '#16a085',
-    plano: '/assets/images/CanchaVasquet2.jpg',
-    selectedColor: 'rgba(0, 100, 255, 0.5)',
-    coordenadas: [
-      [6916, 4408], [6400, 4408], [6340, 5504], [6900, 5464]
-    ],
-    instalaciones: [
-      { nombre: 'Cancha Multiusos', icono: '⚽' },
-      { nombre: 'Graderías', icono: '👥' },
-      { nombre: 'Piso pavimentado', icono: '🧱' }
-    ]
-  },
+ {
+  id: 'cancha-interna',
+  nombre: 'Cancha Múltiple Interna',
+  descripcion: 'Cancha deportiva para actividades internas.',
+  tipo: 'DEPORTIVO',
+  color: '#16a085',
+  plano: '/assets/images/Cancha_44.jpg',
+  selectedColor: 'rgba(0, 100, 255, 0.5)',
+  coordenadas: [
+    [6916, 4408], [6400, 4408], [6340, 5504], [6900, 5464]
+  ],
+  pisos: [
+    {
+      numero: 0,
+      nombre: 'Área Principal Interna',
+      imagen: '/assets/images/CANCHA_3.jpg',
+      descripcion: 'Vista completa de la cancha multiusos interna',
+      instalaciones: [
+        { nombre: 'Cancha Multiusos', icono: '⚽' },
+        { nombre: 'Graderías', icono: '👥' },
+        { nombre: 'Piso pavimentado', icono: '🧱' }
+      ]
+    }
+  ],
+  instalaciones: [
+    { nombre: 'Cancha Multiusos', icono: '⚽' },
+    { nombre: 'Graderías', icono: '👥' },
+    { nombre: 'Piso pavimentado', icono: '🧱' }
+  ],
+  imagenes: [
+    {
+      url: '/assets/images/CANCHAvista1.jpg',
+      alt: 'Cancha multiusos interna',
+      descripcion: 'Vista general de la cancha interna'
+    },
+    {
+      url: '/assets/images/Cesped.jpg', // (ejemplo, ajustar ruta real)
+      alt: 'Superficie de juego',
+      descripcion: 'Detalle del piso pavimentado'
+    }
+  ],
+  equipamiento: [
+    {
+      nombre: 'Redes divisiorias',
+      imagen: '/assets/images/ArcoFutbol.jpg', // (ejemplo, ajustar ruta real)
+      descripcion: 'Redes móviles para diferentes deportes'
+    },
+    {
+      nombre: 'Marcadores',
+      imagen: '/assets/images/BALON.jpg', // (ejemplo, ajustar ruta real)
+      descripcion: 'Sistema de marcación electrónico'
+    }
+  ]
+},
   {
     id: 'area-techada',
     nombre: 'Área Techada para Actividad Física',
@@ -417,7 +454,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Coliseo deportivo para eventos y competencias.',
     tipo: 'DEPORTIVO',
     color: '#8e44ad',
-    plano: '/assets/images/CanchaVasquet2.jpg',
+    plano: '/assets/images/COLISEOPLANO2.jpg',
     selectedColor: 'rgba(0, 100, 255, 0.5)',
     coordenadas: [
       [7200, 6236], [6700, 6268], [6440, 6480], [6387, 7432],
@@ -426,7 +463,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     pisos: [
       {
         numero: 0,
-        nombre: 'Piso Principal',
+        nombre: 'Coliseo Deportivo',
         imagen: '/assets/images/COLISEO_PLANO1.jpg',
         descripcion: 'Área principal del coliseo con cancha multiusos',
         instalaciones: [
@@ -443,8 +480,32 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       { nombre: 'Vestuarios', icono: '🚿' },
       { nombre: 'Sala de Prensa', icono: '🎤' },
       { nombre: 'Baños', icono: '🚻' }
+    ],
+    imagenes: [
+      {
+        url: '/assets/images/COLIVISTA.jpg',
+        alt: 'Cancha principal de fútbol',
+        descripcion: 'Vista panorámica de la cancha principal'
+      },
+      {
+        url: '/assets/images/PLANOS2.jpg',
+        alt: 'Detalle del césped sintético',
+        descripcion: 'Detalle de la superficie de juego'
+      }
+    ],
+    equipamiento: [
+      {
+        nombre: 'Arcos',
+        imagen: '/assets/images/ARO.jpg',
+        descripcion: 'Arcos reglamentarios con redes'
+      },
+      {
+        nombre: 'Balones',
+        imagen: '/assets/images/BALON2.jpg',
+        descripcion: 'Balones oficiales para entrenamiento'
+      }
     ]
-  }
+  },
 ];
 
 
