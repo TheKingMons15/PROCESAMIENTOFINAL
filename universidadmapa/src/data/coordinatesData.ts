@@ -218,7 +218,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       {
         nombre: 'Balones',
         imagen: '/assets/images/BALON.jpg',
-        descripcion: 'Balones fútbol oficiales para entrenamiento'
+        descripcion: 'Balones de fútbol oficiales para entrenamiento'
       }
     ]
   },
