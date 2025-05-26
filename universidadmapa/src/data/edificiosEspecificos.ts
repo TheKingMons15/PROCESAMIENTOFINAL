@@ -1682,6 +1682,7 @@ const edificio1: EdificioEspecifico = {
     }
   ]
 };
+
 // EDIFICIO POSGRADOS - TODOS LOS PISOS
 const posgrados: EdificioEspecifico = {
   id: 'posgrados',
@@ -2259,13 +2260,201 @@ const posgrados: EdificioEspecifico = {
     },
   ]
 };
+const laboratorios: EdificioEspecifico = {
+  id: 'laboratorios',
+  nombre: 'Edificio de Laboratorios',
+  pisos: [
+    // PISO 0
+    {
+      numero: 0,
+      imagen: '/assets/images/laboratorios-piso0.jpg',
+      areas: [
+        {
+          id: 'laboratorios-agropecuaria',
+          nombre: 'Laboratorios de Agropecuaria',
+          coordenadas: [[6062, 1746], [5929, 1755], [5915, 1860], [6067, 1849]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Agropecuaria'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorios-alimentos',
+          nombre: 'Laboratorios de Alimentos',
+          coordenadas: [[6066, 1837], [5884, 1856], [5884, 1999], [6070, 1984]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Alimentos'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorios-enfermeria',
+          nombre: 'Laboratorios de Enfermería',
+          coordenadas: [[5883, 1858], [5699, 1868], [5687, 2011], [5880, 1998]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Enfermería'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'areas-administrativas-servicios',
+          nombre: 'Áreas Administrativas y Servicios',
+          coordenadas: [[6096, 1288], [6071, 1591], [5981, 1599], [5977, 1524], [5867, 1523], [5856, 1561], [5709, 1561], [5716, 1270]],
+          icono: getIconoCategoria('ADMINISTRATIVO', 'Áreas Administrativas y Servicios'),
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        }
+      ]
+    },
+    // PISO 1
+    {
+      numero: 1,
+      imagen: '/assets/images/laboratorios-piso1.jpg',
+      areas: [
+        {
+          id: 'laboratorios-enfermeria-especializados',
+          nombre: 'Laboratorios de Enfermería Especializados',
+          coordenadas: [[5931, 1228], [5924, 1400], [5665, 1400], [5660, 1225]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Enfermería Especializados'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorios-alimentos-avanzados',
+          nombre: 'Laboratorios de Alimentos Avanzados',
+          coordenadas: [[6194, 1228], [5942, 1221], [5929, 1400], [6184, 1395]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Alimentos Avanzados'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'parque-softs',
+          nombre: 'Parque Softs (Laboratorios de Informática)',
+          coordenadas: [[5875, 1401], [5861, 1603], [5663, 1607], [5662, 1397]],
+          icono: getIconoCategoria('LABORATORIO', 'Parque Softs'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'aulas-1',
+          nombre: 'Aulas 1',
+          coordenadas: [[5864, 1713], [5660, 1712], [5644, 1921], [5850, 1912]],
+          icono: getIconoCategoria('AULA', 'Aulas 1'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'laboratorios-logistica',
+          nombre: 'Laboratorios de Logística',
+          coordenadas: [[5902, 1910], [5643, 1912], [5647, 2082], [5894, 2081]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Logística'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorios-enfermeria-p1',
+          nombre: 'Laboratorios de Enfermería',
+          coordenadas: [[6152, 1911], [5900, 1910], [5900, 2081], [6152, 2086]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Enfermería'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorio-clinico',
+          nombre: 'Laboratorio Clínico',
+          coordenadas: [[6166, 1755], [5951, 1755], [5946, 1917], [6158, 1916]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorio Clínico'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'aula-2',
+          nombre: 'Aula 2',
+          coordenadas: [[6185, 1401], [5964, 1393], [5960, 1581], [6186, 1574]],
+          icono: getIconoCategoria('AULA', 'Aula 2'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        }
+      ]
+    },
+    // PISO 2
+    {
+      numero: 2,
+      imagen: '/assets/images/laboratorios-piso2.jpg',
+      areas: [
+        {
+          id: 'laboratorio-clinico-especializado',
+          nombre: 'Laboratorio Clínico Especializado',
+          coordenadas: [[5907, 1249], [5906, 1402], [5718, 1402], [5729, 1255]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorio Clínico Especializado'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorio-clinico-especializado-2',
+          nombre: 'Laboratorio Clínico Especializado 2',
+          coordenadas: [[5880, 1403], [5720, 1404], [5716, 1590], [5870, 1579]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorio Clínico Especializado 2'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'instalaciones-enfermeria-avanzadas',
+          nombre: 'Instalaciones de Enfermería Avanzadas',
+          coordenadas: [[5859, 1675], [5702, 1673], [5689, 1866], [5846, 1858]],
+          icono: getIconoCategoria('LABORATORIO', 'Instalaciones de Enfermería Avanzadas'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'instalaciones-enfermeria-avanzadas-2',
+          nombre: 'Instalaciones de Enfermería Avanzadas 2',
+          coordenadas: [[5883, 1847], [5689, 1863], [5678, 2019], [5875, 2007]],
+          icono: getIconoCategoria('LABORATORIO', 'Instalaciones de Enfermería Avanzadas 2'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorios-investigacion',
+          nombre: 'Laboratorios de Investigación',
+          coordenadas: [[6073, 1840], [5886, 1847], [5881, 2004], [6084, 1990]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Investigación'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorios-investigacion-2',
+          nombre: 'Laboratorios de Investigación 2',
+          coordenadas: [[6077, 1701], [5934, 1699], [5925, 1855], [6071, 1840]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorios de Investigación 2'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorio-veterinaria',
+          nombre: 'Laboratorio de Veterinaria',
+          coordenadas: [[6097, 1401], [5948, 1398], [5942, 1548], [6093, 1541]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorio de Veterinaria'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'laboratorio-veterinaria-2',
+          nombre: 'Laboratorio de Veterinaria 2',
+          coordenadas: [[6113, 1261], [5915, 1252], [5908, 1403], [6095, 1398]],
+          icono: getIconoCategoria('LABORATORIO', 'Laboratorio de Veterinaria 2'),
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        }
+      ]
+    }
+  ]
+};
 // EXPORTAR TODOS LOS EDIFICIOS ESPECÍFICOS
 export const edificiosEspecificos: EdificioEspecifico[] = [
   edificio4,
   edificio3,
   edificio2,
   edificio1,
-  posgrados
+  posgrados,
+  laboratorios  
 ];
 
 // Función para obtener edificio por ID
