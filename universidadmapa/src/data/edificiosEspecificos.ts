@@ -1682,12 +1682,590 @@ const edificio1: EdificioEspecifico = {
     }
   ]
 };
+// EDIFICIO POSGRADOS - TODOS LOS PISOS
+const posgrados: EdificioEspecifico = {
+  id: 'posgrados',
+  nombre: 'Edificio Posgrados',
+  pisos: [
+    // PISO -1 - Cafeteria
+    {
+      numero: 0,
+      imagen: '/assets/images/posgrados-piso-1.jpg',
+      areas: [
+        {
+          id: 'Set-de-ping-pong',
+          nombre: 'Set de ping pong',
+          coordenadas: [[3947, 1279],[3944, 1461],[4073, 1468],[4081, 1285]],
+          icono: '🏓',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Set-de-Ajedrez',
+          nombre: 'Set de Ajedrez',
+          coordenadas: [  [4233, 1271],[4219, 1472],[4091, 1473],[4105, 1263]],
+          icono: '♟️',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Cafetería',
+          nombre: 'Cafetería',
+          coordenadas: [  [4693, 835],[4663, 1274],[5161, 1292],[5195, 818]],
+          icono: '☕',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Muebles-de-descanso',
+          nombre: 'Muebles de descanso',
+          coordenadas: [  [4429, 1277],[4416, 1478],[4290, 1476],[4307, 1272]],
+          icono: '🛋️',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Baños-generales',
+          nombre: 'Baños generales',
+          coordenadas: [  [4660, 1493],[4669, 1385],[4744, 1318],[4957, 1321],[4955, 1383],[5020, 1386],[5015, 1499]],
+          icono: '🚻',
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+      ]
+    },
+    // PISO 0 - PLANTA BAJA
+    {
+      numero: 1,
+      imagen: '/assets/images/posgrados-piso0.jpg',
+      areas: [
+        {
+          id: 'Desarrollo-de-software',
+          nombre: 'Desarrollo de software',
+          coordenadas: [  [5193, 1066],[4976, 1051],[4959, 1294],[5177, 1311]],
+          icono: '💻',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Soporte-TÉCNICO',
+          nombre: 'Soporte TÉCNICO',
+          coordenadas: [  [4943, 797],[4924, 1051],[4789, 1042],[4810, 789]],
+          icono: '🔧',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Dirección-de-TICS',
+          nombre: 'Dirección de TICS',
+          coordenadas: [  [4808, 786],[4792, 1039],[4683, 1036],[4700, 780]],
+          icono: '📊',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Depósitos-de-desechos-electrónicos',
+          nombre: 'Depósitos de desechos electrónicos',
+          coordenadas: [  [4160, 992],[4154, 1117],[3933, 1102],[3941, 978]],
+          icono: '🗑️',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO',
+        },
+        {
+          id: 'Mantenimiento-técnico-TICS',
+          nombre: 'Mantenimiento técnico TICS',
+          coordenadas: [  [4151, 1117],[4141, 1237],[3926, 1223],[3933, 1101]],
+          icono: '🔨',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO',
+        },
+        {
+          id: 'Baños-generales',
+          nombre: 'Baños generales',
+          coordenadas: [  [4877, 1288],[4861, 1532],[4658, 1518],[4671, 1272]],
+          icono: '🚻',
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'Deposito',
+          nombre: 'Deposito',
+          coordenadas: [  [4553, 1510],[4557, 1462],[4612, 1465],[4610, 1513]],
+          icono: '📦',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Laboratorio-01',
+          nombre: 'Laboratorio 01',
+          coordenadas: [  [4213, 757],[4193, 998],[3941, 979],[3950, 822],[3956, 706],[4072, 715],[4069, 748]],
+          icono: '🖥️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'Laboratorio-02',
+          nombre: 'Laboratorio 02',
+          coordenadas: [    [4182, 1242],[4164, 1485],[4020, 1475],[4016, 1507],[3900, 1497],[3927, 1226]],
+          icono: '🖥️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'Laboratorio-08',
+          nombre: 'Laboratorio 08',
+          coordenadas: [    [4440, 1256],[4423, 1503],[4168, 1484],[4185, 1241]],
+          icono: '🖥️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'Laboratorio-09',
+          nombre: 'Laboratorio 09',
+          coordenadas: [   [4873, 1286],[4863, 1532],[5053, 1544],[5050, 1575],[5164, 1580],[5179, 1308]],
+          icono: '🖥️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'Laboratorio-14',
+          nombre: 'Laboratorio 14',
+          coordenadas: [  [4450, 1014],[4198, 993],[4218, 757],[4469, 766]],
+          icono: '🖥️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+        {
+          id: 'Laboratorio-10',
+          nombre: 'Laboratorio 10',
+          coordenadas: [  [4929, 1048],[4948, 806],[5100, 814],[5104, 786],[5219, 793],[5194, 1065]],
+          icono: '🖥️',
+          color: getColorCategoria('LABORATORIO'),
+          categoria: 'LABORATORIO'
+        },
+      ]
+    },
+    // PISO 1
+    {
+      numero: 2,
+      imagen: '/assets/images/posgrados-piso1.jpg',
+      areas: [
+        {
+          id: 'Aula-de-Clases-Doctorado',
+          nombre: 'Aula de Clases Doctorado',
+          coordenadas: [  [4448, 1262],[4435, 1509],[4225, 1491],[4241, 1250]],
+          icono: getIconoCategoria('AULA', 'Aula de Clases Doctorado'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Centro-de-Emprendimiento',
+          nombre: 'Centro de Emprendimiento',
+          coordenadas: [  [4885, 1293],[4876, 1536],[5066, 1552],[5065, 1584],[5181, 1590],[5189, 1320]],
+          icono: '🚀',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO',
+        },
+        {
+          id: 'Baños-generales',
+          nombre: 'Baños generales',
+          coordenadas: [  [4887, 1294],[4877, 1537],[4672, 1526],[4683, 1279]],
+          icono: '🚻',
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'Sub-Dirección-académica-posgrado',
+          nombre: 'Sub-Dirección académica posgrado',
+          coordenadas: [  [4984, 1049],[4977, 1177],[5230, 1194],[5222, 1115],[5238, 1106],[5240, 1067]],
+          icono: '🎓',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Dirección-posgrado',
+          nombre: 'Dirección posgrado',
+          coordenadas: [    [5233, 1199],[5217, 1281],[5237, 1280],[5230, 1323],[4975, 1304],[4979, 1181]],
+          icono: '📋',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Sala-de-docentes-Doctorado',
+          nombre: 'Sala de docentes Doctorado',
+          coordenadas: [  [4898, 1044],[4912, 804],[5097, 818],[5104, 787],[5221, 795],[5200, 1066]],
+          icono: '👨‍🏫',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Secretaría-de-Maestrías',
+          nombre: 'Secretaría de Maestrías',
+          coordenadas: [  [4899, 1052],[4912, 805],[4705, 791],[4691, 1031]],
+          icono: '📝',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Dirección-de-Doctorado',
+          nombre: 'Dirección de Doctorado',
+          coordenadas: [  [4690, 1030],[4703, 789],[4466, 772],[4454, 1014]],
+          icono: '🎓',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Secretaría-de-Doctorado',
+          nombre: 'Secretaría de Doctorado',
+          coordenadas: [[4454, 1011],[4467, 773],[4263, 758],[4249, 998]],
+          icono: '📝',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Sala-de-Reuniones',
+          nombre: 'Sala de Reuniones',
+          coordenadas: [  [4261, 758],[4249, 996],[3944, 972],[3953, 704],[4070, 713],[4071, 745]],
+          icono: '👥',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Unidad-de-Tecnología-Educativa',
+          nombre: 'Unidad de Tecnología Educativa',
+          coordenadas: [[4164, 990],[4150, 1246],[3891, 1229],[3895, 1186],[3915, 1185],[3906, 1166],[3900, 1135],[3898, 1105],[3900, 1075],[3903, 1060],[3909, 1041],[3916, 1025],[3920, 1016],[3902, 1016],[3904, 968]],
+          icono: '💻',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Sala-de-Sustentaciones',
+          nombre: 'Sala de Sustentaciones',
+          coordenadas: [[3933, 1232],[3913, 1501],[4033, 1510],[4037, 1475],[4222, 1491],[4234, 1251]],
+          icono: '🎤',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Deposito',
+          nombre: 'Deposito',
+          coordenadas: [[4624, 1470],[4622, 1522],[4563, 1517],[4563, 1466]],
+          icono: '📦',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+      ]
+    },
+    // PISO 2
+    {
+      numero: 3,
+      imagen: '/assets/images/posgrados-piso2.jpg',
+      areas: [
+        {
+          id: 'Aula-de-Clases-401',
+          nombre: 'Aula de Clases 401',
+          coordenadas: [  [4444, 1248],[4427, 1503],[4217, 1483],[4237, 1231]],
+          icono: getIconoCategoria('AULA', 'Aula de Clases 401'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Aula-de-Clases-402',
+          nombre: 'Aula de Clases 402',
+          coordenadas: [[4231, 1237],[4211, 1483],[4029, 1465],[4025, 1500],[3911, 1487],[3937, 1217]],
+          icono: getIconoCategoria('AULA', 'Aula de Clases 402'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Baños-generales',
+          nombre: 'Baños generales',
+          coordenadas: [[4675, 1267],[4876, 1281],[4856, 1535],[4661, 1520]],
+          icono: '🚻',
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'Aula-de-Clases-404',
+          nombre: 'Aula de Clases 404',
+          coordenadas: [[4262, 728],[4246, 971],[3953, 946],[3964, 673],[4079, 683],[4076, 715]],
+          icono: getIconoCategoria('AULA', 'Aula de Clases 404'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Aula-de-Clases-405',
+          nombre: 'Aula de Clases 405',
+          coordenadas: [[4475, 743],[4455, 995],[4252, 979],[4271, 728]],
+          icono: getIconoCategoria('AULA', 'Aula de Clases 405'),
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Sala-de-Estudiantes-Doctorado',
+          nombre: 'Sala de docentes Doctorado',
+          coordenadas: [  [4164, 966],[4150, 1232],[3914, 1212],[3918, 1168],[3909, 1139],[3906, 1102],[3910, 1057],[3917, 1023],[3928, 994],[3907, 989],[3912, 943]],
+          icono: '👨‍🎓',
+          color: getColorCategoria('AULA'),
+          categoria: 'AULA'
+        },
+        {
+          id: 'Secretaría-de-Posgrado',
+          nombre: 'Secretaría de Posgrado',
+          coordenadas: [[4705, 764],[4682, 1015],[4454, 997],[4478, 744]],
+          icono: '📝',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Dirección-de-Doctorado',
+          nombre: 'Dirección de Doctorado',
+          coordenadas: [  [4690, 1030],[4703, 789],[4466, 772],[4454, 1014]],
+          icono: '🎓',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Sala-de-Docentes-Carrera-de-Contabilidad-y-Auditoría',
+          nombre: 'Sala de Docentes Carrera de Contabilidad y Auditoría',
+          coordenadas: [[4891, 1026],[4909, 778],[5096, 792],[5098, 762],[5214, 770],[5189, 1044]],
+          icono: '👨‍🏫',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Sala-de-Reuniones-Carrera-de-Contabilidad-y-Auditoría',
+          nombre: 'Sala de Reuniones Carrera de Contabilidad y Auditoría',
+          coordenadas: [[4967, 1164],[4957, 1297],[5210, 1316],[5216, 1274],[5198, 1269],[5207, 1248],[5212, 1223],[5218, 1197],[5219, 1183]],
+          icono: '👥',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Aulas-de-Clases-En-Línea',
+          nombre: 'Aulas de Clases En Línea',
+          coordenadas: [[4875, 1288],[5171, 1314],[5160, 1589],[5041, 1580],[5045, 1546],[4861, 1535]],
+          icono: '💻',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Carrera-de-Contabilidad-y-Auditoría',
+          nombre: 'Carrera de Contabilidad y Auditoría',
+          coordenadas: [[4976, 1029],[4965, 1163],[5216, 1183],[5217, 1153],[5215, 1125],[5207, 1092],[5228, 1093],[5229, 1047]],
+          icono: '💼',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Deposito',
+          nombre: 'Deposito',
+          coordenadas: [[4608, 1460],[4553, 1457],[4549, 1513],[4607, 1514]],
+          icono: '📦',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+      ]
+    },
+    // PISO 3
+    {
+      numero: 4,
+      imagen: '/assets/images/posgrados-piso3.jpg',
+      areas: [
+        {
+          id: 'Baños-generales',
+          nombre: 'Baños generales',
+          coordenadas: [[4885, 1286],[4686, 1278],[4669, 1512],[4872, 1529]],
+          icono: '🚻',
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'Sala-de-Aprendizaje-y-Descubrimiento-1',
+          nombre: 'Sala de Aprendizaje y Descubrimiento 1',
+          coordenadas: [[4442, 1260],[4429, 1502],[4116, 1489],[4019, 1479],[4021, 1511],[3907, 1502],[3929, 1234]],
+          icono: '👨‍🏫',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Sala-de-Reuniones',
+          nombre: 'Sala de Reuniones',
+          coordenadas: [[4157, 1003],[4142, 1247],[3923, 1239],[3881, 1237],[3888, 1194],[3905, 1191],[3893, 1147],[3894, 1085],[3913, 1021],[3893, 1018],[3894, 978]],
+          icono: '👥',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Sala-de-Aprendizaje-y-Descubrimiento-2',
+          nombre: 'Sala de Aprendizaje y Descubrimiento 2',
+          coordenadas: [[4451, 773],[4441, 1020],[3937, 991],[3942, 715],[4055, 720],[4061, 753]],
+          icono: '👨‍🏫',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Atención-al-Usuario',
+          nombre: 'Atención al Usuario',
+          coordenadas: [[4449, 1015],[4463, 774],[4577, 781],[4566, 1014]],
+          icono: '📝',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Casilleros',
+          nombre: 'Casilleros',
+          coordenadas: [[4685, 1026],[4572, 1017],[4586, 783],[4698, 788]],
+          icono: '🗄️',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Sala-de-Servicios-Online',
+          nombre: 'Sala de Servicios Online',
+          coordenadas: [[4683, 1031],[4699, 784],[5091, 807],[5094, 779],[5215, 788],[5198, 1056]],
+          icono: '💻',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Sala-de-Aprendizaje-Colaborativo',
+          nombre: 'Sala de Aprendizaje Colaborativo',
+          coordenadas: [[4980, 1043],[4976, 1170],[5229, 1185],[5231, 1158],[5227, 1127],[5219, 1098],[5237, 1095],[5238, 1057]],
+          icono: '💼',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Biblioteca-Historia-Hemeroteca',
+          nombre: 'Biblioteca Historia Hemeroteca',
+          coordenadas: [[5231, 1186],[5227, 1216],[5220, 1246],[5211, 1273],[5230, 1272],[5225, 1313],[4968, 1298],[4972, 1175]],
+          icono: '📚',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Sala-de-Innovación-Expresión-y-Discurso',
+          nombre: 'Sala de Innovación Expresión y Discurso',
+          coordenadas: [[4883, 1295],[5188, 1311],[5180, 1577],[5060, 1570],[5056, 1539],[4876, 1532]],
+          icono: '👨‍🏫',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Deposito',
+          nombre: 'Deposito',
+          coordenadas: [[4620, 1465],[4562, 1461],[4559, 1514],[4618, 1512]],
+          icono: '📦',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+      ]
+    },
+    // PISO 4
+    {
+      numero: 5,
+      imagen: '/assets/images/posgrados-piso4.jpg',
+      areas: [
+        {
+          id: 'Baños-generales',
+          nombre: 'Baños generales',
+          coordenadas: [[4659, 1318],[4727, 1322],[4724, 1375],[4867, 1383],[4865, 1516],[4652, 1496]],
+          icono: '🚻',
+          color: getColorCategoria('BAÑOS'),
+          categoria: 'BAÑOS'
+        },
+        {
+          id: 'Información',
+          nombre: 'Información',
+          coordenadas: [[4668, 1216],[4744, 1222],[4740, 1325],[4661, 1319]],
+          icono: 'ℹ️',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Comunicación-y-Relaciones-Públicas',
+          nombre: 'Comunicación y Relaciones Públicas',
+          coordenadas: [[4860, 1231],[4861, 1283],[4878, 1282],[4868, 1382],[4736, 1372],[4744, 1224]],
+          icono: '📢',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Comunicación-y-Relaciones-Públicas2',
+          nombre: 'Comunicación y Relaciones Públicas2',
+          coordenadas: [[4252, 1185],[4451, 1201],[4448, 1253],[4411, 1250],[4404, 1369],[4231, 1356],[4237, 1218],[4250, 1218]],
+          icono: '📢',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Bodega',
+          nombre: 'Bodega',
+          coordenadas: [[4448, 1252],[4413, 1250],[4404, 1369],[4232, 1358],[4228, 1465],[4436, 1477]],
+          icono: '📦',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Estudio-de-Televisión2',
+          nombre: 'Estudio de Televisión2',
+          coordenadas: [[4249, 1234],[4037, 1220],[4052, 971],[4265, 986]],
+          icono: '📺',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Estudio-de-Televisión',
+          nombre: 'Estudio de Televisión',
+          coordenadas: [[4263, 1004],[4265, 986],[4252, 981],[4265, 758],[4465, 770],[4450, 1050],[4259, 1035]],
+          icono: '📺',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Estudio-de-Radi2',
+          nombre: 'Estudio de Radi2',
+          coordenadas: [[4458, 919],[4468, 775],[4693, 789],[4683, 1023],[4643, 1014],[4650, 932]],
+          icono: '🎙️',
+          color: getColorCategoria('ADMINISTRATIVO'),
+          categoria: 'ADMINISTRATIVO'
+        },
+        {
+          id: 'Radio-Universitario-MINDALAE',
+          nombre: 'Radio Universitario MINDALAE',
+          coordenadas: [[4867, 1081],[4875, 1029],[4890, 1029],[4902, 797],[4696, 783],[4684, 1068]],
+          icono: '🎙️',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Observatorio-Binacional-OZIFEC',
+          nombre: 'Observatorio Binacional OZIFEC',
+          coordenadas: [[4874, 1031],[5088, 1044],[5075, 1297],[4859, 1281]],
+          icono: '🔭',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+        {
+          id: 'Deposito',
+          nombre: 'Deposito',
+          coordenadas: [[4651, 1440],[4559, 1436],[4556, 1486],[4652, 1492]],
+          icono: '📦',
+          color: getColorCategoria('SERVICIO'),
+          categoria: 'SERVICIO'
+        },
+      ]
+    },
+  ]
+};
 // EXPORTAR TODOS LOS EDIFICIOS ESPECÍFICOS
 export const edificiosEspecificos: EdificioEspecifico[] = [
   edificio4,
   edificio3,
   edificio2,
-  edificio1
+  edificio1,
+  posgrados
 ];
 
 // Función para obtener edificio por ID
