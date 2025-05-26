@@ -503,6 +503,11 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
         nombre: 'Balones',
         imagen: '/assets/images/BALON2.jpg',
         descripcion: 'Balones de baloncesto oficiales para entrenamiento'
+      },
+      {
+        nombre: 'Marcadores',
+        imagen: '/assets/images/Marcador.jpg',
+        descripcion: 'Sistema de marcación electrónico'
       }
     ]
   },
