@@ -778,70 +778,383 @@ export const EdificioInfo: React.FC<{
 };
 
 // Componente para renderizar la información de área deportiva en el slider
+// Componente para renderizar la información de área deportiva en el slider
+// Componente para renderizar la información de área deportiva en el slider
 export const AreaDeportivaInfo: React.FC<{ 
-  area: AreaDeportiva 
-}> = ({ area }) => {
+  area: AreaDeportiva,
+  activeFloor?: number,
+  changeFloor?: (index: number) => void
+}> = ({ area, activeFloor = 0, changeFloor = () => {} }) => {
+  // Determinar si tiene pisos o es una sola cancha
+  const hasFloors = area.pisos && area.pisos.length > 0;
+  const currentPiso = hasFloors && area.pisos ? area.pisos[activeFloor] : null;
+  
+  // Determinar qué imagen mostrar en el encabezado
+  const getHeaderImage = () => {
+    const headerImages: Record<string, string> = {
+      'cancha1-futbol': '/assets/images/VISTA1P.jpg',
+      'cancha2-futbol': '/assets/images/VISTA2P.jpg',
+      'cancha1-basket': '/assets/images/BASQUET1.jpg',
+      'cancha2-basket': '/assets/images/BASQUET2.jpg',
+      'coliseo': '/assets/images/COLISEO1.jpg'
+    };
+    return headerImages[area.id] || undefined;
+  };
+  
+  // Determinar qué imagen mostrar para el área/piso seleccionado
+  const getFloorImage = () => {
+    if (hasFloors && currentPiso?.imagen) {
+      return currentPiso.imagen;
+    }
+    return area.plano || undefined;
+  };
+  
+  // Configuración de estilos reutilizables
+  const styles = {
+    title: {
+      fontFamily: 'Arial, sans-serif',
+      fontWeight: 'bold' as const,
+      fontSize: '22px',
+      margin: '24px 0 12px 0',
+      color: '#006633' // Verde como solicitaste
+    },
+    subtitle: {
+      fontFamily: 'Arial, sans-serif',
+      fontWeight: 'bold' as const,
+      fontSize: '20px',
+      margin: '24px 0 12px 0',
+      color: '#2c3e50'
+    },
+    headerImage: {
+      width: '100%',
+      height: '180px',
+      objectFit: 'cover' as const,
+      borderRadius: '8px',
+      margin: '10px 0 20px 0',
+      boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+      border: '1px solid #e0e0e0'
+    },
+    floorImageContainer: {
+      width: '100%',
+      height: '280px',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      borderRadius: '8px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative' as const,
+      boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+      margin: '16px 0',
+      border: '1px solid #ddd'
+    },
+    floorImageText: {
+      position: 'absolute' as const,
+      bottom: 0,
+      width: '100%',
+      backgroundColor: 'rgba(0, 102, 51, 0.85)',
+      color: 'white',
+      textAlign: 'center' as const,
+      fontSize: '1rem',
+      padding: '10px',
+      borderRadius: '0 0 8px 8px',
+      fontWeight: 'bold' as const
+    },
+    facilityItem: {
+      display: 'flex',
+      alignItems: 'center',
+      marginBottom: '10px',
+      padding: '8px 12px',
+      borderRadius: '6px',
+      backgroundColor: '#f8f9fa',
+      transition: 'background-color 0.2s ease'
+    },
+    equipmentImage: {
+      width: '80px',
+      height: '80px',
+      objectFit: 'cover' as const,
+      borderRadius: '50%',
+      border: '2px solid #006633',
+      marginRight: '16px'
+    },
+    scheduleItem: {
+      marginBottom: '8px',
+      paddingLeft: '8px',
+      borderLeft: '3px solid #006633'
+    },
+    recommendationItem: {
+      marginBottom: '8px',
+      paddingLeft: '20px',
+      position: 'relative' as const,
+      '&::before': {
+        content: '"•"',
+        position: 'absolute',
+        left: '8px',
+        color: '#006633'
+      }
+    }
+  };
+
   return (
-    <div className="slider-content-wrapper">
+    <div className="slider-content-wrapper" style={{ padding: '0 16px' }}>
+      {/* Encabezado */}
       <div className="slider-header-section">
-        <h2 className="item-title">{area.nombre}</h2>
-        <span className="item-badge">Área Deportiva</span>
-      </div>
-      
-      <p className="item-description animated-fade-in">{area.descripcion}</p>
-      
-      <div className="area-deportiva-info animated-fade-in">
-        <div className="info-item">
-          <div className="info-icon">🏆</div>
-          <div className="info-text">
-            <div className="info-label">Tipo</div>
-            <div className="info-value">{area.tipo}</div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Sección de imágenes demostrativas */}
-      {area.imagenes && area.imagenes.length > 0 && (
-  <div className="demo-images-section animated-fade-in-delayed">
-    <h3>Demostración del Área</h3>
-    <div className="image-grid">
-      {area.imagenes.map((imagen, index) => (
-        <div className="demo-image-container" key={`${area.id}-img-${index}`}>
-          <div className="image-aspect-ratio">
+        {/* Título en verde y alineado a la izquierda como solicitaste */}
+        <h2 style={styles.title}>{area.nombre}</h2>
+        
+        {/* Badge en amarillo como solicitaste */}
+        <span 
+          className="item-badge" 
+          style={{
+            display: 'inline-block',
+            backgroundColor: '#FFD700', // Amarillo como solicitaste
+            color: '#000',
+            padding: '4px 12px',
+            borderRadius: '16px',
+            fontSize: '0.85rem',
+            fontWeight: 'bold',
+            marginBottom: '12px'
+          }}
+        >
+          Área Deportiva
+        </span>
+        
+        {/* Imagen debajo del título */}
+        {getHeaderImage() && (
+          <div className="edificio-header-image">
             <img 
-              src={imagen.url} 
-              alt={imagen.alt} 
-              className="demo-image"
-              loading="lazy"
-              // Añade tamaño máximo opcional
-              style={{ maxWidth: '100%', maxHeight: '200px' }}
+              src={getHeaderImage()} 
+              alt={`Vista general de ${area.nombre}`}
+              style={styles.headerImage}
             />
           </div>
-          <p className="image-caption">{imagen.descripcion}</p>
-        </div>
-      ))}
-    </div>
-  </div>
-)}
+        )}
+      </div>
       
-      {/* Sección de equipamiento requerido */}
+      {/* Resto del componente (igual que antes) */}
+      <p 
+        className="item-description animated-fade-in" 
+        style={{
+          lineHeight: '1.6',
+          color: '#555',
+          marginBottom: '24px',
+          textAlign: 'justify'
+        }}
+      >
+        {area.descripcion}
+      </p>
+      
+      {/* Navegación entre pisos */}
+      {hasFloors && area.pisos && (
+        <div 
+          className="floors-navigation animated-fade-in" 
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-start',
+            gap: '8px',
+            marginBottom: '20px',
+            flexWrap: 'wrap'
+          }}
+        >
+          {area.pisos.map((piso, index) => {
+            const isActive = index === activeFloor;
+            const baseStyle = {
+              padding: '8px 16px',
+              borderRadius: '20px',
+              border: 'none',
+              backgroundColor: isActive ? '#006633' : '#e0e0e0',
+              color: isActive ? 'white' : '#333',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              fontSize: '0.9rem'
+            };
+
+            return (
+              <button 
+                key={index}
+                onClick={() => changeFloor(index)}
+                style={baseStyle}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = isActive ? '#005a2b' : '#d0d0d0';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = isActive ? '#006633' : '#e0e0e0';
+                }}
+              >
+                {piso.nombre || `Nivel ${piso.numero}`}
+              </button>
+            );
+          })}
+        </div>
+      )}
+      
+      {/* Imagen principal del área/piso */}
+      <div className="floor-info animated-fade-in">
+        <div 
+          className="floor-image"
+          style={{
+            ...styles.floorImageContainer,
+            backgroundImage: getFloorImage() ? `url(${getFloorImage()})` : undefined,
+          }}
+        >
+          {!getFloorImage() && (
+            <span style={{ fontSize: '3rem', opacity: 0.3 }}>🏟️</span>
+          )}
+          <div style={styles.floorImageText}>
+            {hasFloors && currentPiso ? currentPiso.nombre || `Nivel ${currentPiso.numero}` : area.nombre}
+          </div>
+        </div>
+      </div>
+      
+      {/* Instalaciones */}
+      <div className="floor-details" style={{ margin: '24px 0' }}>
+        <h3 style={styles.subtitle}>Instalaciones</h3>
+        {(hasFloors && currentPiso?.instalaciones ? currentPiso.instalaciones : area.instalaciones) && (
+          <ul 
+            className="facilities-list" 
+            style={{
+              listStyle: 'none',
+              padding: 0,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+              gap: '12px'
+            }}
+          >
+            {(hasFloors && currentPiso?.instalaciones ? currentPiso.instalaciones : area.instalaciones)?.map((instalacion, index) => (
+              <li 
+                key={index} 
+                className="facility-item animated-item" 
+                style={{
+                  ...styles.facilityItem,
+                  animationDelay: `${index * 100}ms`
+                }}
+              >
+                <span 
+                  className="facility-icon" 
+                  style={{
+                    marginRight: '10px',
+                    fontSize: '1.2rem'
+                  }}
+                >
+                  {instalacion.icono}
+                </span>
+                <span className="facility-name">{instalacion.nombre}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      
+      {/* Galería de imágenes */}
+      {area.imagenes && area.imagenes.length > 0 && (
+        <div className="demo-images-section animated-fade-in-delayed" style={{ margin: '32px 0' }}>
+          <h3 style={styles.subtitle}>Galería de Imágenes</h3>
+          <div 
+            className="image-grid" 
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+              gap: '16px',
+              marginTop: '16px'
+            }}
+          >
+            {area.imagenes.map((imagen, index) => (
+              <div 
+                className="demo-image-container" 
+                key={`${area.id}-img-${index}`}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center'
+                }}
+              >
+                <img 
+                  src={imagen.url} 
+                  alt={imagen.alt} 
+                  className="demo-image"
+                  loading="lazy"
+                  style={{ 
+                    width: '100%',
+                    height: '150px',
+                    objectFit: 'cover',
+                    borderRadius: '8px',
+                    marginBottom: '8px',
+                    border: '1px solid #e0e0e0',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+                  }}
+                />
+                <p 
+                  className="image-caption" 
+                  style={{
+                    fontSize: '0.85rem',
+                    color: '#666',
+                    textAlign: 'center',
+                    margin: 0
+                  }}
+                >
+                  {imagen.descripcion}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {/* Equipamiento */}
       {area.equipamiento && area.equipamiento.length > 0 && (
-        <div className="equipment-section animated-fade-in-delayed">
-          <h3>Equipamiento Requerido</h3>
-          <div className="equipment-grid">
+        <div className="equipment-section animated-fade-in-delayed" style={{ margin: '32px 0' }}>
+          <h3 style={styles.subtitle}>Equipamiento Disponible</h3>
+          <div 
+            className="equipment-grid" 
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '20px',
+              marginTop: '16px'
+            }}
+          >
             {area.equipamiento.map((item, index) => (
-              <div className="equipment-item" key={`${area.id}-eq-${index}`}>
-                <div className="equipment-image-container">
-                  <img 
-                    src={item.imagen} 
-                    alt={item.nombre}
-                    className="equipment-image"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="equipment-details">
-                  <h4>{item.nombre}</h4>
-                  <p>{item.descripcion}</p>
+              <div 
+                className="equipment-item" 
+                key={`${area.id}-eq-${index}`}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '12px',
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '8px',
+                  border: '1px solid #e0e0e0'
+                }}
+              >
+                <img 
+                  src={item.imagen} 
+                  alt={item.nombre}
+                  className="equipment-image"
+                  loading="lazy"
+                  style={styles.equipmentImage}
+                />
+                <div 
+                  className="equipment-details" 
+                  style={{ flex: 1 }}
+                >
+                  <h4 style={{ 
+                    fontFamily: 'Arial, sans-serif', 
+                    fontWeight: 'bold', 
+                    fontSize: '18px',
+                    margin: '0 0 8px 0',
+                    color: '#2c3e50'
+                  }}>
+                    {item.nombre}
+                  </h4>
+                  <p style={{ 
+                    margin: 0,
+                    color: '#555',
+                    lineHeight: '1.5',
+                    fontSize: '0.9rem'
+                  }}>
+                    {item.descripcion}
+                  </p>
                 </div>
               </div>
             ))}
@@ -849,45 +1162,51 @@ export const AreaDeportivaInfo: React.FC<{
         </div>
       )}
       
-      {/* Instalaciones disponibles */}
-      {area.instalaciones && area.instalaciones.length > 0 && (
-        <div className="area-facilities animated-fade-in-delayed">
-          <h3>Instalaciones</h3>
-          <ul className="facilities-list">
-            {area.instalaciones.map((instalacion, index) => (
-              <li 
-                key={`${area.id}-fac-${index}`} 
-                className="facility-item animated-item" 
-                style={{animationDelay: `${index * 100}ms`}}
-              >
-                <span className="facility-icon">{instalacion.icono}</span>
-                <span className="facility-name">{instalacion.nombre}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      
-      <div className="area-deportiva-recomendaciones animated-fade-in-delayed">
-        <h3>Horarios</h3>
-        <ul>
-          <li><strong>Lunes a Viernes:</strong> 7:00 AM - 8:00 PM</li>
-          <li><strong>Sábados:</strong> 8:00 AM - 6:00 PM</li>
-          <li><strong>Domingos y Feriados:</strong> 9:00 AM - 2:00 PM</li>
-        </ul>
+      {/* Horarios y recomendaciones */}
+      <div 
+        className="area-deportiva-recomendaciones animated-fade-in-delayed" 
+        style={{ 
+          margin: '32px 0',
+          padding: '20px',
+          backgroundColor: '#f8f9fa',
+          borderRadius: '8px',
+          border: '1px solid #e0e0e0'
+        }}
+      >
+        <h3 style={styles.subtitle}>Horarios de Uso</h3>
         
-        <h3>Recomendaciones</h3>
-        <ul>
-          <li>Utilice ropa y calzado adecuado para la actividad deportiva.</li>
-          <li>Traiga su propia hidratación.</li>
-          <li>Respete las normas específicas de cada área deportiva.</li>
-          <li>Coordine la reserva del espacio con anticipación si es necesario.</li>
-        </ul>
+        <div style={{ marginBottom: '24px' }}>
+          <div style={styles.scheduleItem}>
+            <strong style={{ color: '#006633' }}>Lunes a Viernes:</strong> 7:00 AM - 8:00 PM
+          </div>
+          <div style={styles.scheduleItem}>
+            <strong style={{ color: '#006633' }}>Sábados:</strong> 8:00 AM - 6:00 PM
+          </div>
+          <div style={styles.scheduleItem}>
+            <strong style={{ color: '#006633' }}>Domingos y Feriados:</strong> 9:00 AM - 2:00 PM
+          </div>
+        </div>
+        
+        <h3 style={styles.subtitle}>Recomendaciones</h3>
+        
+        <div style={{ lineHeight: '1.6' }}>
+          <div style={styles.recommendationItem}>
+            Utilice ropa y calzado adecuado para la actividad deportiva.
+          </div>
+          <div style={styles.recommendationItem}>
+            Traiga su propia hidratación.
+          </div>
+          <div style={styles.recommendationItem}>
+            Respete las normas específicas de cada área deportiva.
+          </div>
+          <div style={styles.recommendationItem}>
+            Coordine la reserva del espacio con anticipación si es necesario.
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-
 // Componente para renderizar la información de área verdes en el slider (MEJORADO)
 
 export const AreaVerdeIn: React.FC<{ area: AreaVerdeInfo }> = ({ area }) => {

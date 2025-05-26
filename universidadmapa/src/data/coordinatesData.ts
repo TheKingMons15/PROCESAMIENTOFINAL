@@ -129,6 +129,17 @@ export const estacionamientos: EstacionamientoInfo[] = estacionamientosOriginale
 }));
 
 /* Tipos para las áreas deportivas*/
+export interface PisoDeportivo {
+  numero: number;
+  nombre: string;
+  imagen: string;
+  descripcion?: string;
+  instalaciones?: {
+    nombre: string;
+    icono: string;
+  }[];
+}
+
 export interface AreaDeportiva {
   id: string;
   nombre: string;
@@ -137,7 +148,8 @@ export interface AreaDeportiva {
   color: string;
   selectedColor?: string;
   coordenadas: number[][];
-  plano?: string; // <-- Nuevo campo para la imagen del plano
+  plano?: string;
+  pisos?: PisoDeportivo[]; // Nueva propiedad para los pisos
   instalaciones: {
     nombre: string;
     icono: string;
@@ -162,10 +174,23 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha principal de fútbol',
     tipo: 'DEPORTIVO',
     color: '#2ecc71',
-    plano: '/assets/images/Cancha_22.jpg', // <-- Ruta del plano
-    selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
+    plano: '/assets/images/Cancha_22.jpg',
+    selectedColor: 'rgba(0, 100, 255, 0.5)',
     coordenadas: [
       [1955, 900], [1622, 1432], [2404, 2192], [2763, 1684]
+    ],
+    pisos: [
+      {
+        numero: 0,
+        nombre: 'Area Principal 1',
+        imagen: '/assets/images/CANCHAS1P.jpg',
+        descripcion: 'Vista panorámica completa de la cancha principal de fútbol',
+        instalaciones: [
+          { nombre: 'Campo de juego', icono: '⚽' },
+          { nombre: 'Graderías', icono: '👥' },
+          { nombre: 'Vestidores', icono: '🚿' }
+        ]
+      }
     ],
     instalaciones: [
       { nombre: 'Campo de juego', icono: '⚽' },
@@ -203,10 +228,22 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha secundaria de fútbol',
     tipo: 'DEPORTIVO',
     color: '#27ae60',
-    plano: '/assets/images/Cancha_33.jpg', // <-- Ruta del plano
-    selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
+    plano: '/assets/images/Cancha_33.jpg',
+    selectedColor: 'rgba(0, 100, 255, 0.5)',
     coordenadas: [
       [1590, 1500], [2367, 2248], [2036, 2768], [1210, 2016]
+    ],
+    pisos: [
+      {
+        numero: 0,
+        nombre: 'Area Principal 2',
+        imagen: '/assets/images/CANCHAS1P.jpg',
+        descripcion: 'Cancha secundaria de fútbol con césped sintético',
+        instalaciones: [
+          { nombre: 'Campo de juego', icono: '⚽' },
+          { nombre: 'Zona de calentamiento', icono: '🏃' }
+        ]
+      },
     ],
     instalaciones: [
       { nombre: 'Campo de juego', icono: '⚽' },
@@ -220,18 +257,29 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       }
     ]
   },
-  
-  
   {
     id: 'cancha1-basket',
     nombre: 'Cancha de Baloncesto 1',
     descripcion: 'Cancha principal de baloncesto',
     tipo: 'DEPORTIVO',
     color: '#3498db',
-    plano: '/assets/images/CanchaVasquet1.jpg', // <-- Ruta del plano
-    selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
+    plano: '/assets/images/CanchaVasquet1.jpg',
+    selectedColor: 'rgba(0, 100, 255, 0.5)',
     coordenadas: [
       [1071, 2264], [874, 2592], [1352, 3048], [1551, 2772]
+    ],
+    pisos: [
+      {
+        numero: 0,
+        nombre: 'Area Principal',
+        imagen: '/assets/images/CANCHAS1V.jpg',
+        descripcion: 'Cancha reglamentaria de baloncesto',
+        instalaciones: [
+          { nombre: 'Cancha', icono: '🏀' },
+          { nombre: 'Bancas', icono: '🪑' },
+          { nombre: 'Marcador', icono: '🔄' }
+        ]
+      },
     ],
     instalaciones: [
       { nombre: 'Cancha', icono: '🏀' },
@@ -244,10 +292,22 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Cancha secundaria de baloncesto',
     tipo: 'DEPORTIVO',
     color: '#2980b9',
-    plano: '/assets/images/CanchaVasquet2.jpg', // <-- Ruta del plano
-    selectedColor: 'rgba(0, 100, 255, 0.5)', // Azul transparente
+    plano: '/assets/images/CanchaVasquet2.jpg',
+    selectedColor: 'rgba(0, 100, 255, 0.5)',
     coordenadas: [
       [566, 1716], [1002, 2168], [828, 2468], [373, 2022]
+    ],
+    pisos: [
+      {
+        numero: 0,
+        nombre: 'Area Secundaria',
+        imagen: '/assets/images/CANCHAS1V.jpg',
+        descripcion: 'Cancha de práctica de baloncesto',
+        instalaciones: [
+          { nombre: 'Cancha', icono: '🏀' },
+          { nombre: 'Zona de espectadores', icono: '👥' }
+        ]
+      }
     ],
     instalaciones: [
       { nombre: 'Cancha', icono: '🏀' },
@@ -294,6 +354,30 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       [7200, 6236], [6700, 6268], [6440, 6480], [6387, 7432],
       [6592, 7636], [7180, 7624], [7366, 7440], [7354, 6352]
     ],
+    pisos: [
+      {
+        numero: 0,
+        nombre: 'Piso Principal',
+        imagen: '/assets/images/COLISEO_PLANO.jpg',
+        descripcion: 'Área principal del coliseo con cancha multiusos',
+        instalaciones: [
+          { nombre: 'Cancha Central', icono: '🏀' },
+          { nombre: 'Tribuna Norte', icono: '👥' },
+          { nombre: 'Tribuna Sur', icono: '👥' }
+        ]
+      },
+      {
+        numero: 1,
+        nombre: 'Nivel Servicios',
+        imagen: '/assets/images/ColiseoServicios.jpg',
+        descripcion: 'Área de servicios del coliseo',
+        instalaciones: [
+          { nombre: 'Vestuarios', icono: '🚿' },
+          { nombre: 'Sala de Prensa', icono: '🎤' },
+          { nombre: 'Baños', icono: '🚻' }
+        ]
+      }
+    ],
     instalaciones: [
       { nombre: 'Cancha Central', icono: '🏀' },
       { nombre: 'Tribuna Norte', icono: '👥' },
@@ -304,6 +388,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     ]
   }
 ];
+
 
 // Crear áreas deportivas con coordenadas transformadas
 export const areasDeportivas: AreaDeportiva[] = areasDeportivasOriginales.map(area => ({
