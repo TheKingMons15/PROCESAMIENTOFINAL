@@ -212,12 +212,12 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     equipamiento: [
       {
         nombre: 'Arcos',
-        imagen: '/assets/images/ArcoFutbol1.jpg',
+        imagen: '/assets/images/ArcoFutbol.jpg',
         descripcion: 'Arcos reglamentarios con redes'
       },
       {
         nombre: 'Balones',
-        imagen: '/assets/images/equipo-balones.jpg',
+        imagen: '/assets/images/BALON.jpg',
         descripcion: 'Balones oficiales para entrenamiento'
       }
     ]
@@ -253,7 +253,24 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       {
         url: '/assets/images/CanchaFutbol2.jpg',
         alt: 'Cancha secundaria de fútbol',
-        descripcion: 'Vista aérea de la cancha secundaria'
+        descripcion: 'Vista panorámica de la cancha secundaria'
+      },
+      {
+        url: '/assets/images/Cesped.jpg',
+        alt: 'Detalle del césped sintético',
+        descripcion: 'Detalle de la superficie de juego'
+      }
+      ],
+    equipamiento: [
+      {
+        nombre: 'Arcos',
+        imagen: '/assets/images/ArcoFutbol.jpg',
+        descripcion: 'Arcos reglamentarios con redes'
+      },
+      {
+        nombre: 'Balones',
+        imagen: '/assets/images/BALON.jpg',
+        descripcion: 'Balones oficiales para entrenamiento'
       }
     ]
   },
@@ -284,6 +301,30 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     instalaciones: [
       { nombre: 'Cancha', icono: '🏀' },
       { nombre: 'Bancas', icono: '🪑' }
+    ],
+    imagenes: [
+      {
+        url: '/assets/images/basquetvista2.jpg',
+        alt: 'Cancha principal de fútbol',
+        descripcion: 'Vista panorámica de la cancha principal'
+      },
+      {
+        url: '/assets/images/PLANOS2.jpg',
+        alt: 'Detalle del césped sintético',
+        descripcion: 'Detalle de la superficie de juego'
+      }
+    ],
+    equipamiento: [
+      {
+        nombre: 'Arcos',
+        imagen: '/assets/images/ARO.jpg',
+        descripcion: 'Arcos reglamentarios con redes'
+      },
+      {
+        nombre: 'Balones',
+        imagen: '/assets/images/BALON2.jpg',
+        descripcion: 'Balones oficiales para entrenamiento'
+      }
     ]
   },
   {
@@ -312,14 +353,40 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     instalaciones: [
       { nombre: 'Cancha', icono: '🏀' },
       { nombre: 'Zona de espectadores', icono: '👥' }
+    ],
+    imagenes: [
+      {
+        url: '/assets/images/basquetvista2.jpg',
+        alt: 'Cancha principal de fútbol',
+        descripcion: 'Vista panorámica de la cancha principal'
+      },
+      {
+        url: '/assets/images/PLANOS2.jpg',
+        alt: 'Detalle del césped sintético',
+        descripcion: 'Detalle de la superficie de juego'
+      }
+    ],
+    equipamiento: [
+      {
+        nombre: 'Arcos',
+        imagen: '/assets/images/ARO.jpg',
+        descripcion: 'Arcos reglamentarios con redes'
+      },
+      {
+        nombre: 'Balones',
+        imagen: '/assets/images/BALON2.jpg',
+        descripcion: 'Balones oficiales para entrenamiento'
+      }
     ]
   },
   {
     id: 'cancha-interna',
     nombre: 'Cancha Múltiple Interna',
-    descripcion: 'Cancha deportiva para actividades internas como baloncesto, vóley y ecuavóley.',
+    descripcion: 'Cancha deportiva para actividades internas.',
     tipo: 'DEPORTIVO',
     color: '#16a085',
+    plano: '/assets/images/CanchaVasquet2.jpg',
+    selectedColor: 'rgba(0, 100, 255, 0.5)',
     coordenadas: [
       [6916, 4408], [6400, 4408], [6340, 5504], [6900, 5464]
     ],
@@ -350,6 +417,8 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
     descripcion: 'Coliseo deportivo para eventos y competencias.',
     tipo: 'DEPORTIVO',
     color: '#8e44ad',
+    plano: '/assets/images/CanchaVasquet2.jpg',
+    selectedColor: 'rgba(0, 100, 255, 0.5)',
     coordenadas: [
       [7200, 6236], [6700, 6268], [6440, 6480], [6387, 7432],
       [6592, 7636], [7180, 7624], [7366, 7440], [7354, 6352]
@@ -358,7 +427,7 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
       {
         numero: 0,
         nombre: 'Piso Principal',
-        imagen: '/assets/images/COLISEO_PLANO.jpg',
+        imagen: '/assets/images/COLISEO_PLANO1.jpg',
         descripcion: 'Área principal del coliseo con cancha multiusos',
         instalaciones: [
           { nombre: 'Cancha Central', icono: '🏀' },
@@ -366,17 +435,6 @@ const areasDeportivasOriginales: AreaDeportiva[] = [
           { nombre: 'Tribuna Sur', icono: '👥' }
         ]
       },
-      {
-        numero: 1,
-        nombre: 'Nivel Servicios',
-        imagen: '/assets/images/ColiseoServicios.jpg',
-        descripcion: 'Área de servicios del coliseo',
-        instalaciones: [
-          { nombre: 'Vestuarios', icono: '🚿' },
-          { nombre: 'Sala de Prensa', icono: '🎤' },
-          { nombre: 'Baños', icono: '🚻' }
-        ]
-      }
     ],
     instalaciones: [
       { nombre: 'Cancha Central', icono: '🏀' },

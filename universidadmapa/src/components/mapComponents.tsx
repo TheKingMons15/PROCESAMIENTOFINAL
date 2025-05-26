@@ -796,7 +796,8 @@ export const AreaDeportivaInfo: React.FC<{
       'cancha2-futbol': '/assets/images/VISTA2P.jpg',
       'cancha1-basket': '/assets/images/BASQUET1.jpg',
       'cancha2-basket': '/assets/images/BASQUET2.jpg',
-      'coliseo': '/assets/images/COLISEO1.jpg'
+      'coliseo': '/assets/images/COLISEO1.jpg',
+      'cancha-interna': '/assets/images/CANCHAINTER.jpg'
     };
     return headerImages[area.id] || undefined;
   };
